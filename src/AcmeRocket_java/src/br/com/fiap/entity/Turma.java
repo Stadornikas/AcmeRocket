@@ -9,7 +9,7 @@ package br.com.fiap.entity;
  *
  * @author leandro
  */
-public class Aluno {
+public class Turma {
     
     
     
