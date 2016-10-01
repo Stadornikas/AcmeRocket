@@ -6,55 +6,69 @@ public class Lancamento {
 
     private int codLancamento;
     private int codGrupo;
-    private Date horLancamento;
-    private double angLancamento;
-    private double velVento;
-    private double pesFoguete;
-    private double altMax;
-    private double velMax;
-    private double temPrp;
-    private double picAcl;
-    private double alcMax;
-    private double temApdg;
-    private double temEje;
-    private double taxDes;
-    private double durVoo;
-    private double disQueda;
+    private String horLancamento;
+    private int status;
+    private float angLancamento;
+    private float velVento;
+    private float disAlvo;
+    private float pesFoguete;
+    private float altMax = 0;
+    private float velMax = 0;
+    private float temPrp = 0;
+    private float picAcl = 0;
+    private float alcMax = 0;
+    private float temApdc = 0;
+    private float temEje = 0;
+    private float altEje = 0;
+    private float taxDes = 0;
+    private float durVoo = 0;
+    private float disQueda = 0;
 
-    public Lancamento(int codLancamento, int codGrupo, Date horLancamento, double angLancamento, double velVento, double pesFoguete, double altMax, double velMax, double picAcl, double alcMax, double temApdg, double temEje, double taxDes, double durVoo, double disQueda) {
+    public Lancamento(int codLancamento, int codGrupo, String horLancamento, int status, float angLancamento, float velVento, float disAlvo,
+            float pesFoguete, float altMax, float velMax, float temPrp, float picAcl, float alcMax, float temApdc, float temEje, float altEje, float taxDes,
+            float durVoo, float disQueda) {
         this.codLancamento = codLancamento;
         this.codGrupo = codGrupo;
         this.horLancamento = horLancamento;
+        this.status = status;
         this.angLancamento = angLancamento;
         this.velVento = velVento;
+        this.disAlvo = disAlvo;
         this.pesFoguete = pesFoguete;
-        this.altMax = 0;
-        this.velMax = 0;
-        this.picAcl = 0;
-        this.alcMax = 0;
-        this.temApdg = 0;
-        this.temEje = 0;
-        this.taxDes = 0;
-        this.durVoo = 0;
-        this.disQueda = 0;
+        this.altMax = altMax;
+        this.velMax = velMax;
+        this.temPrp = temPrp;
+        this.picAcl = picAcl;
+        this.alcMax = alcMax;
+        this.temApdc = temApdc;
+        this.temEje = temEje;
+        this.altEje = altEje;
+        this.taxDes = taxDes;
+        this.durVoo = durVoo;
+        this.disQueda = disQueda;
     }
 
-    public Lancamento(int codGrupo, Date horLancamento, double angLancamento, double velVento, double pesFoguete, double altMax, double velMax, double temPrp, double picAcl, double alcMax, double temApdg, double temEje, double taxDes, double durVoo, double disQueda) {
+    public Lancamento(int codGrupo, String horLancamento, int status, float angLancamento,
+            float velVento, float disAlvo, float pesFoguete, float altMax, float velMax, float temPrp, float picAcl,
+            float alcMax, float temApdc, float temEje, float altEje, float taxDes, float durVoo, float disQueda) {
         this.codGrupo = codGrupo;
         this.horLancamento = horLancamento;
+        this.status = status;
         this.angLancamento = angLancamento;
         this.velVento = velVento;
+        this.disAlvo = disAlvo;
         this.pesFoguete = pesFoguete;
-        this.altMax = 0;
-        this.velMax = 0;
-        this.temPrp = 0;
-        this.picAcl = 0;
-        this.alcMax = 0;
-        this.temApdg = 0;
-        this.temEje = 0;
-        this.taxDes = 0;
-        this.durVoo = 0;
-        this.disQueda = 0;
+        this.altMax = altMax;
+        this.velMax = velMax;
+        this.temPrp = temPrp;
+        this.picAcl = picAcl;
+        this.alcMax = alcMax;
+        this.temApdc = temApdc;
+        this.temEje = temEje;
+        this.altEje = altEje;
+        this.taxDes = taxDes;
+        this.durVoo = durVoo;
+        this.disQueda = disQueda;
     }
 
     public int getCodLancamento() {
@@ -73,121 +87,141 @@ public class Lancamento {
         this.codGrupo = codGrupo;
     }
 
-    public Date getHorLancamento() {
+    public String getHorLancamento() {
         return horLancamento;
     }
 
-    public void setHorLancamento(Date horLancamento) {
+    public void setHorLancamento(String horLancamento) {
         this.horLancamento = horLancamento;
     }
 
-    public double getAngLancamento() {
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public float getAngLancamento() {
         return angLancamento;
     }
 
-    public void setAngLancamento(double angLancamento) {
+    public void setAngLancamento(float angLancamento) {
         this.angLancamento = angLancamento;
     }
 
-    public double getVelVento() {
+    public float getVelVento() {
         return velVento;
     }
 
-    public void setVelVento(double velVento) {
+    public void setVelVento(float velVento) {
         this.velVento = velVento;
     }
 
-    public double getPesFoguete() {
+    public float getDisAlvo() {
+        return disAlvo;
+    }
+
+    public void setDisAlvo(float disAlvo) {
+        this.disAlvo = disAlvo;
+    }
+
+    public float getPesFoguete() {
         return pesFoguete;
     }
 
-    public void setPesFoguete(double pesFoguete) {
+    public void setPesFoguete(float pesFoguete) {
         this.pesFoguete = pesFoguete;
     }
 
-    public double getAltMax() {
+    public float getAltMax() {
         return altMax;
     }
 
-    public void setAltMax(double altMax) {
+    public void setAltMax(float altMax) {
         this.altMax = altMax;
     }
 
-    public double getVelMax() {
+    public float getVelMax() {
         return velMax;
     }
 
-    public void setVelMax(double velMax) {
+    public void setVelMax(float velMax) {
         this.velMax = velMax;
     }
 
-    public double getTemPrp() {
+    public float getTemPrp() {
         return temPrp;
     }
 
-    public void setTemPrp(double temPrp) {
+    public void setTemPrp(float temPrp) {
         this.temPrp = temPrp;
     }
 
-    public double getPicAcl() {
+    public float getPicAcl() {
         return picAcl;
     }
 
-    public void setPicAcl(double picAcl) {
+    public void setPicAcl(float picAcl) {
         this.picAcl = picAcl;
     }
 
-    public double getAlcMax() {
+    public float getAlcMax() {
         return alcMax;
     }
 
-    public void setAlcMax(double alcMax) {
+    public void setAlcMax(float alcMax) {
         this.alcMax = alcMax;
     }
 
-    public double getTemApdg() {
-        return temApdg;
+    public float getTemApdc() {
+        return temApdc;
     }
 
-    public void setTemApdg(double temApdg) {
-        this.temApdg = temApdg;
+    public void setTemApdc(float temApdc) {
+        this.temApdc = temApdc;
     }
 
-    public double getTemEje() {
+    public float getAltEje() {
+        return altEje;
+        
+    }
+
+    public void setAltEje(float altEje) {
+        this.altEje = altEje;
+    }
+       
+    public float getTemEje() {
         return temEje;
     }
 
-    public void setTemEje(double temEje) {
+    public void setTemEje(float temEje) {
         this.temEje = temEje;
     }
 
-    public double getTaxDes() {
+    public float getTaxDes() {
         return taxDes;
     }
 
-    public void setTaxDes(double taxDes) {
+    public void setTaxDes(float taxDes) {
         this.taxDes = taxDes;
     }
 
-    public double getDurVoo() {
+    public float getDurVoo() {
         return durVoo;
     }
 
-    public void setDurVoo(double durVoo) {
+    public void setDurVoo(float durVoo) {
         this.durVoo = durVoo;
     }
 
-    public double getDisQueda() {
+    public float getDisQueda() {
         return disQueda;
     }
 
-    public void setDisQueda(double disQueda) {
+    public void setDisQueda(float disQueda) {
         this.disQueda = disQueda;
     }
-    
-    
-    
-    
-    
 
 }
