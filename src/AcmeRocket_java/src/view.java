@@ -23,10 +23,10 @@ public class view {
 
         c = Conexao.getConnection();
 
-        if (c == null) {
-            System.out.println("Conexão não estabelecida");
-        } else {
-            System.out.println("Conexão estabelecida");
-        }
+//        if (c == null) {
+//            System.out.println("Conexão não estabelecida");
+//        } else {
+//            System.out.println("Conexão estabelecida");
+//        }
     }
 }
