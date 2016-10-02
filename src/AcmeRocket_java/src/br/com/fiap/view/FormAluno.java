@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+
 /**
  *
  * @author leandro
@@ -16,7 +17,11 @@ public class FormAluno extends javax.swing.JPanel {
      */
     public FormAluno() {
         initComponents();
+
+
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
