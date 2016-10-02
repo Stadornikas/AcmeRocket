@@ -165,7 +165,7 @@ public class LancamentoDAO {
 
     }
 
-    public boolean listarAlterar(Lancamento lancamento) {
+    public boolean alterar(Lancamento lancamento) {
         boolean aux = false;
 
         try {
