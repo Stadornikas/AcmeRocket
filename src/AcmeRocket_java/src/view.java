@@ -19,10 +19,18 @@ public class view {
     }
 
     public static void teste() {
-//        Connection c;
-//
-//        c = Conexao.getConnection();
+        Connection c;
 
-        
+        c = Conexao.getConnection();
+
+
+        c = Conexao.getConnection();
+
+        if (c == null) {
+            System.out.println("Conexão não estabelecida");
+        } else {
+            System.out.println("Conexão estabelecida");
+        }
+
     }
 }
