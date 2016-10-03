@@ -16,7 +16,7 @@ public class EventoDAO {
     private String              sql;
     private String              msg = "Erro ao ";
     
-    /*
+    
     public ArrayList listar(){
         ArrayList<Evento> lista = new ArrayList();
         
@@ -103,5 +103,5 @@ public class EventoDAO {
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msg + "alterar evento! \n ERRO: "+ex);
         }
-    }*/
+    }
 }

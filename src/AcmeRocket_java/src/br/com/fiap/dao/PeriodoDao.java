@@ -16,7 +16,7 @@ public class PeriodoDao {
     private String              sql;
     private String              msg = "Erro ao ";
     
-    /*public ArrayList listar(){
+    public ArrayList listar(){
         ArrayList<Periodo> lista = new ArrayList();
         
         try {
@@ -97,5 +97,5 @@ public class PeriodoDao {
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, msg + "alterar periodo! \n ERRO: "+ex);
         }
-    }*/
+    }
 }
