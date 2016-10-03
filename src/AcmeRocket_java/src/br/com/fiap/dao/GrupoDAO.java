@@ -16,8 +16,7 @@ public class GrupoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-    private String msg = "Erro ao ";
-
+   
     public boolean inserir(Grupo grupo) {
         boolean aux = false;
         try {
@@ -35,7 +34,7 @@ public class GrupoDAO {
             aux = true;
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "inserir grupo! \n ERRO:" + ex);
+            showMessageDialog(null, "Erro ao inserir grupo! \n ERRO:" + ex);
         }
         return aux;
     }
@@ -59,7 +58,7 @@ public class GrupoDAO {
             aux = true;
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "ao alterar grupo! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao ao alterar grupo! \n ERRO: " + ex);
         }
 
         return aux;
@@ -80,7 +79,7 @@ public class GrupoDAO {
             aux = true;
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "deletar grupo! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao deletar grupo! \n ERRO: " + ex);
         }
 
         return aux;
@@ -106,7 +105,7 @@ public class GrupoDAO {
 
             }
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "ao buscar grupo! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao ao buscar grupo! \n ERRO: " + ex);
         }
         return grupo;
     }
@@ -132,7 +131,7 @@ public class GrupoDAO {
             }
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "listar grupos! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao listar grupos! \n ERRO: " + ex);
         }
         
         return lista;

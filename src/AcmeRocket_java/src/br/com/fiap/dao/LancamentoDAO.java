@@ -15,8 +15,7 @@ public class LancamentoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-    private String msg = "Erro ao ";
-
+    
     public boolean inserir(Lancamento lancamento) {
         boolean aux = false;
 
@@ -50,7 +49,7 @@ public class LancamentoDAO {
             aux = true;
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "inserir lançamento! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao inserir lançamento! \n ERRO: " + ex);
         }
 
         return aux;
@@ -71,7 +70,7 @@ public class LancamentoDAO {
             aux = true;
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "deletar lançamento! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao deletar lançamento! \n ERRO: " + ex);
         }
         return aux;
     }
@@ -115,7 +114,7 @@ public class LancamentoDAO {
             }
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "buscar lançamento! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao buscar lançamento! \n ERRO: " + ex);
         }
 
         return lancamento;
@@ -158,13 +157,14 @@ public class LancamentoDAO {
             }
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "listar lançamento! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao listar lançamento! \n ERRO: " + ex);
         }
 
         return lista;
 
     }
 
+//    Aqui primeiro listar e depois alterar
     public boolean alterar(Lancamento lancamento) {
         boolean aux = false;
 
@@ -201,7 +201,7 @@ public class LancamentoDAO {
             aux = true;
 
         } catch (SQLException ex) {
-            showMessageDialog(null, msg + "alterar lançamento! \n ERRO: " + ex);
+            showMessageDialog(null, "Erro ao alterar lançamento! \n ERRO: " + ex);
         }
 
         return aux;
