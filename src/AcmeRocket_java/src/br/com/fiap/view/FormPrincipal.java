@@ -27,210 +27,230 @@ public class FormPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel9 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblGrupos = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        lblEventos = new javax.swing.JLabel();
+        lblPeriodos = new javax.swing.JLabel();
+        lblTurmas = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lblAluno = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        lblLancamentos = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        lblRanking = new javax.swing.JLabel();
+        lblSobre = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Acme Rocket");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setText("Turmas");
-
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475731291_rocket.png"))); // NOI18N
-
-        jLabel10.setText("Gerenciamento de turmas");
-
-        jLabel18.setText("Lançamento");
-
-        jLabel19.setText("Gerenciamento de lançamento");
-
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727571_10.png"))); // NOI18N
-
-        jLabel21.setText("Ranking");
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727725_group2.png"))); // NOI18N
-
-        jLabel22.setText("Visualização de ranking");
-
-        jLabel12.setText("Grupos");
-
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727989_about.png"))); // NOI18N
-
-        jLabel13.setText("Gerenciamento de grupos");
-
-        jLabel24.setText("Sobre");
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727725_group2.png"))); // NOI18N
-
-        jLabel1.setText("Evento");
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727687_date.png"))); // NOI18N
-
-        jLabel3.setText("Gerenciamento de Eventos");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727571_10.png"))); // NOI18N
-
+        jLabel5.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Sistema de Controle Para Space Cup Fiap");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 11, 650, -1));
 
-        jLabel6.setText("Períodos");
+        lblGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-03 51x51.png"))); // NOI18N
+        lblGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGruposMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, -1, -1));
 
-        jLabel7.setText("Gerenciamento de período");
+        jLabel2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Evento");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 50, -1));
 
-        jLabel15.setText("Aluno");
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel4.setText("Gerenciamento de Eventos");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727725_group2.png"))); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Perído");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 50, -1));
 
-        jLabel16.setText("Gerenciamento de aluno");
+        jLabel17.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel17.setText("Gerenciamento de períodos");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
-                                .addGap(112, 112, 112)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9))
-                                .addGap(104, 104, 104)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(302, 302, 302)
-                                .addComponent(jLabel10)
-                                .addGap(36, 36, 36)
-                                .addComponent(jLabel13))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel22)))))
-                .addGap(0, 41, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel15)))
-                .addGap(97, 97, 97)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18))
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel23))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel24)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel2))
-                        .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel14))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel23)
-                                    .addComponent(jLabel17))))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20)
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel15)
-                        .addComponent(jLabel18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel21)
-                        .addComponent(jLabel24)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel22))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel20.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("Turmas");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 50, -1));
+
+        jLabel23.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel23.setText("Gerenciamento de turmas");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setText("Grupos");
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 50, -1));
+
+        jLabel27.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel27.setText("Gerenciamento de grupos");
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, -1, -1));
+
+        lblEventos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-06 51x51.png"))); // NOI18N
+        lblEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEventosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+
+        lblPeriodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
+        lblPeriodos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPeriodosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblPeriodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
+
+        lblTurmas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
+        lblTurmas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTurmasMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblTurmas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Alunos");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 50, -1));
+
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setText("Gerenciamento de alunos");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+
+        lblAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-04 51x51.png"))); // NOI18N
+        lblAluno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAlunoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Lançamento");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 80, -1));
+
+        jLabel18.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel18.setText("Gerenciamento de lançamento");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+
+        lblLancamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-05 51x51.png"))); // NOI18N
+        lblLancamentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLancamentosMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblLancamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("Ranking");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 50, -1));
+
+        jLabel24.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel24.setText("Visualização de ranking");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+
+        lblRanking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-07 51x51.png"))); // NOI18N
+        lblRanking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRankingMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
+
+        lblSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-08 51x51.png"))); // NOI18N
+        lblSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSobreMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+
+        jLabel35.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setText("Sobre");
+        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 50, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosMouseClicked
+        //CHAMANDO FORMULARIO EVENTO
+        FormEvento fe = new FormEvento();
+        this.dispose();
+        fe.setVisible(true);
+    }//GEN-LAST:event_lblEventosMouseClicked
+
+    private void lblPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPeriodosMouseClicked
+        //CHAMANDO FORMULARIO PERIODO
+        FormPeriodo fp = new FormPeriodo();
+        this.dispose();
+        fp.setVisible(true);
+    }//GEN-LAST:event_lblPeriodosMouseClicked
+
+    private void lblTurmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTurmasMouseClicked
+        //CHAMANDO FORMULARIO TURMA
+        FormTurmas ft = new FormTurmas();
+        this.dispose();
+        ft.setVisible(true);
+    }//GEN-LAST:event_lblTurmasMouseClicked
+
+    private void lblGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGruposMouseClicked
+        //CHAMANDO FORMULARIO GRUPO
+        FormGrupos fg = new FormGrupos();
+        this.dispose();
+        fg.setVisible(true);
+    }//GEN-LAST:event_lblGruposMouseClicked
+
+    private void lblAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlunoMouseClicked
+        //CHAMANDO FORMULARIO ALUNO
+        FormAluno fa = new FormAluno();
+        this.dispose();
+        fa.setVisible(true);
+    }//GEN-LAST:event_lblAlunoMouseClicked
+
+    private void lblLancamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLancamentosMouseClicked
+        //CHAMANDO FORMULARIO LANÇAMENTO
+        FormLancamento fl = new FormLancamento();
+        this.dispose();
+        fl.setVisible(true);
+    }//GEN-LAST:event_lblLancamentosMouseClicked
+
+    private void lblRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRankingMouseClicked
+        //CHAMANDO FORMULARIO RANKING
+        FormRanking fr = new FormRanking();
+        this.dispose();
+        fr.setVisible(true);
+    }//GEN-LAST:event_lblRankingMouseClicked
+
+    private void lblSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSobreMouseClicked
+        //CHAMANDO FORMULARIO SOBRE
+        FormSobre fs = new FormSobre();
+        this.dispose();
+        fs.setVisible(true);
+    }//GEN-LAST:event_lblSobreMouseClicked
 
     /**
      * @param args the command line arguments
@@ -269,29 +289,29 @@ public class FormPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblAluno;
+    private javax.swing.JLabel lblEventos;
+    private javax.swing.JLabel lblGrupos;
+    private javax.swing.JLabel lblLancamentos;
+    private javax.swing.JLabel lblPeriodos;
+    private javax.swing.JLabel lblRanking;
+    private javax.swing.JLabel lblSobre;
+    private javax.swing.JLabel lblTurmas;
     // End of variables declaration//GEN-END:variables
 }

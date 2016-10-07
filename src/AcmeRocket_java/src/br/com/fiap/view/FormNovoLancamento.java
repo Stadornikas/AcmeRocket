@@ -27,21 +27,68 @@ public class FormNovoLancamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblDashboard = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lblLancamento = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-05 51x51.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel4.setText("Lançamento");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel2.setText("Novo");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 11, -1, -1));
+
+        lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        lblDashboard.setText("Dashboard");
+        lblDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDashboardMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 9, -1, -1));
+
+        lblLancamento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        lblLancamento.setText("Lançamentos");
+        lblLancamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLancamentoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
+        //CHAMANDO FORMULARIO PRINCIPAL
+        FormPrincipal fp = new FormPrincipal();
+        this.dispose();
+        fp.setVisible(true);
+    }//GEN-LAST:event_lblDashboardMouseClicked
+
+    private void lblLancamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLancamentoMouseClicked
+        //CHAMANDO FORMULARIO LANÇAMENTO(LISTA)
+        FormLancamento fl = new FormLancamento();
+        this.dispose();
+        fl.setVisible(true);
+    }//GEN-LAST:event_lblLancamentoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -79,5 +126,12 @@ public class FormNovoLancamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblDashboard;
+    private javax.swing.JLabel lblLancamento;
     // End of variables declaration//GEN-END:variables
 }

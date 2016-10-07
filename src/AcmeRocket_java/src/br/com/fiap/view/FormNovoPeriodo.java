@@ -27,93 +27,92 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtPeriodo = new javax.swing.JTextField();
+        btnCancelarPeriodo = new javax.swing.JButton();
+        btnSalvarPeriodo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        lblDashboard = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblPeriodo = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel5.setText("Novo");
-
-        jLabel2.setText("Períodos");
-
-        jLabel1.setText("Dashboard");
+        setTitle("Acme Rocket");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727571_10.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 43, -1, -1));
 
-        jLabel4.setText("Períodos");
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setText("Período:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, -1, -1));
 
-        jLabel6.setText("Períodos");
+        txtPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 100, -1));
 
-        jButton1.setText("Cancelar");
+        btnCancelarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        btnCancelarPeriodo.setText("Cancelar");
+        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
-        jButton2.setText("Salvar");
+        btnSalvarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        btnSalvarPeriodo.setText("Salvar");
+        getContentPane().add(btnSalvarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4)))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel2.setText("Novo");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 11, -1, -1));
+
+        lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        lblDashboard.setText("Dashboard");
+        lblDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDashboardMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel4.setText("Período");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 9, -1, -1));
+
+        lblPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        lblPeriodo.setText("Períodos");
+        lblPeriodo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPeriodoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
+        //CHAMANDO FORMULARIO PRINCIPAL
+        FormPrincipal fp = new FormPrincipal();
+        this.dispose();
+        fp.setVisible(true);
+    }//GEN-LAST:event_lblDashboardMouseClicked
+
+    private void lblPeriodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPeriodoMouseClicked
+        //CHAMANDO FORMULARIO PERIODOS(LISTA)
+        FormPeriodo fp = new FormPeriodo();
+        this.dispose();
+        fp.setVisible(true);
+    }//GEN-LAST:event_lblPeriodoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -151,14 +150,17 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnCancelarPeriodo;
+    private javax.swing.JButton btnSalvarPeriodo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblDashboard;
+    private javax.swing.JLabel lblPeriodo;
+    private javax.swing.JTextField txtPeriodo;
     // End of variables declaration//GEN-END:variables
 }
