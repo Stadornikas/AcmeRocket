@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -16,6 +18,7 @@ public class FormPrincipal extends javax.swing.JFrame {
      */
     public FormPrincipal() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -51,15 +54,21 @@ public class FormPrincipal extends javax.swing.JFrame {
         lblRanking = new javax.swing.JLabel();
         lblSobre = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setResizable(false);
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Bodoni MT", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Sistema de Controle Para Space Cup Fiap");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 11, 650, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 90));
 
         lblGrupos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-03 51x51.png"))); // NOI18N
         lblGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,43 +76,43 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblGruposMouseClicked(evt);
             }
         });
-        getContentPane().add(lblGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, -1, -1));
+        getContentPane().add(lblGrupos, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Evento");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 50, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 50, -1));
 
         jLabel4.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel4.setText("Gerenciamento de Eventos");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Perído");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 50, -1));
+        jLabel14.setText("Período");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 50, -1));
 
         jLabel17.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel17.setText("Gerenciamento de períodos");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Turmas");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 50, -1));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 50, -1));
 
         jLabel23.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel23.setText("Gerenciamento de turmas");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Grupos");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 50, -1));
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 50, -1));
 
         jLabel27.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel27.setText("Gerenciamento de grupos");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, -1, -1));
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, -1, -1));
 
         lblEventos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-06 51x51.png"))); // NOI18N
         lblEventos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,7 +120,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblEventosMouseClicked(evt);
             }
         });
-        getContentPane().add(lblEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(lblEventos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
 
         lblPeriodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
         lblPeriodos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,7 +128,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblPeriodosMouseClicked(evt);
             }
         });
-        getContentPane().add(lblPeriodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
+        getContentPane().add(lblPeriodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
         lblTurmas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
         lblTurmas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,16 +136,16 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblTurmasMouseClicked(evt);
             }
         });
-        getContentPane().add(lblTurmas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
+        getContentPane().add(lblTurmas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Alunos");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 50, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 50, -1));
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel6.setText("Gerenciamento de alunos");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         lblAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-04 51x51.png"))); // NOI18N
         lblAluno.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,16 +153,16 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblAlunoMouseClicked(evt);
             }
         });
-        getContentPane().add(lblAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
+        getContentPane().add(lblAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Lançamento");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 80, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 80, -1));
 
         jLabel18.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel18.setText("Gerenciamento de lançamento");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
 
         lblLancamentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-05 51x51.png"))); // NOI18N
         lblLancamentos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -161,16 +170,16 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblLancamentosMouseClicked(evt);
             }
         });
-        getContentPane().add(lblLancamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
+        getContentPane().add(lblLancamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Ranking");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 50, -1));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 50, -1));
 
         jLabel24.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        jLabel24.setText("Visualização de ranking");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+        jLabel24.setText("Informações sobre o grupo");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
 
         lblRanking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-07 51x51.png"))); // NOI18N
         lblRanking.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,7 +187,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblRankingMouseClicked(evt);
             }
         });
-        getContentPane().add(lblRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
+        getContentPane().add(lblRanking, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, -1, -1));
 
         lblSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-08 51x51.png"))); // NOI18N
         lblSobre.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,12 +195,16 @@ public class FormPrincipal extends javax.swing.JFrame {
                 lblSobreMouseClicked(evt);
             }
         });
-        getContentPane().add(lblSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, -1, -1));
+        getContentPane().add(lblSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Candara", 1, 14)); // NOI18N
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Sobre");
-        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 50, -1));
+        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 50, -1));
+
+        jLabel25.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel25.setText("Visualização de ranking");
+        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -201,6 +214,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         FormEvento fe = new FormEvento();
         this.dispose();
         fe.setVisible(true);
+        
     }//GEN-LAST:event_lblEventosMouseClicked
 
     private void lblPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPeriodosMouseClicked
@@ -298,6 +312,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;

@@ -16,6 +16,7 @@ public class FormNovoLancamento extends javax.swing.JFrame {
      */
     public FormNovoLancamento() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

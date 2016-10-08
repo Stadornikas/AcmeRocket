@@ -20,6 +20,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
      */
     public FormNovaTurma() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -48,39 +49,44 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setResizable(false);
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel4.setText("Turma");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Turma:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-        getContentPane().add(txtTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 130, -1));
-        getContentPane().add(txtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 81, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        getContentPane().add(txtTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 220, -1));
+        getContentPane().add(txtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 90, -1));
 
+        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel7.setText("Ano:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel8.setText("Período:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         cmbPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o período", "Item 1", "Item 2", "Item 3" }));
-        getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+        getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 220, -1));
 
         btnSalvar.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvar.setText("Salvar");
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 90, -1));
 
         btnCancelarTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarTurma.setText("Cancelar");
-        getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+        getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");

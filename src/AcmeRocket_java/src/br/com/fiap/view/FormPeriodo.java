@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -16,6 +18,8 @@ public class FormPeriodo extends javax.swing.JFrame {
      */
     public FormPeriodo() {
         initComponents();
+        setLocationRelativeTo(this);
+        
     }
 
     /**
@@ -27,25 +31,24 @@ public class FormPeriodo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabPeriodos = new javax.swing.JTable();
         btnNovoPeriodo = new javax.swing.JButton();
         lblDashboard = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(723, 420));
+        setMinimumSize(new java.awt.Dimension(723, 420));
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setResizable(false);
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        jLabel4.setText("Períodos");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
-
+        tabPeriodos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         tabPeriodos.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         tabPeriodos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,7 +63,7 @@ public class FormPeriodo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabPeriodos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 375, 147));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 150, 630, 210));
 
         btnNovoPeriodo.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         btnNovoPeriodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N
@@ -70,7 +73,7 @@ public class FormPeriodo extends javax.swing.JFrame {
                 btnNovoPeriodoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovoPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
+        getContentPane().add(btnNovoPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(576, 100, 100, 40));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");
@@ -87,6 +90,13 @@ public class FormPeriodo extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        jLabel4.setText("Período");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -142,8 +152,8 @@ public class FormPeriodo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovoPeriodo;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;

@@ -5,17 +5,22 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
- * @author Thiago
+ * @author rm73889
  */
 public class FormNovoPeriodo extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormNovoPeriodo
+     * Creates new form FormNovoPeriodo2
      */
     public FormNovoPeriodo() {
         initComponents();
+        setLocationRelativeTo(this);
+        lblDashboard.setForeground(Color.blue);
+        lblPeriodo.setForeground(Color.blue);
     }
 
     /**
@@ -27,7 +32,6 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtPeriodo = new javax.swing.JTextField();
         btnCancelarPeriodo = new javax.swing.JButton();
@@ -42,25 +46,29 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setResizable(false);
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/1475727571_10.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 43, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Período:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
         txtPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 100, -1));
+        getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 210, -1));
 
         btnCancelarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarPeriodo.setText("Cancelar");
-        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 90, -1));
 
         btnSalvarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarPeriodo.setText("Salvar");
-        getContentPane().add(btnSalvarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+        btnSalvarPeriodo.setMaximumSize(new java.awt.Dimension(77, 23));
+        btnSalvarPeriodo.setMinimumSize(new java.awt.Dimension(77, 23));
+        getContentPane().add(btnSalvarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -76,11 +84,11 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel4.setText("Período");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 9, -1, -1));
@@ -140,6 +148,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormNovoPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -153,7 +162,6 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarPeriodo;
     private javax.swing.JButton btnSalvarPeriodo;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

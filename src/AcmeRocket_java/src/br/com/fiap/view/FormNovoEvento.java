@@ -24,6 +24,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
     
     public FormNovoEvento() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

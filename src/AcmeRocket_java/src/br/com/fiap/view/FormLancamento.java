@@ -16,6 +16,7 @@ public class FormLancamento extends javax.swing.JFrame {
      */
     public FormLancamento() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -37,6 +38,9 @@ public class FormLancamento extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-05 51x51.png"))); // NOI18N
@@ -54,7 +58,7 @@ public class FormLancamento extends javax.swing.JFrame {
                 btnNovoLancamentoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovoLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 80, -1, -1));
+        getContentPane().add(btnNovoLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 80, 100, 40));
 
         tabLancamentos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabLancamentos.setModel(new javax.swing.table.DefaultTableModel(
@@ -70,7 +74,7 @@ public class FormLancamento extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabLancamentos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 190));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 690, 230));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");

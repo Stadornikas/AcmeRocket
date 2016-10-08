@@ -16,6 +16,7 @@ public class FormTurmas extends javax.swing.JFrame {
      */
     public FormTurmas() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

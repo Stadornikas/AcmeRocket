@@ -16,6 +16,7 @@ public class FormNovoGrupo extends javax.swing.JFrame {
      */
     public FormNovoGrupo() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

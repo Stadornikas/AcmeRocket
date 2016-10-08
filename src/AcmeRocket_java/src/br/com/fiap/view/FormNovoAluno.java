@@ -16,6 +16,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
      */
     public FormNovoAluno() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -44,40 +45,46 @@ public class FormNovoAluno extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel3.setText("Aluno");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-04 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("RM:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel7.setText("Nome:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 155, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel8.setText("Grupo:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 185, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
-        txtRm.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 70, -1));
+        txtRm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 70, -1));
 
-        txtNome.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 150, -1));
+        txtNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 210, -1));
 
-        cmbGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Grupo", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 150, -1));
+        cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
+        cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
+        getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 210, 20));
 
         btnCancelarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarAluno.setText("Cancelar");
-        getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 215, -1, -1));
+        getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 110, -1));
 
         btnSalvarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarAluno.setText("Salvar");
@@ -86,7 +93,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
                 btnSalvarAlunoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 215, -1, -1));
+        getContentPane().add(btnSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 230, 80, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");

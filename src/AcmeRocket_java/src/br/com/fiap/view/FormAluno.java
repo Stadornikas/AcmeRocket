@@ -16,6 +16,7 @@ public class FormAluno extends javax.swing.JFrame {
      */
     public FormAluno() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -38,14 +39,19 @@ public class FormAluno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setResizable(false);
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel3.setText("Aluno");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-04 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
         tabAlunos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabAlunos.setModel(new javax.swing.table.DefaultTableModel(
@@ -61,7 +67,7 @@ public class FormAluno extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabAlunos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 375, 150));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 640, 220));
 
         btnNovoAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnNovoAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N
@@ -71,7 +77,7 @@ public class FormAluno extends javax.swing.JFrame {
                 btnNovoAlunoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        getContentPane().add(btnNovoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(581, 100, 100, 40));
 
         lblDashBoard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashBoard.setText("Dashboard");

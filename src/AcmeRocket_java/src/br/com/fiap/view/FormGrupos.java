@@ -16,6 +16,7 @@ public class FormGrupos extends javax.swing.JFrame {
      */
     public FormGrupos() {
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
@@ -32,21 +33,23 @@ public class FormGrupos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabGrupos = new javax.swing.JTable();
         btnNovoGrupo = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         lblDashBoard = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel3.setText("Grupos");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-03 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
         tabGrupos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabGrupos.setModel(new javax.swing.table.DefaultTableModel(
@@ -62,7 +65,7 @@ public class FormGrupos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabGrupos);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 375, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 680, 240));
 
         btnNovoGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnNovoGrupo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N
@@ -72,11 +75,7 @@ public class FormGrupos extends javax.swing.JFrame {
                 btnNovoGrupoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        jLabel2.setText("Novo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 11, -1, -1));
+        getContentPane().add(btnNovoGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 80, 100, 40));
 
         lblDashBoard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashBoard.setText("Dashboard");
@@ -86,9 +85,6 @@ public class FormGrupos extends javax.swing.JFrame {
             }
         });
         getContentPane().add(lblDashBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 9, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel9.setText("Grupos");
@@ -152,10 +148,8 @@ public class FormGrupos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovoGrupo;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDashBoard;
