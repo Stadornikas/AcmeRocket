@@ -19,6 +19,7 @@ public class FormPeriodo extends javax.swing.JFrame {
     public FormPeriodo() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
         
     }
 

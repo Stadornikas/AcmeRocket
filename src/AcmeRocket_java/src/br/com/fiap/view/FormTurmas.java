@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -17,6 +19,7 @@ public class FormTurmas extends javax.swing.JFrame {
     public FormTurmas() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -38,14 +41,17 @@ public class FormTurmas extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel4.setText("Turmas");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         btnNovaTurma.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         btnNovaTurma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N
@@ -55,7 +61,7 @@ public class FormTurmas extends javax.swing.JFrame {
                 btnNovaTurmaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovaTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
+        getContentPane().add(btnNovaTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 80, 100, 40));
 
         tabTurmas.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabTurmas.setModel(new javax.swing.table.DefaultTableModel(
@@ -71,7 +77,7 @@ public class FormTurmas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabTurmas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 375, 150));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 690, 230));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");

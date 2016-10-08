@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -17,6 +19,8 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     public FormNovoGrupo() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
+         lblGrupos.setForeground(Color.blue);
     }
 
     /**
@@ -45,37 +49,40 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         btnSalvarGrupo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel3.setText("Grupo");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-03 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Grupo:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 135, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel7.setText("Evento:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 165, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel8.setText("Turma:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 195, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         txtGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 140, -1));
+        getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 240, -1));
 
         cmbEvento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         cmbEvento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Evento", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 140, -1));
+        getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
 
         cmbTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         cmbTurma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Turma", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 140, -1));
+        getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -107,11 +114,16 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
         btnCancelarGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarGrupo.setText("Cancelar");
-        getContentPane().add(btnCancelarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 220, 80, -1));
+        btnCancelarGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarGrupoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancelarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 110, -1));
 
         btnSalvarGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarGrupo.setText("Salvar");
-        getContentPane().add(btnSalvarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 220, -1, -1));
+        getContentPane().add(btnSalvarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 110, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +141,10 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         this.dispose();
         fg.setVisible(true);
     }//GEN-LAST:event_lblGruposMouseClicked
+
+    private void btnCancelarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarGrupoActionPerformed
 
     /**
      * @param args the command line arguments

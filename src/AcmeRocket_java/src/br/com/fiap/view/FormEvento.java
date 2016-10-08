@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -17,6 +19,7 @@ public class FormEvento extends javax.swing.JFrame {
     public FormEvento() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -39,7 +42,6 @@ public class FormEvento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));

@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -17,6 +19,7 @@ public class FormAluno extends javax.swing.JFrame {
     public FormAluno() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -33,14 +36,13 @@ public class FormAluno extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabAlunos = new javax.swing.JTable();
         btnNovoAluno = new javax.swing.JButton();
-        lblDashBoard = new javax.swing.JLabel();
+        lblDashboard = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -77,16 +79,16 @@ public class FormAluno extends javax.swing.JFrame {
                 btnNovoAlunoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(581, 100, 100, 40));
+        getContentPane().add(btnNovoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 100, 40));
 
-        lblDashBoard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        lblDashBoard.setText("Dashboard");
-        lblDashBoard.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        lblDashboard.setText("Dashboard");
+        lblDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblDashBoardMouseClicked(evt);
+                lblDashboardMouseClicked(evt);
             }
         });
-        getContentPane().add(lblDashBoard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel9.setText("Alunos");
@@ -98,12 +100,12 @@ public class FormAluno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblDashBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashBoardMouseClicked
+    private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
         //CHAMANDO FORMULARIO PRINCIPAL
         FormPrincipal fp = new FormPrincipal();
         this.dispose();
         fp.setVisible(true);
-    }//GEN-LAST:event_lblDashBoardMouseClicked
+    }//GEN-LAST:event_lblDashboardMouseClicked
 
     private void btnNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAlunoActionPerformed
         //CHAMANDO FORMULARIO PARA O NOVO ALUNO 
@@ -154,7 +156,7 @@ public class FormAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDashBoard;
+    private javax.swing.JLabel lblDashboard;
     private javax.swing.JTable tabAlunos;
     // End of variables declaration//GEN-END:variables
 }

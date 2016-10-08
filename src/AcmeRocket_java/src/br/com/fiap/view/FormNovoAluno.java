@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Thiago
@@ -17,6 +19,8 @@ public class FormNovoAluno extends javax.swing.JFrame {
     public FormNovoAluno() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
+         lblAlunos.setForeground(Color.blue);
     }
 
     /**
@@ -46,7 +50,6 @@ public class FormNovoAluno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,7 +96,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
                 btnSalvarAlunoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(413, 230, 80, -1));
+        getContentPane().add(btnSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 230, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");

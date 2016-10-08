@@ -5,6 +5,8 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
+
 
 
 /**
@@ -21,6 +23,8 @@ public class FormNovaTurma extends javax.swing.JFrame {
     public FormNovaTurma() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
+         lblTurma.setForeground(Color.blue);
     }
 
     /**

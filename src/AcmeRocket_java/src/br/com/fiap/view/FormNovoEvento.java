@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import java.awt.Color;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
@@ -25,6 +26,8 @@ public class FormNovoEvento extends javax.swing.JFrame {
     public FormNovoEvento() {
         initComponents();
         setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
+         lblEventos.setForeground(Color.blue);
     }
 
     /**
@@ -61,31 +64,38 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
+        setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
         jLabel4.setText("Evento");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-06 51x51.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Evento:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
-        getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 150, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 230, -1));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Local:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 155, -1, -1));
-        getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 150, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+        getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 230, -1));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Data:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 185, -1, -1));
-        getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 106, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 106, -1));
 
         btnCancelarEvento.setText("Cancelar");
-        getContentPane().add(btnCancelarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 215, -1, -1));
+        getContentPane().add(btnCancelarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 120, -1));
 
         btnSalvarEvento.setText("Salvar");
-        getContentPane().add(btnSalvarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 215, -1, -1));
+        getContentPane().add(btnSalvarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -101,7 +111,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
         getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 9, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 9, -1, -1));
 
         lblEventos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblEventos.setText("Eventos");
