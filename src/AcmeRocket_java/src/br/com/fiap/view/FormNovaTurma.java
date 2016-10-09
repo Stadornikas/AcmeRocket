@@ -6,6 +6,7 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 
 
@@ -43,7 +44,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         txtAno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbPeriodo = new javax.swing.JComboBox<>();
+        cmbPeriodo = new javax.swing.JComboBox<String>();
         btnSalvar = new javax.swing.JButton();
         btnCancelarTurma = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -53,8 +54,6 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,7 +80,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         cmbPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o período", "Item 1", "Item 2", "Item 3" }));
+        cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o período", "Item 1", "Item 2", "Item 3" }));
         getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 220, -1));
 
         btnSalvar.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -90,6 +89,11 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
         btnCancelarTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarTurma.setText("Cancelar");
+        btnCancelarTurma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarTurmaMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -132,10 +136,19 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
     private void lblTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTurmaMouseClicked
         //CHAMANDO O FORMULARIO TURMAS(LISTA)
-        FormTurmas ft = new FormTurmas();
         this.dispose();
+        FormTurmas ft = new FormTurmas();
         ft.setVisible(true);
     }//GEN-LAST:event_lblTurmaMouseClicked
+
+    private void btnCancelarTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarTurmaMouseClicked
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+            this.dispose();
+            FormTurmas lf = new FormTurmas();
+            lf.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCancelarTurmaMouseClicked
 
     /**
      * @param args the command line arguments

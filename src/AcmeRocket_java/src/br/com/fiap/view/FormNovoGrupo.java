@@ -6,6 +6,7 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,8 +39,8 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtGrupo = new javax.swing.JTextField();
-        cmbEvento = new javax.swing.JComboBox<>();
-        cmbTurma = new javax.swing.JComboBox<>();
+        cmbEvento = new javax.swing.JComboBox<String>();
+        cmbTurma = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -49,8 +50,6 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         btnSalvarGrupo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,11 +76,11 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 240, -1));
 
         cmbEvento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        cmbEvento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Evento", "Item 2", "Item 3", "Item 4" }));
+        cmbEvento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione um Evento", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
 
         cmbTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        cmbTurma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Turma", "Item 2", "Item 3", "Item 4" }));
+        cmbTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione uma Turma", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -114,6 +113,11 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
         btnCancelarGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarGrupo.setText("Cancelar");
+        btnCancelarGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarGrupoMouseClicked(evt);
+            }
+        });
         btnCancelarGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarGrupoActionPerformed(evt);
@@ -130,8 +134,8 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
         //CHAMANDO FORMULARIO PRINCIPAL
-        FormPrincipal fp = new FormPrincipal();
         this.dispose();
+        FormPrincipal fp = new FormPrincipal();
         fp.setVisible(true);
     }//GEN-LAST:event_lblDashboardMouseClicked
 
@@ -145,6 +149,15 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     private void btnCancelarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarGrupoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarGrupoActionPerformed
+
+    private void btnCancelarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGrupoMouseClicked
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+            this.dispose();
+            FormGrupos lf = new FormGrupos();
+            lf.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCancelarGrupoMouseClicked
 
     /**
      * @param args the command line arguments

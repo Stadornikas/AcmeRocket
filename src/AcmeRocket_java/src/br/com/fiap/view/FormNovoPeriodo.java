@@ -134,10 +134,10 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblPeriodoMouseClicked
 
     private void btnCancelarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPeriodoActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deeja cancelar ?") == 0){
-            FormPeriodo fp = new FormPeriodo();
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
             this.dispose();
-            fp.setVisible(true);
+            FormPeriodo lf = new FormPeriodo(); //lf -> Last Form
+            lf.setVisible(true);
         }
     }//GEN-LAST:event_btnCancelarPeriodoActionPerformed
 
