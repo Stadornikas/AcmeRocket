@@ -8,7 +8,10 @@ package br.com.fiap.view;
 import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -16,8 +19,8 @@ import java.util.List;
  */
 public class FormEvento extends javax.swing.JFrame {
 
-   private String matrizLista[][];
-   
+    private String matrizLista[][];
+
     public FormEvento() {
         initComponents();
         setLocationRelativeTo(this);
@@ -47,6 +50,11 @@ public class FormEvento extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
@@ -115,15 +123,33 @@ public class FormEvento extends javax.swing.JFrame {
         fne.setVisible(true);
     }//GEN-LAST:event_btnNovoEventoActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        atualizarTabela();
+    }//GEN-LAST:event_formWindowOpened
+
     //ATUALIZANDO A TABELA
     public void atualizarTabela() {
         EventoDAO dao = new EventoDAO();
 
         List<Evento> lista = dao.listar();
-        matrizLista= new String[lista.size()][3];
-        Evento  evento;
-        
-        
+        matrizLista = new String[lista.size()][3];
+        Evento evento;
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        String[] colunas = {"EVENTOS", "LOCAL", "DATA", "ALTERAR", "EXCLUIR"};
+        for (int i = 0; i < lista.size(); i++) {
+
+            evento = lista.get(i);
+            matrizLista[i][0] = evento.getNomEvento();
+            matrizLista[i][1] = evento.getLocEvento();
+            matrizLista[i][2] = formatoData.format(evento.getDatEvento());
+//            matrizLista[i][3] = evento.getFone();
+//            matrizLista[i][4] = evento.getCaminhoFoto();
+
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizLista, colunas);
+        tabEventos.setModel(modeloTabela);
+
     }
 
     /**

@@ -22,7 +22,7 @@ public class GrupoDAO {
         try {
 
             conn = Conexao.getConnection();
-            sql = "ISERT INTO GRUPO VALUES(?, ?, ?, ?)";
+            sql = "INSERT INTO GRUPO VALUES(?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, grupo.getCodGrupo());
             ps.setString(2, grupo.getNomGrupo());
