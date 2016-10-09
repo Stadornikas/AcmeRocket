@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+
 import br.com.fiap.controller.CtrlListarPeriodo;
 import br.com.fiap.entity.Periodo;
 import java.awt.Color;
@@ -18,16 +19,16 @@ import javax.swing.table.TableModel;
  */
 public class FormPeriodo extends javax.swing.JFrame {
 
+
     private String matrizLista[][];
     int codPeriodo;
-    /**
-     * Creates new form FormPeriodo
-     */
+
+
     public FormPeriodo() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-        
+        lblDashboard.setForeground(Color.blue);
+
     }
 
     /**
@@ -128,6 +129,7 @@ public class FormPeriodo extends javax.swing.JFrame {
         fnp.setVisible(true);
     }//GEN-LAST:event_btnNovoPeriodoActionPerformed
 
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
@@ -154,6 +156,7 @@ public class FormPeriodo extends javax.swing.JFrame {
     }
     
     
+
     /**
      * @param args the command line arguments
      */

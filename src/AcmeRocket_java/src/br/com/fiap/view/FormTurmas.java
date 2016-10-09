@@ -5,7 +5,12 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.TurmaDAO;
+import br.com.fiap.entity.Turma;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,13 +18,12 @@ import java.awt.Color;
  */
 public class FormTurmas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormTurmas
-     */
+    String[][] matrizTurma;
+
     public FormTurmas() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -44,6 +48,11 @@ public class FormTurmas extends javax.swing.JFrame {
         setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
@@ -111,6 +120,33 @@ public class FormTurmas extends javax.swing.JFrame {
         this.dispose();
         fnt.setVisible(true);
     }//GEN-LAST:event_btnNovaTurmaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        atualizarTabela();
+    }//GEN-LAST:event_formWindowOpened
+
+    public void atualizarTabela() {
+
+//        TurmaDAO dao = new TurmaDAO();
+//
+//        //List<Turma> lista = dao.listar();
+//        matrizTurma = new String[lista.size()][3];
+//        Turma turma;
+//       
+//        String[] colunas = {"TURMA", "ANO", "PERÍODO", "ALTERAR", "EXCLUIR"};
+//        for (int i = 0; i < lista.size(); i++) {
+//
+//            turma = lista.get(i);
+////            matrizTurma[i][0] = evento.getNomEvento();
+////            matrizTurma[i][1] = evento.getLocEvento();
+////            matrizTurma[i][2] = formatoData.format(evento.getDatEvento());
+////            // matrizLista[i][3] = jLabel5.setIcon(icon);
+//////            matrizLista[i][4] = evento.getCaminhoFoto();
+//        }
+//
+//        TableModel modeloTabela = new DefaultTableModel(matrizTurma, colunas);
+//        tabTurmas.setModel(modeloTabela);
+    }
 
     /**
      * @param args the command line arguments

@@ -10,6 +10,7 @@ import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -46,8 +47,6 @@ public class FormEvento extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -129,6 +128,7 @@ public class FormEvento extends javax.swing.JFrame {
 
     //ATUALIZANDO A TABELA
     public void atualizarTabela() {
+
         EventoDAO dao = new EventoDAO();
 
         List<Evento> lista = dao.listar();
@@ -142,7 +142,7 @@ public class FormEvento extends javax.swing.JFrame {
             matrizLista[i][0] = evento.getNomEvento();
             matrizLista[i][1] = evento.getLocEvento();
             matrizLista[i][2] = formatoData.format(evento.getDatEvento());
-//            matrizLista[i][3] = evento.getFone();
+            // matrizLista[i][3] = jLabel5.setIcon(icon);
 //            matrizLista[i][4] = evento.getCaminhoFoto();
 
         }

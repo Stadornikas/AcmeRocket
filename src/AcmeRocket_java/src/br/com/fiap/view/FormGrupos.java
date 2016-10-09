@@ -5,7 +5,12 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.GrupoDAO;
 import java.awt.Color;
+import br.com.fiap.entity.Grupo;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,13 +18,12 @@ import java.awt.Color;
  */
 public class FormGrupos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormGrupos
-     */
+    String[][] matrizGrupo;
+
     public FormGrupos() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -44,6 +48,11 @@ public class FormGrupos extends javax.swing.JFrame {
         setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
@@ -62,7 +71,7 @@ public class FormGrupos extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "GRUPO", "TURMA", "ANO", "ALTERAR", "DELETAR"
+                "GRUPO", "TURMA", "EVENTO", "ALTERAR", "DELETAR"
             }
         ));
         jScrollPane1.setViewportView(tabGrupos);
@@ -108,9 +117,39 @@ public class FormGrupos extends javax.swing.JFrame {
     private void btnNovoGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoGrupoActionPerformed
         //CHAMANDO FORMULARIO NOVO GRUPO
         FormNovoGrupo fng = new FormNovoGrupo();
-       this.dispose();
-       fng.setVisible(true);
+        this.dispose();
+        fng.setVisible(true);
     }//GEN-LAST:event_btnNovoGrupoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        atualizarTabela();
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    public void atualizarTabela() {
+
+        GrupoDAO dao = new GrupoDAO();
+
+        List<Grupo> lista = dao.listar();
+        matrizGrupo = new String[lista.size()][5];
+        Grupo grupo;
+        String[] colunas = {"GRUPO", "TURMA", "EVENTO", "ALTERAR", "EXCLUIR"};
+        for (int i = 0; i < lista.size(); i++) {
+
+            grupo = lista.get(i);
+            matrizGrupo[i][0] = grupo.getNomGrupo();
+            matrizGrupo[i][1] = String.valueOf(grupo.getCodTurma());
+            matrizGrupo[i][2] = String.valueOf(grupo.getCodEvento());
+            // matrizLista[i][3] = jLabel5.setIcon(icon);
+//            matrizLista[i][4] = evento.getCaminhoFoto();
+
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizGrupo, colunas);
+        tabGrupos.setModel(modeloTabela);
+
+    }
 
     /**
      * @param args the command line arguments
