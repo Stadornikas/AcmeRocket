@@ -36,6 +36,12 @@ public class FormNovoEvento extends javax.swing.JFrame {
          lblDashboard.setForeground(Color.blue);
          lblEventos.setForeground(Color.blue);
     }
+    public FormNovoEvento(int elemento) {
+        initComponents();
+        setLocationRelativeTo(this);
+         lblDashboard.setForeground(Color.blue);
+         lblEventos.setForeground(Color.blue);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,6 +163,18 @@ public class FormNovoEvento extends javax.swing.JFrame {
     private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
         String nomeEvento = txtEvento.getText();
         String locEvento = txtLocalEvento.getText();
+        Date datEventoFormated = validarData(txtDataEvento.getText());
+        Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
+        EventoDAO eventoDAO = new EventoDAO();
+        
+        if(eventoDAO.inserir(novoEvento)){
+            JOptionPane.showMessageDialog(this, "Evento Criado com sucesso");
+        }else{
+            JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
+        }
+    }//GEN-LAST:event_btnSalvarEventoActionPerformed
+
+    private Date validarData(String date){
         String pattern = "MM/dd/yyyy";
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         
@@ -166,12 +184,9 @@ public class FormNovoEvento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data não foi convertida com sucesso.");
         }
         java.sql.Date datEventoFormated = new java.sql.Date (datEvento.getTime());
-        Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
-        EventoDAO eventoDAO = new EventoDAO();
         
-        eventoDAO.inserir(novoEvento);
-    }//GEN-LAST:event_btnSalvarEventoActionPerformed
-
+        return datEventoFormated;
+    }
     /**
      * @param args the command line arguments
      */

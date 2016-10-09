@@ -5,7 +5,11 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.EventoDAO;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,6 +49,11 @@ public class FormEvento extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
@@ -112,6 +121,11 @@ public class FormEvento extends javax.swing.JFrame {
         this.dispose();
         fne.setVisible(true);
     }//GEN-LAST:event_btnNovoEventoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        EventoDAO evento = new EventoDAO();
+        ArrayList eventos = evento.listar();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

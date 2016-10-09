@@ -53,20 +53,26 @@ public class EventoDAO {
         return true;
     }
 
-    public void inserir(Evento evento) {
+    public boolean inserir(Evento evento) {
+        int novoIndex = buscarIndex();
+        boolean sucesso = false;
+        JOptionPane.showConfirmDialog(null, novoIndex);
         try {
             conn = Conexao.getConnection();
-            sql = "INSERT INTO EVENTOS COLUMN(NOM_EVENTO, LOC_EVENTO, DAT_EVENTO) VALUES(?, ?, ?)";
+            sql = "INSERT INTO EVENTOS (COD_EVENTO, NOM_EVENTO, LOC_EVENTO, DAT_EVENTO) VALUES(?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-
-            ps.setString(1, evento.getNomEvento());
-            ps.setString(2, evento.getLocEvento());
-            ps.setDate(3, evento.getDatEvento());
+            
+            ps.setInt(1, novoIndex);
+            ps.setString(2, evento.getNomEvento());
+            ps.setString(3, evento.getLocEvento());
+            ps.setDate(4, evento.getDatEvento());
             ps.execute();
+            sucesso = true;
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir eventos! \n ERRO: " + ex);
         }
+        return sucesso;
     }
     
     public int buscarIndex() {
@@ -75,12 +81,13 @@ public class EventoDAO {
             conn = Conexao.getConnection();
             sql = "SELECT COUNT(*) colunas FROM EVENTOS";
             ps = conn.prepareStatement(sql);
-            
             rs = ps.executeQuery();
-            proximaColuna = rs.getInt("colunas");
+            while(rs.next()){
+                proximaColuna = rs.getInt("colunas");
+            }           
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar evento! \n ERRO: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao buscar index: " + ex);
         }
         return proximaColuna;
     }
