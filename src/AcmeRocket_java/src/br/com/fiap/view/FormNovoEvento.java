@@ -5,9 +5,16 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.EventoDAO;
+import br.com.fiap.entity.Evento;
 import java.awt.Color;
+import java.sql.Date;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 import static javax.swing.JOptionPane.*;
 
@@ -20,7 +27,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
     /**
      * Creates new form FormNovoEvento
      */
-    
+    public java.util.Date datEvento;
     private MaskFormatter mascaraData;
     
     public FormNovoEvento() {
@@ -95,6 +102,11 @@ public class FormNovoEvento extends javax.swing.JFrame {
         getContentPane().add(btnCancelarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 120, -1));
 
         btnSalvarEvento.setText("Salvar");
+        btnSalvarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarEventoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSalvarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -141,6 +153,24 @@ public class FormNovoEvento extends javax.swing.JFrame {
         this.dispose();
         fe.setVisible(true);
     }//GEN-LAST:event_lblEventosMouseClicked
+
+    private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
+        String nomeEvento = txtEvento.getText();
+        String locEvento = txtLocalEvento.getText();
+        String pattern = "MM/dd/yyyy";
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+        
+        try {
+            datEvento = format.parse(txtDataEvento.getText());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Data não foi convertida com sucesso.");
+        }
+        java.sql.Date datEventoFormated = new java.sql.Date (datEvento.getTime());
+        Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
+        EventoDAO eventoDAO = new EventoDAO();
+        
+        eventoDAO.inserir(novoEvento);
+    }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -56,7 +56,7 @@ public class EventoDAO {
     public void inserir(Evento evento) {
         try {
             conn = Conexao.getConnection();
-            sql = "INSERT INTO EVENTOS VALUES(?, ?, ?)";
+            sql = "INSERT INTO EVENTOS COLUMN(NOM_EVENTO, LOC_EVENTO, DAT_EVENTO) VALUES(?, ?, ?)";
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, evento.getNomEvento());
@@ -67,6 +67,22 @@ public class EventoDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir eventos! \n ERRO: " + ex);
         }
+    }
+    
+    public int buscarIndex() {
+        int proximaColuna = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT COUNT(*) colunas FROM EVENTOS";
+            ps = conn.prepareStatement(sql);
+            
+            rs = ps.executeQuery();
+            proximaColuna = rs.getInt("colunas");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar evento! \n ERRO: " + ex);
+        }
+        return proximaColuna;
     }
 
     public Evento buscar(int codEvento) {

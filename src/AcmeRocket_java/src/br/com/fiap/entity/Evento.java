@@ -12,7 +12,7 @@ public class Evento {
 
 
     //CONSTRUTOR
-    public Evento(int codEvento, String nomEvento, String locEvento, Date datEvento) {
+    public Evento(int codEvento, String nomEvento, String locEvento, Date datEvento) {//O que é isso?
         this.codEvento = codEvento;
         this.nomEvento = nomEvento;
         this.locEvento = locEvento;
