@@ -23,20 +23,25 @@ public class PeriodoDao {
      */
     public ArrayList<Periodo> listar() {
         ArrayList<Periodo> lista = new ArrayList();
-
+        
         try {
             conn = Conexao.getConnection();
             sql = "SELECT * FROM PERIODO";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-
+            
             while (rs.next()) {
-                int codPeriodo = rs.getInt("COD_PERIODO");
-                String nomePeriodo = rs.getString("NOM_PERIODO");
-                lista.add(new Periodo(codPeriodo, nomePeriodo));
+                lista.add(new Periodo(rs.getInt("COD_PERIODO"), rs.getString("NOM_PERIODO")));
             }
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao listar periodos! \n ERRO: " + ex);
+        } finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
+            }
         }
 
         return lista;
@@ -50,12 +55,18 @@ public class PeriodoDao {
     public boolean deletar(int codPeriodo) {
         try {
             conn = Conexao.getConnection();
-            sql = "DELETE FROM PERIODOS WHERE COD_PERIODO = ?";
+            sql = "DELETE FROM PERIODO WHERE COD_PERIODO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codPeriodo);
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar periodos! \n ERRO: " + ex);
+        } finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
+            }
         }
         return true;
     }
@@ -67,13 +78,18 @@ public class PeriodoDao {
      */
     public boolean inserir(Periodo periodo) {
         boolean sucesso = false;
-
+        int MaxId =  buscarMaxId();
+        
+        if (MaxId <= 0) {
+            return false;
+        }
+        
         try {
             conn = Conexao.getConnection();
-            sql = "INSERT INTO PERIODOS VALUES(?)";
+            sql = "INSERT INTO PERIODO (COD_PERIODO, NOM_PERIODO) VALUES(?,?)";
             ps = conn.prepareStatement(sql);
-
-            ps.setString(1, periodo.getNomPeriodo());
+            ps.setInt(1,MaxId);
+            ps.setString(2, periodo.getNomPeriodo());
             
             ps.execute();
             
@@ -82,6 +98,12 @@ public class PeriodoDao {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir periodos! \n ERRO: " + ex);
             return false;
+        } finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
+            }
         }
 
         return sucesso;
@@ -110,6 +132,12 @@ public class PeriodoDao {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar periodos! \n ERRO: " + ex);
+        } finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
+            }
         }
         return periodo;
     }
@@ -130,7 +158,60 @@ public class PeriodoDao {
             sucesso = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar periodo! \n ERRO: " + ex);
+        } finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
+            }
         }
         return sucesso;
     }
+    
+    
+     /**
+     * Busca o ultimo maior valor de id e incrementa + 1
+     * @return int 
+     */
+    public int buscarMaxId() {
+        int proximaColuna = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT MAX(COD_PERIODO) max_linhas FROM PERIODO";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                proximaColuna = rs.getInt("max_linhas") + 1;
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar index: " + ex);
+        } 
+        
+        return proximaColuna;
+    }
+    
+    
+    public boolean existePeriodo(String nomePeriodo){
+        Periodo p = null;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM PERIODO WHERE NOM_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nomePeriodo);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                p = new Periodo(rs.getInt("COD_PERIODO"), rs.getString("NOM_PERIODO"));
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar maior cod periodo: " + ex);
+        } 
+        
+        
+        return (p != null);
+        
+    }
+
 }

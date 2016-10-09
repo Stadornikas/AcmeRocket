@@ -5,7 +5,12 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarPeriodo;
+import br.com.fiap.entity.Periodo;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,6 +18,8 @@ import java.awt.Color;
  */
 public class FormPeriodo extends javax.swing.JFrame {
 
+    private String matrizLista[][];
+    int codPeriodo;
     /**
      * Creates new form FormPeriodo
      */
@@ -47,6 +54,11 @@ public class FormPeriodo extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabPeriodos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -116,6 +128,32 @@ public class FormPeriodo extends javax.swing.JFrame {
         fnp.setVisible(true);
     }//GEN-LAST:event_btnNovoPeriodoActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        atualizarTabela();
+    }//GEN-LAST:event_formWindowOpened
+
+    /**
+     * Atualiza a tabela de registros
+     */
+    private void atualizarTabela(){
+        CtrlListarPeriodo controle = new CtrlListarPeriodo();
+        List<Periodo> lista = controle.CarregarRegistros();
+        Periodo periodo;
+        
+        if (lista.size() > 0) {
+            matrizLista = new String[lista.size()][3];
+            String[] colunas = {"PERÍODOS", "ALTERAR", "EXCLUIR"};
+            for (int i = 0; i < lista.size(); i++) {
+                periodo = lista.get(i);
+                matrizLista[i][0] = periodo.getNomPeriodo();
+            }
+
+            TableModel modeloTabela = new DefaultTableModel(matrizLista, colunas);
+            tabPeriodos.setModel(modeloTabela);
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

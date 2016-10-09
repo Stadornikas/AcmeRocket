@@ -5,7 +5,7 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.controler.CtrlSalvarPeriodo;
+import br.com.fiap.controller.CtrlSalvarPeriodo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -134,7 +134,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblPeriodoMouseClicked
 
     private void btnCancelarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPeriodoActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deeja cancelar ?") == 1){
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deeja cancelar ?") == 0){
             FormPeriodo fp = new FormPeriodo();
             this.dispose();
             fp.setVisible(true);
@@ -147,6 +147,9 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         
         CtrlSalvarPeriodo PeriodoControler = new CtrlSalvarPeriodo();
         
+        PeriodoControler.inserirPeriodo(nomePeriodo);
+       
+        PeriodoControler.destruirObj();
         
     }//GEN-LAST:event_btnSalvarPeriodoActionPerformed
 

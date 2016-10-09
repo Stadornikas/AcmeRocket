@@ -171,10 +171,10 @@ public class FormNovoEvento extends javax.swing.JFrame {
         boolean inserir = controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
         
         if(inserir){
-            JOptionPane.showMessageDialog(null, "Evento Criado com sucesso");
+            JOptionPane.showMessageDialog(this, "Evento Criado com sucesso");
             
         }else{
-            JOptionPane.showMessageDialog(null, "Houve Algum erro ao inserir o Aluno, tente novamente");
+            JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
         }
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 

@@ -96,18 +96,18 @@ public class EventoDAO {
     }
     
     /**
-     * Busca a quantidade de eventos cadastrados
-     * @return 
+     * Busca o ultimo maior valor de id e incrementa + 1
+     * @return int 
      */
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
             
-            sql = "SELECT COUNT(*) colunas FROM EVENTOS";
+            sql = "SELECT MAX(COD_EVENTO) max_linhas FROM EVENTOS";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                proximaColuna = rs.getInt("colunas");
+                proximaColuna = rs.getInt("max_linhas") + 1;
             }           
 
         } catch (SQLException ex) {
