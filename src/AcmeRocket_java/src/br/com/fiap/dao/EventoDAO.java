@@ -26,7 +26,7 @@ public class EventoDAO {
 
         try {
             conn = Conexao.getConnection();
-            sql = "SELECT * FROM EVENTO";
+            sql = "SELECT * FROM EVENTOS";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
