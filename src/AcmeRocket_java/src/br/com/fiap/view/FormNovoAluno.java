@@ -130,7 +130,9 @@ public class FormNovoAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
-
+        int rm = Integer.parseInt(txtRm.getText());
+        String nome;
+        
     }//GEN-LAST:event_btnSalvarAlunoActionPerformed
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
