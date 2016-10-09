@@ -5,7 +5,10 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.AlunoDAO;
+import br.com.fiap.entity.Aluno;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +22,8 @@ public class FormNovoAluno extends javax.swing.JFrame {
     public FormNovoAluno() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-         lblAlunos.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
+        lblAlunos.setForeground(Color.blue);
     }
 
     /**
@@ -131,12 +134,21 @@ public class FormNovoAluno extends javax.swing.JFrame {
 
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
         int rm = Integer.parseInt(txtRm.getText());
-        String nome;
-        
+        String nome = txtNome.getText();
+        int grupo = cmbGrupo.getSelectedIndex();
+
+        Aluno aluno = new Aluno(rm, nome, grupo);
+
+        AlunoDAO dao = new AlunoDAO();
+
+        if (dao.inserir(aluno)) {
+            JOptionPane.showMessageDialog(this, "Aluno insirido com sucesso! ");
+        }
+
     }//GEN-LAST:event_btnSalvarAlunoActionPerformed
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-         //CHAMANDO FORMULARIO PRINCIPAL
+        //CHAMANDO FORMULARIO PRINCIPAL
         FormPrincipal fp = new FormPrincipal();
         this.dispose();
         fp.setVisible(true);

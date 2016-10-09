@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author leandro
  */
 public class TurmaDAO {
-    
+
     private Connection connection;
     private PreparedStatement p;
     private String sql;
@@ -29,23 +29,24 @@ public class TurmaDAO {
 
     public boolean inserir(Turma turma) {
         boolean aux = false;
-        
+        int novoIndex = buscarIndex();
+
         sql = "INSERT INTO TURMA VALUES (?, ?, ?, ?)";
         connection = Conexao.getConnection();
 
-         try {
+        try {
             p = connection.prepareStatement(sql);
-            p.setInt(1, turma.getCodTurma());
+            p.setInt(1, novoIndex);
             p.setString(2, turma.getNomTurma());
-            p.setInt(3, turma.getCodPeriodo());
-            p.setString(4, turma.getAnoTurma());
+            p.setString(3, turma.getAnoTurma());
+            p.setInt(4, turma.getCodPeriodo());
             p.execute();
-            
+
             aux = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "inserir Turma! \n ERRO:" + e);
-        } 
-        
+        }
+
         return aux;
     }
 
@@ -72,9 +73,9 @@ public class TurmaDAO {
     }
 
     public boolean alterar(Turma turma) {
-        
+
         boolean aux = false;
-        
+
         connection = Conexao.getConnection();
         sql = "UPDATE TURMA SET NOM_TURMA = ?, ANO_TURMA = ?, PERIODO_COD_PERIODO = ? WHERE COD_TURMA = ?";
         try {
@@ -83,32 +84,32 @@ public class TurmaDAO {
             p.setString(2, turma.getAnoTurma());
             p.setInt(3, turma.getCodPeriodo());
             p.execute();
-            
+
             aux = true;
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "alterar Turmas! \n ERRO:" + e);
         }
-        
+
         return aux;
     }
 
     public boolean deletar(int codTurma) {
-        
+
         boolean aux = false;
-        
+
         connection = Conexao.getConnection();
         sql = "DELETE FROM TURMA WHERE COD_TURMA = ?";
         try {
             p = connection.prepareStatement(sql);
             p.setInt(1, codTurma);
             p.execute();
-            
-            aux  = true;
+
+            aux = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "deletar Turmas! \n ERRO:" + e);
         }
-        
+
         return aux;
     }
 
@@ -118,7 +119,7 @@ public class TurmaDAO {
 
         connection = Conexao.getConnection();
         sql = "SELECT * FROM TURMA";
-        
+
         try {
             p = connection.prepareStatement(sql);
             rs = p.executeQuery();
@@ -133,11 +134,52 @@ public class TurmaDAO {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"listar Turmas! \n ERRO: " + e);
+            JOptionPane.showMessageDialog(null, "listar Turmas! \n ERRO: " + e);
         }
-        
+
         return lista;
-        
+
     }
-    
+
+    public int buscarIdCombo(String periodo) {
+        int id = 0;
+        try {
+
+            connection = Conexao.getConnection();
+            sql = "SELECT * FROM PERIODO WHERE NOM_PERIODO = ?";
+            p = connection.prepareStatement(sql);
+            p.setString(1, periodo);
+
+            rs = p.executeQuery();
+//            id = rs.getInt("COD_PERIODO");
+            while (rs.next()) {
+                id = rs.getInt("COD_PERIODO");
+            }
+        } catch (SQLException ex) {
+
+        }
+
+        return id;
+
+    }
+
+    public int buscarIndex() {
+        int proximaColuna = 0;
+        try {
+            connection = Conexao.getConnection();
+            sql = "SELECT MAX(COD_TURMA) as max_linhas FROM TURMA";
+
+            p = connection.prepareStatement(sql);
+            rs = p.executeQuery();
+            while (rs.next()) {
+                proximaColuna = rs.getInt("max_linhas") + 1;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar index turma: " + ex);
+        }
+
+        return proximaColuna;
+    }
+
 }

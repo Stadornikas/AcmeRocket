@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author leandro
  */
 public class AlunoDAO {
-    
+
     private Connection connection;
     private PreparedStatement p;
     private String sql;
@@ -29,9 +29,9 @@ public class AlunoDAO {
 
     public boolean inserir(Aluno aluno) {
         boolean aux = false;
-        
-        sql = "INSERT INTO ALUNOS VALUES (?, ?, ?)";
+
         connection = Conexao.getConnection();
+        sql = "INSERT INTO ALUNOS VALUES (?, ?, ?)";
 
         try {
             p = connection.prepareStatement(sql);
@@ -39,12 +39,12 @@ public class AlunoDAO {
             p.setString(2, aluno.getNomComp());
             p.setInt(3, aluno.getCodGrupo());
             p.execute();
-            
+
             aux = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "inserir alunos! \n ERRO:" + e);
-        } 
-        
+        }
+
         return aux;
     }
 
@@ -70,9 +70,9 @@ public class AlunoDAO {
     }
 
     public boolean alterar(Aluno aluno) {
-        
+
         boolean aux = false;
-        
+
         connection = Conexao.getConnection();
         sql = "UPDATE ALUNOS SET NOM_ALUNO = ?, GRUPO_COD_GRUPO = ? WHERE COD_ALUNO = ?";
         try {
@@ -80,32 +80,32 @@ public class AlunoDAO {
             p.setString(1, aluno.getNomComp());
             p.setInt(2, aluno.getCodGrupo());
             p.execute();
-            
+
             aux = true;
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "alterar alunos! \n ERRO:" + e);
         }
-        
+
         return aux;
     }
 
     public boolean deletar(int codAluno) {
-        
+
         boolean aux = false;
-        
+
         connection = Conexao.getConnection();
         sql = "DELETE FROM ALUNOS WHERE COD_ALUNO = ?";
         try {
             p = connection.prepareStatement(sql);
             p.setInt(1, codAluno);
             p.execute();
-            
-            aux  = true;
+
+            aux = true;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "deletar alunos! \n ERRO:" + e);
         }
-        
+
         return aux;
     }
 
@@ -115,7 +115,7 @@ public class AlunoDAO {
 
         connection = Conexao.getConnection();
         sql = "SELECT * FROM ALUNOS";
-        
+
         try {
             p = connection.prepareStatement(sql);
             rs = p.executeQuery();
@@ -129,11 +129,11 @@ public class AlunoDAO {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"listar alunos! \n ERRO: " + e);
+            JOptionPane.showMessageDialog(null, "listar alunos! \n ERRO: " + e);
         }
-        
+
         return lista;
-        
+
     }
-    
+
 }
