@@ -5,7 +5,7 @@
  */
 package br.com.fiap.controller;
 
-import br.com.fiap.dao.PeriodoDao;
+import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.entity.Periodo;
 import javax.swing.JOptionPane;
 
@@ -23,8 +23,9 @@ public class CtrlSalvarPeriodo {
      * @return boolean 
      */
     public boolean validarNomeDuplicidade(String nomePeriodo){
-        PeriodoDao dao = new PeriodoDao();
-        return !dao.existePeriodo(nomePeriodo);
+        PeriodoDAO dao = new PeriodoDAO();
+        //retorna false caso o periodo exista no banco dados
+        return !dao.existePeriodo(nomePeriodo); 
     }
     
     /**
@@ -57,7 +58,7 @@ public class CtrlSalvarPeriodo {
         
         if (validacao) {
             Periodo p = new Periodo(nomePeriodo);
-            PeriodoDao dao = new PeriodoDao();
+            PeriodoDAO dao = new PeriodoDAO();
             if(dao.inserir(p)) msg = "Período Criado com sucesso";
             
         }
@@ -68,13 +69,37 @@ public class CtrlSalvarPeriodo {
     
     /**
      * Valida dados e modifica o periodo
-     * @param idPeriodo
+     * @param codPeriodo
      * @return 
      */
-    public boolean alterarPeriodo(int idPeriodo){
-        boolean output = false;
+    public void alterarPeriodo(int codPeriodo,String nomePeriodo){
+        String msg = "Falha ao alterar período";
+        boolean validacao = true;
         
-        return output; 
+        if (!this.validarCamposObrigatorios(nomePeriodo)) {
+            msg =  "Preencha os campos Obrigatórios";
+            validacao = false;
+        }
+        
+        if (validacao) {
+            Periodo p = new Periodo(codPeriodo, nomePeriodo);
+            PeriodoDAO dao = new PeriodoDAO();
+            if(dao.alterar(p)) msg = "Período Alteardo com sucesso";
+            
+        }
+                  
+        JOptionPane.showMessageDialog(null, msg);  
+    }
+    
+    /**
+     * Carrega periodo selecionado na lista
+     * @param codPeriodo
+     * @return 
+     */
+    public Periodo carregarPeriodo(int codPeriodo){
+        PeriodoDAO dao = new PeriodoDAO();
+        Periodo p = dao.buscar(codPeriodo);
+        return p;
     }
     
     /**

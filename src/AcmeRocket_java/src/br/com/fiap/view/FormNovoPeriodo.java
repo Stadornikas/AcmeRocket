@@ -6,6 +6,7 @@
 package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlSalvarPeriodo;
+import br.com.fiap.entity.Periodo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -15,6 +16,12 @@ import javax.swing.JOptionPane;
  */
 public class FormNovoPeriodo extends javax.swing.JFrame {
 
+    private int codPeriodo = -1;
+
+    public void setCodPeriodo(int codPeriodo) {
+        this.codPeriodo = codPeriodo;
+    }
+   
     /**
      * Creates new form FormNovoPeriodo2
      */
@@ -45,6 +52,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         lblPeriodo = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnDeletarPeriodo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
@@ -52,14 +60,19 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Período:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
         txtPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 210, -1));
+        getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 320, -1));
 
         btnCancelarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarPeriodo.setText("Cancelar");
@@ -68,7 +81,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
                 btnCancelarPeriodoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 90, -1));
+        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 90, -1));
 
         btnSalvarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarPeriodo.setText("Salvar");
@@ -79,7 +92,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
                 btnSalvarPeriodoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 100, -1));
+        getContentPane().add(btnSalvarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -116,6 +129,14 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
+        btnDeletarPeriodo.setText("Deletar");
+        btnDeletarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarPeriodoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,21 +163,40 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarPeriodoActionPerformed
 
     private void btnSalvarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPeriodoActionPerformed
-        
         String nomePeriodo = txtPeriodo.getText();
-        
         CtrlSalvarPeriodo PeriodoControler = new CtrlSalvarPeriodo();
-        
-        PeriodoControler.inserirPeriodo(nomePeriodo);
-       
+        if (codPeriodo == -1) {
+            PeriodoControler.inserirPeriodo(nomePeriodo);
+        }else{
+            PeriodoControler.alterarPeriodo(codPeriodo, nomePeriodo);
+        }
         PeriodoControler.destruirObj();
         
     }//GEN-LAST:event_btnSalvarPeriodoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if (this.codPeriodo != -1) {
+            CtrlSalvarPeriodo ctrlPeriodo = new CtrlSalvarPeriodo();
+            Periodo p = ctrlPeriodo.carregarPeriodo(codPeriodo);
+            txtPeriodo.setText(p.getNomPeriodo());
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnDeletarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarPeriodoActionPerformed
+        CtrlSalvarPeriodo PeriodoControler = new CtrlSalvarPeriodo();
+        if (codPeriodo == -1) {
+            
+        }
+        PeriodoControler.destruirObj();
+    }//GEN-LAST:event_btnDeletarPeriodoActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -191,6 +231,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarPeriodo;
+    private javax.swing.JButton btnDeletarPeriodo;
     private javax.swing.JButton btnSalvarPeriodo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

@@ -10,6 +10,8 @@ import br.com.fiap.controller.CtrlListarPeriodo;
 import br.com.fiap.entity.Periodo;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -66,16 +68,30 @@ public class FormPeriodo extends javax.swing.JFrame {
         tabPeriodos.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         tabPeriodos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "PERÍODOS", "ALTERAR", "DELETAR"
+                "ID", "PERÍODO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabPeriodos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabPeriodosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabPeriodos);
+        if (tabPeriodos.getColumnModel().getColumnCount() > 0) {
+            tabPeriodos.getColumnModel().getColumn(0).setResizable(false);
+            tabPeriodos.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 150, 630, 210));
 
@@ -134,6 +150,18 @@ public class FormPeriodo extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
+    private void tabPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPeriodosMouseClicked
+    
+        int linha = tabPeriodos.getSelectedRow();
+        if (linha != -1) {
+            FormNovoPeriodo fnp = new FormNovoPeriodo();
+            int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
+            fnp.setCodPeriodo(obj);
+            this.dispose();
+            fnp.setVisible(true);
+        }
+    }//GEN-LAST:event_tabPeriodosMouseClicked
+
     /**
      * Atualiza a tabela de registros
      */
@@ -143,11 +171,15 @@ public class FormPeriodo extends javax.swing.JFrame {
         Periodo periodo;
         
         if (lista.size() > 0) {
+       
             matrizLista = new String[lista.size()][3];
-            String[] colunas = {"PERÍODOS", "ALTERAR", "EXCLUIR"};
+            String[] colunas = {"ID", "PERÍODOS"};
+            
+            
             for (int i = 0; i < lista.size(); i++) {
                 periodo = lista.get(i);
-                matrizLista[i][0] = periodo.getNomPeriodo();
+                matrizLista[i][0] = Integer.toString(periodo.getCodPeriodo());
+                matrizLista[i][1] = periodo.getNomPeriodo();
             }
 
             TableModel modeloTabela = new DefaultTableModel(matrizLista, colunas);

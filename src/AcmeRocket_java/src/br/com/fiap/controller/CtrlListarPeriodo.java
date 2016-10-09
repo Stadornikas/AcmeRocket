@@ -5,7 +5,7 @@
  */
 package br.com.fiap.controller;
 
-import br.com.fiap.dao.PeriodoDao;
+import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.entity.Periodo;
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class CtrlListarPeriodo {
     public CtrlListarPeriodo() {}
     
     public ArrayList<Periodo> CarregarRegistros(){
-        PeriodoDao dao = new PeriodoDao();
+        PeriodoDAO dao = new PeriodoDAO();
         return dao.listar();
     }
     

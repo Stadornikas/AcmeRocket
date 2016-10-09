@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import br.com.fiap.entity.Evento;
 import java.sql.SQLException;
 import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EventoDAO {
@@ -69,6 +67,11 @@ public class EventoDAO {
         return true;
     }
 
+    /**
+     * Persiste um evento no banco de dados
+     * @param evento
+     * @return boolean
+     */
     public boolean inserir(Evento evento) {
         int novoIndex = buscarIndex();
         boolean sucesso = false;
@@ -98,7 +101,7 @@ public class EventoDAO {
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
-             conn = Conexao.getConnection();
+            conn = Conexao.getConnection();
             sql = "SELECT MAX(COD_EVENTO) as max_linhas FROM EVENTOS";
             
             ps = conn.prepareStatement(sql);

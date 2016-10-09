@@ -1,135 +1,186 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.fiap.dao;
 
-import br.com.fiap.conexao.Conexao;
+import br.com.fiap.connection.Conexao;
 import br.com.fiap.entity.Periodo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author leandro
- */
 public class PeriodoDAO {
-    
-    private Connection connection;
-    private PreparedStatement p;
-    private String sql;
-    private ResultSet rs;
 
-    public boolean inserir(Periodo periodo) {
-        boolean aux = false;
+    private Connection conn;
+    private PreparedStatement ps;
+    private ResultSet rs;
+    private String sql;
+    
+    /**
+     * busca todos os períodos cadastrados e retorna um ArrayList<Periodo>
+     * @return 
+     */
+    public ArrayList<Periodo> listar() {
+        ArrayList<Periodo> lista = new ArrayList();
         
-        sql = "INSERT INTO PERIODO VALUES (?, ?)";
-        connection = Conexao.getConnection();
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM PERIODO";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                lista.add(new Periodo(rs.getInt("COD_PERIODO"), rs.getString("NOM_PERIODO")));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar periodos! \n ERRO: " + ex);
+        }
+
+        return lista;
+    }
+
+    /**
+     * Remove o período indicado por codPeriodo do banco de dados
+     * @param codPeriodo
+     * @return 
+     */
+    public boolean deletar(int codPeriodo) {
+        try {
+            conn = Conexao.getConnection();
+            sql = "DELETE FROM PERIODO WHERE COD_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codPeriodo);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar periodos! \n ERRO: " + ex);
+        }
+        return true;
+    }
+
+    /**
+     * Persiste um novo período no banco de dados
+     * @param periodo 
+     * @return boolean
+     */
+    public boolean inserir(Periodo periodo) {
+        boolean sucesso = false;
+        int MaxId =  buscarMaxId();
+        
+        if (MaxId <= 0) {
+            return false;
+        }
+        
+        try {
+            conn = Conexao.getConnection();
+            sql = "INSERT INTO PERIODO (COD_PERIODO, NOM_PERIODO) VALUES(?,?)";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,MaxId);
+            ps.setString(2, periodo.getNomPeriodo());
+            ps.execute();
+            sucesso = true;
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir periodos! \n ERRO: " + ex);
+            return false;
+        }
+
+        return sucesso;
+
+    }
+
+    /**
+     * Retora o Período indicado por codPeriodo
+     * @param codPeriodo
+     * @return 
+     */
+    public Periodo buscar(int codPeriodo) {
+        Periodo periodo = null;
 
         try {
-            p = connection.prepareStatement(sql);
-            p.setInt(1, periodo.getCodPeriodo());
-            p.setString(2, periodo.getNomPeriodo());
-            p.execute();
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM PERIODO WHERE COD_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codPeriodo);
+            rs = ps.executeQuery();
             
-            aux = true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "inserir periodo! \n ERRO:" + e);
+             while(rs.next()){
+                int codigoPeriodo = rs.getInt("COD_PERIODO");
+                String nomePeriodo = rs.getString("NOM_PERIODO");
+                periodo = new Periodo(codigoPeriodo, nomePeriodo);
+             }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar periodos! \n ERRO: " + ex);
+        } 
+        return periodo;
+    }
+
+    /**
+     * Edita um período existe no banco dedos
+     * @param periodo 
+     */
+    public boolean alterar(Periodo periodo) {
+        boolean sucesso = false;
+        try {
+            conn = Conexao.getConnection();
+            sql = "UPDATE PERIODO SET NOM_PERIODO = ? WHERE COD_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, periodo.getNomPeriodo());
+            ps.setInt(2, periodo.getCodPeriodo());
+            ps.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar periodo! \n ERRO: " + ex);
+        } 
+        return sucesso;
+    }
+    
+    
+     /**
+     * Busca o ultimo maior valor de id e incrementa + 1
+     * @return int 
+     */
+    public int buscarMaxId() {
+        int proximaColuna = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT MAX(COD_PERIODO) max_linhas FROM PERIODO";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                proximaColuna = rs.getInt("max_linhas") + 1;
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar index: " + ex);
         } 
         
-        return aux;
-    }
-
-    public Periodo buscar(int codPeriodo) {
-        Periodo Periodo = null;
-        connection = Conexao.getConnection();
-        sql = "SELECT * FROM PERIODO WHERE COD_PERIODO = ?";
-
-        try {
-            p = connection.prepareStatement(sql);
-            p.setInt(1, codPeriodo);
-            rs = p.executeQuery();
-            while (rs.next()) {
-                String nomPeriodo = rs.getString("NUM_PERIODO");
-                Periodo = new Periodo(codPeriodo, nomPeriodo);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PeriodoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return Periodo;
-    }
-
-    public boolean alterar(Periodo periodo) {
-        
-        boolean aux = false;
-        
-        connection = Conexao.getConnection();
-        sql = "UPDATE PERIODO SET NOM_PERIODO = ? WHERE COD_PERIODO = ?";
-        try {
-            p = connection.prepareStatement(sql);
-            p.setString(1, periodo.getNomPeriodo());
-            p.execute();
-            
-            aux = true;
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "alterar periodo! \n ERRO:" + e);
-        }
-        
-        return aux;
-    }
-
-    public boolean deletar(int codPeriodo) {
-        
-        boolean aux = false;
-        
-        connection = Conexao.getConnection();
-        sql = "DELETE FROM PERIODO WHERE COD_PERIODO = ?";
-        try {
-            p = connection.prepareStatement(sql);
-            p.setInt(1, codPeriodo);
-            p.execute();
-            
-            aux  = true;
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "deletar periodo! \n ERRO:" + e);
-        }
-        
-        return aux;
-    }
-
-    public ArrayList<Periodo> listar() {
-
-        ArrayList<Periodo> lista = new ArrayList();
-
-        connection = Conexao.getConnection();
-        sql = "SELECT * FROM PERIODO";
-        
-        try {
-            p = connection.prepareStatement(sql);
-            rs = p.executeQuery();
-
-            while (rs.next()) {
-                int codPeriodo = rs.getInt("COD_PERIODO");
-                String nomPeriodo = rs.getString("NOM_PERIODO");
-
-                lista.add(new Periodo(codPeriodo, nomPeriodo));
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"listar periodo! \n ERRO: " + e);
-        }
-        
-        return lista;
-        
+        return proximaColuna;
     }
     
+    
+    public boolean existePeriodo(String nomePeriodo){
+        Periodo p = null;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM PERIODO WHERE NOM_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nomePeriodo);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                p = new Periodo(rs.getInt("COD_PERIODO"), rs.getString("NOM_PERIODO"));
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar maior cod periodo: " + ex);
+        } 
+        
+        
+        return (p != null);
+        
+    }
+
 }
