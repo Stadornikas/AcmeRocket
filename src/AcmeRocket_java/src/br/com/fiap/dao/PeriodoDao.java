@@ -64,7 +64,8 @@ public class PeriodoDao {
      * Persiste um novo período no banco de dados
      * @param periodo 
      */
-    public void inserir(Periodo periodo) {
+    public boolean inserir(Periodo periodo) {
+        boolean sucesso = false;
         try {
             conn = Conexao.getConnection();
             sql = "INSERT INTO PERIODOS VALUES(?)";
@@ -72,10 +73,11 @@ public class PeriodoDao {
 
             ps.setString(1, periodo.getNomPeriodo());
             ps.execute();
-
+            sucesso = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir periodos! \n ERRO: " + ex);
         }
+        return sucesso;
     }
 
     /**
@@ -108,7 +110,8 @@ public class PeriodoDao {
      * Edita um período existe no banco dedos
      * @param periodo 
      */
-    public void alterar(Periodo periodo) {
+    public boolean alterar(Periodo periodo) {
+        boolean sucesso = false;
         try {
             conn = Conexao.getConnection();
             sql = "UPDATE PERIODOS SET NOM_PERIODO = ? WHERE COD_PERIODO = ?";
@@ -116,8 +119,10 @@ public class PeriodoDao {
             ps.setString(1, periodo.getNomPeriodo());
             ps.setInt(2, periodo.getCodPeriodo());
             ps.execute();
+            sucesso = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar periodo! \n ERRO: " + ex);
         }
+        return sucesso;
     }
 }
