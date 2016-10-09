@@ -5,8 +5,14 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.EventoDAO;
+import br.com.fiap.dao.TurmaDAO;
+import br.com.fiap.entity.Evento;
+import br.com.fiap.entity.Turma;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,8 +26,8 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     public FormNovoGrupo() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-         lblGrupos.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
+        lblGrupos.setForeground(Color.blue);
     }
 
     /**
@@ -39,8 +45,6 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtGrupo = new javax.swing.JTextField();
-        cmbEvento = new javax.swing.JComboBox<String>();
-        cmbTurma = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -48,9 +52,16 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnCancelarGrupo = new javax.swing.JButton();
         btnSalvarGrupo = new javax.swing.JButton();
+        cmbEvento = new javax.swing.JComboBox();
+        cmbTurma = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
@@ -74,14 +85,6 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
         txtGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 240, -1));
-
-        cmbEvento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        cmbEvento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione um Evento", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
-
-        cmbTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        cmbTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione uma Turma", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -129,6 +132,10 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         btnSalvarGrupo.setText("Salvar");
         getContentPane().add(btnSalvarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 110, -1));
 
+        getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
+
+        getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,6 +166,28 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarGrupoMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        /**
+         * COLOCANDO OS DADOS DA TURMA DO BANCO NO COMBOBOX
+         */
+        List<Turma> listaTurma = new ArrayList();
+        TurmaDAO daoTurma = new TurmaDAO();
+        listaTurma = daoTurma.listar();
+        for (Turma t : listaTurma) {
+            cmbTurma.addItem(t.getNomTurma());
+        }
+
+        /**
+         * COLOCANDO OS DADOS DO EVENTO DO BANCO NO COMBOBOX
+         */
+        List<Evento> listaEvento = new ArrayList();
+        EventoDAO daoEvento = new EventoDAO();
+        listaEvento = daoEvento.listar();
+        for (Evento e : listaEvento) {
+            cmbTurma.addItem(e.getNomEvento());
+        }
+
+    }//GEN-LAST:event_formWindowOpened
     /**
      * @param args the command line arguments
      */
@@ -197,8 +226,8 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarGrupo;
     private javax.swing.JButton btnSalvarGrupo;
-    private javax.swing.JComboBox<String> cmbEvento;
-    private javax.swing.JComboBox<String> cmbTurma;
+    private javax.swing.JComboBox cmbEvento;
+    private javax.swing.JComboBox cmbTurma;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

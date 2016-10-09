@@ -127,25 +127,25 @@ public class FormTurmas extends javax.swing.JFrame {
 
     public void atualizarTabela() {
 
-//        TurmaDAO dao = new TurmaDAO();
-//
-//        //List<Turma> lista = dao.listar();
-//        matrizTurma = new String[lista.size()][3];
-//        Turma turma;
-//       
-//        String[] colunas = {"TURMA", "ANO", "PERÍODO", "ALTERAR", "EXCLUIR"};
-//        for (int i = 0; i < lista.size(); i++) {
-//
-//            turma = lista.get(i);
-////            matrizTurma[i][0] = evento.getNomEvento();
-////            matrizTurma[i][1] = evento.getLocEvento();
-////            matrizTurma[i][2] = formatoData.format(evento.getDatEvento());
-////            // matrizLista[i][3] = jLabel5.setIcon(icon);
-//////            matrizLista[i][4] = evento.getCaminhoFoto();
-//        }
-//
-//        TableModel modeloTabela = new DefaultTableModel(matrizTurma, colunas);
-//        tabTurmas.setModel(modeloTabela);
+        TurmaDAO dao = new TurmaDAO();
+
+        List<Turma> lista = dao.listar();
+        matrizTurma = new String[lista.size()][3];
+        Turma turma;
+
+        String[] colunas = {"TURMA", "ANO", "PERÍODO", "ALTERAR", "EXCLUIR"};
+        for (int i = 0; i < lista.size(); i++) {
+
+            turma = lista.get(i);
+            matrizTurma[i][0] = turma.getNomTurma();
+            matrizTurma[i][1] = turma.getAnoTurma();
+//            matrizTurma[i][2] = formatoData.format(evento.getDatEvento());
+//            // matrizLista[i][3] = jLabel5.setIcon(icon);
+////            matrizLista[i][4] = evento.getCaminhoFoto();
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizTurma, colunas);
+        tabTurmas.setModel(modeloTabela);
     }
 
     /**
