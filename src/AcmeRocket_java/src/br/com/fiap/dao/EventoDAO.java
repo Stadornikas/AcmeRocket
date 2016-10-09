@@ -76,7 +76,7 @@ public class EventoDAO {
         int novoIndex = buscarIndex();
         boolean sucesso = false;
         try {
-             conn = Conexao.getConnection();
+            conn = Conexao.getConnection();
             sql = "INSERT INTO EVENTOS (COD_EVENTO, NOM_EVENTO, LOC_EVENTO, DAT_EVENTO) VALUES(?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
 
@@ -103,7 +103,7 @@ public class EventoDAO {
         try {
             conn = Conexao.getConnection();
             sql = "SELECT MAX(COD_EVENTO) as max_linhas FROM EVENTOS";
-            
+
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {

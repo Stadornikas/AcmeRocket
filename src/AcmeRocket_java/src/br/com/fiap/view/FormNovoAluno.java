@@ -5,7 +5,10 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.AlunoDAO;
+import br.com.fiap.entity.Aluno;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +22,8 @@ public class FormNovoAluno extends javax.swing.JFrame {
     public FormNovoAluno() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-         lblAlunos.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
+        lblAlunos.setForeground(Color.blue);
     }
 
     /**
@@ -39,7 +42,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtRm = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        cmbGrupo = new javax.swing.JComboBox<>();
+        cmbGrupo = new javax.swing.JComboBox<String>();
         btnCancelarAluno = new javax.swing.JButton();
         btnSalvarAluno = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -49,8 +52,6 @@ public class FormNovoAluno extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,13 +81,18 @@ public class FormNovoAluno extends javax.swing.JFrame {
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 210, -1));
 
         cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Grupo", "Item 2", "Item 3", "Item 4" }));
+        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione um Grupo", "Item 2", "Item 3", "Item 4" }));
         cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
         cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
         getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 210, 20));
 
         btnCancelarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarAluno.setText("Cancelar");
+        btnCancelarAluno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarAlunoMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 110, -1));
 
         btnSalvarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -131,12 +137,21 @@ public class FormNovoAluno extends javax.swing.JFrame {
 
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
         int rm = Integer.parseInt(txtRm.getText());
-        String nome;
-        
+        String nome = txtNome.getText();
+        int grupo = cmbGrupo.getSelectedIndex();
+
+        Aluno aluno = new Aluno(rm, nome, grupo);
+
+        AlunoDAO dao = new AlunoDAO();
+
+        if (dao.inserir(aluno)) {
+            JOptionPane.showMessageDialog(this, "Aluno insirido com sucesso! ");
+        }
+
     }//GEN-LAST:event_btnSalvarAlunoActionPerformed
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-         //CHAMANDO FORMULARIO PRINCIPAL
+        //CHAMANDO FORMULARIO PRINCIPAL
         FormPrincipal fp = new FormPrincipal();
         this.dispose();
         fp.setVisible(true);
@@ -148,6 +163,15 @@ public class FormNovoAluno extends javax.swing.JFrame {
         this.dispose();
         fa.setVisible(true);
     }//GEN-LAST:event_lblAlunosMouseClicked
+
+    private void btnCancelarAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAlunoMouseClicked
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+            this.dispose();
+            FormAluno lf = new FormAluno();
+            lf.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCancelarAlunoMouseClicked
 
     /**
      * @param args the command line arguments

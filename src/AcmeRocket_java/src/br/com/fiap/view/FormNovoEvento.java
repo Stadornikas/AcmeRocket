@@ -78,8 +78,6 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -106,6 +104,11 @@ public class FormNovoEvento extends javax.swing.JFrame {
         getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 106, -1));
 
         btnCancelarEvento.setText("Cancelar");
+        btnCancelarEvento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelarEventoMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnCancelarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 120, -1));
 
         btnSalvarEvento.setText("Salvar");
@@ -156,8 +159,8 @@ public class FormNovoEvento extends javax.swing.JFrame {
 
     private void lblEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosMouseClicked
         //CHAMANDO FORMULARIO EVENTOS(LISTA)
-        FormEvento fe = new FormEvento();
         this.dispose();
+        FormEvento fe = new FormEvento();
         fe.setVisible(true);
     }//GEN-LAST:event_lblEventosMouseClicked
 
@@ -177,6 +180,15 @@ public class FormNovoEvento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
         }
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
+
+    private void btnCancelarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEventoMouseClicked
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+            this.dispose();
+            FormEvento lf = new FormEvento();
+            lf.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCancelarEventoMouseClicked
 
     
     /**
