@@ -9,9 +9,9 @@ package br.com.fiap.controler;
  *
  * @author Leandro
  */
-public class CtrlPeriodo {
+public class CtrlSalvarPeriodo {
 
-    public CtrlPeriodo() {
+    public CtrlSalvarPeriodo() {
     }
     
     

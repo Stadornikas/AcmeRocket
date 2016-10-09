@@ -5,7 +5,9 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controler.CtrlSalvarPeriodo;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,12 +63,22 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
 
         btnCancelarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarPeriodo.setText("Cancelar");
+        btnCancelarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarPeriodoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 90, -1));
 
         btnSalvarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarPeriodo.setText("Salvar");
         btnSalvarPeriodo.setMaximumSize(new java.awt.Dimension(77, 23));
         btnSalvarPeriodo.setMinimumSize(new java.awt.Dimension(77, 23));
+        btnSalvarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarPeriodoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSalvarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -120,6 +132,23 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         this.dispose();
         fp.setVisible(true);
     }//GEN-LAST:event_lblPeriodoMouseClicked
+
+    private void btnCancelarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPeriodoActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deeja cancelar ?") == 1){
+            FormPeriodo fp = new FormPeriodo();
+            this.dispose();
+            fp.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCancelarPeriodoActionPerformed
+
+    private void btnSalvarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPeriodoActionPerformed
+        
+        String nomePeriodo = txtPeriodo.getText();
+        
+        CtrlSalvarPeriodo PeriodoControler = new CtrlSalvarPeriodo();
+        
+        
+    }//GEN-LAST:event_btnSalvarPeriodoActionPerformed
 
     /**
      * @param args the command line arguments

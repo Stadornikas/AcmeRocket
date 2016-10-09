@@ -63,19 +63,24 @@ public class PeriodoDao {
     /**
      * Persiste um novo período no banco de dados
      * @param periodo 
+     * @return boolean
      */
-    public void inserir(Periodo periodo) {
+    public boolean inserir(Periodo periodo) {
+        boolean output = false;
         try {
             conn = Conexao.getConnection();
             sql = "INSERT INTO PERIODOS VALUES(?)";
             ps = conn.prepareStatement(sql);
 
             ps.setString(1, periodo.getNomPeriodo());
-            ps.execute();
-
+            
+            if (!ps.execute()) output =  true;
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir periodos! \n ERRO: " + ex);
+            return false;
         }
+        return output;
     }
 
     /**
