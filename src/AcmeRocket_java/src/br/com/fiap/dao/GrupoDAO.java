@@ -16,7 +16,7 @@ public class GrupoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-   
+
     public boolean inserir(Grupo grupo) {
         boolean aux = false;
         try {
@@ -132,10 +132,16 @@ public class GrupoDAO {
 
         } catch (SQLException ex) {
             showMessageDialog(null, "Erro ao listar grupos! \n ERRO: " + ex);
-        }
-        
+        }/* finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                showMessageDialog(null, "Erro ao fechar a conexão!\n ERROR: " + ex);
+            }
+        }*/
+
         return lista;
-        
+
     }
 
 }

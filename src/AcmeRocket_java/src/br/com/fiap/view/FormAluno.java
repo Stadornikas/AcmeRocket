@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+
 import br.com.fiap.dao.AlunoDAO;
 import br.com.fiap.entity.Aluno;
 import java.awt.Color;
@@ -130,26 +131,26 @@ public class FormAluno extends javax.swing.JFrame {
 
     public void atualizarTabela() {
 
-//        AlunoDao dao = new AlunoDao();
-//
-//        List<Aluno> lista = dao.listar();
-//        matrizAluno = new String[lista.size()][3];
-//        Aluno aluno;
-//        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-//        String[] colunas = {"RM", "NOME", "GRUPO", "ALTERAR", "EXCLUIR"};
-//        for (int i = 0; i < lista.size(); i++) {
-//
-//            aluno = lista.get(i);
-//            matrizAluno[i][0] = String.valueOf(aluno.getCodAluno());
-//            matrizAluno[i][1] = aluno.getNomComp();
-//            matrizAluno[i][2] = String.valueOf(aluno.getCodGrupo());
-//            // matrizLista[i][3] = jLabel5.setIcon(icon);
-////            matrizLista[i][4] = evento.getCaminhoFoto();
-//
-//        }
-//
-//        TableModel modeloTabela = new DefaultTableModel(matrizAluno, colunas);
-//        tabAlunos.setModel(modeloTabela);
+        AlunoDAO dao = new AlunoDAO();
+
+        List<Aluno> lista = dao.listar();
+        matrizAluno = new String[lista.size()][3];
+        Aluno aluno;
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        String[] colunas = {"RM", "NOME", "GRUPO", "ALTERAR", "EXCLUIR"};
+        for (int i = 0; i < lista.size(); i++) {
+
+            aluno = lista.get(i);
+            matrizAluno[i][0] = String.valueOf(aluno.getCodAluno());
+            matrizAluno[i][1] = aluno.getNomComp();
+            matrizAluno[i][2] = String.valueOf(aluno.getCodGrupo());
+            // matrizLista[i][3] = jLabel5.setIcon(icon);
+//            matrizLista[i][4] = evento.getCaminhoFoto();
+
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizAluno, colunas);
+        tabAlunos.setModel(modeloTabela);
     }
 
     /**

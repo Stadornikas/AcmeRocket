@@ -36,12 +36,6 @@ public class PeriodoDao {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao listar periodos! \n ERRO: " + ex);
-        } finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
-            }
         }
 
         return lista;
@@ -61,12 +55,6 @@ public class PeriodoDao {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar periodos! \n ERRO: " + ex);
-        } finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
-            }
         }
         return true;
     }
@@ -98,12 +86,6 @@ public class PeriodoDao {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir periodos! \n ERRO: " + ex);
             return false;
-        } finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
-            }
         }
 
         return sucesso;
@@ -132,13 +114,7 @@ public class PeriodoDao {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar periodos! \n ERRO: " + ex);
-        } finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
-            }
-        }
+        } 
         return periodo;
     }
 
@@ -158,13 +134,7 @@ public class PeriodoDao {
             sucesso = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar periodo! \n ERRO: " + ex);
-        } finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
-            }
-        }
+        } 
         return sucesso;
     }
     

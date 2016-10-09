@@ -130,7 +130,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnSalvarAlunoActionPerformed
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked

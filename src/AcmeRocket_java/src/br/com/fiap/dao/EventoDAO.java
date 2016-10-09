@@ -18,13 +18,13 @@ public class EventoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-    
-    public EventoDAO() {
-        conn = Conexao.getConnection();
-    }
-    
+
+//    public EventoDAO() {
+//        conn = Conexao.getConnection();
+//    }
     /**
      * Busca todos os eventos e retorna lista de eventos
+     *
      * @return ArrayList<Evento>
      */
     public ArrayList listar() {
@@ -46,18 +46,13 @@ public class EventoDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao listar eventos! \n ERRO: " + ex);
         }
-        finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
-            }
-        }
+
         return lista;
     }
 
     /**
      * Remove um evento do banco de dados
+     *
      * @param codEvento
      * @return boolean
      */
@@ -76,12 +71,12 @@ public class EventoDAO {
 
     public boolean inserir(Evento evento) {
         int novoIndex = buscarIndex();
-        boolean sucesso = false; 
+        boolean sucesso = false;
         try {
-            
+
             sql = "INSERT INTO EVENTOS (COD_EVENTO, NOM_EVENTO, LOC_EVENTO, DAT_EVENTO) VALUES(?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-            
+
             ps.setInt(1, novoIndex);
             ps.setString(2, evento.getNomEvento());
             ps.setString(3, evento.getLocEvento());
@@ -94,31 +89,32 @@ public class EventoDAO {
         }
         return sucesso;
     }
-    
+
     /**
      * Busca o ultimo maior valor de id e incrementa + 1
-     * @return int 
+     *
+     * @return int
      */
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
-            
-            sql = "SELECT MAX(COD_EVENTO) max_linhas FROM EVENTOS";
+            sql = "SELECT MAX(COD_EVENTO) as max_linhas FROM EVENTOS";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 proximaColuna = rs.getInt("max_linhas") + 1;
-            }           
+            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar index: " + ex);
         }
-        
+
         return proximaColuna;
     }
 
     /**
      * Retorna o evento respectivo ao ID passado por parametro
+     *
      * @param codEvento
      * @return Evento
      */
@@ -145,7 +141,8 @@ public class EventoDAO {
 
     /**
      * Edita um evento existente
-     * @param evento 
+     *
+     * @param evento
      */
     public void alterar(Evento evento) {
         try {
