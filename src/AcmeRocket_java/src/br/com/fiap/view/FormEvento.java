@@ -6,12 +6,18 @@
 package br.com.fiap.view;
 
 import br.com.fiap.dao.EventoDAO;
+
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -124,8 +130,9 @@ public class FormEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoEventoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
         atualizarTabela();
-    }//GEN-LAST:event_formWindowOpened
+    }                                 
 
     //ATUALIZANDO A TABELA
     public void atualizarTabela() {
@@ -150,6 +157,12 @@ public class FormEvento extends javax.swing.JFrame {
         tabEventos.setModel(modeloTabela);
 
     }
+
+
+        EventoDAO evento = new EventoDAO();
+        ArrayList eventos = evento.listar();
+    }//GEN-LAST:event_formWindowOpened
+
 
     /**
      * @param args the command line arguments
