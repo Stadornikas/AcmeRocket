@@ -5,7 +5,7 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.dao.AlunoDao;
+import br.com.fiap.dao.AlunoDAO;
 import br.com.fiap.entity.Aluno;
 import java.awt.Color;
 import java.text.SimpleDateFormat;

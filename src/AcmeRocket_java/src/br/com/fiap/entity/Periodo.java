@@ -1,21 +1,4 @@
-<<<<<<< HEAD
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.fiap.entity;
 
-/**
- *
- * @author leandro
- */
-public class Periodo {
-    
-    
-    
-    
-=======
 package br.com.fiap.entity;
 
 public class Periodo {
@@ -52,5 +35,4 @@ private String nomPeriodo;
     
     
 
->>>>>>> 68b174ff30e5414db01775948078579a63e1037a
 }
