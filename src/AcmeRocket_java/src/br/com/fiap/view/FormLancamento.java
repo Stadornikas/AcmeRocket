@@ -5,7 +5,13 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.LancamentoDAO;
+import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,13 +19,12 @@ import java.awt.Color;
  */
 public class FormLancamento extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormLancamento
-     */
+    String[][] matrizLancamento;
+
     public FormLancamento() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -44,6 +49,11 @@ public class FormLancamento extends javax.swing.JFrame {
         setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-05 51x51.png"))); // NOI18N
@@ -66,13 +76,13 @@ public class FormLancamento extends javax.swing.JFrame {
         tabLancamentos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabLancamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "GRUPO", "HORA LANÇAMENTO", "DATA", "STATUS", "ALTERAR", "ALTERAR"
+                "GRUPO", "HORA LANÇAMENTO", "STATUS", "ALTERAR", "ALTERAR"
             }
         ));
         jScrollPane1.setViewportView(tabLancamentos);
@@ -99,7 +109,7 @@ public class FormLancamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-         //CHAMANDO FORMULARIO PRINCIPAL
+        //CHAMANDO FORMULARIO PRINCIPAL
         FormPrincipal fp = new FormPrincipal();
         this.dispose();
         fp.setVisible(true);
@@ -111,6 +121,33 @@ public class FormLancamento extends javax.swing.JFrame {
         this.dispose();
         fnl.setVisible(true);
     }//GEN-LAST:event_btnNovoLancamentoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        atualizarTabela();
+    }//GEN-LAST:event_formWindowOpened
+
+    public void atualizarTabela() {
+
+        LancamentoDAO dao = new LancamentoDAO();
+
+        List<Lancamento> lista = dao.listar();
+        matrizLancamento = new String[lista.size()][4];
+        Lancamento lancamento;
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        String[] colunas = {"GRUPO", "HORA LANÇAMENTO", "STATUS", "ALTERAR", "EXCLUIR"};
+        for (int i = 0; i < lista.size(); i++) {
+
+            lancamento = lista.get(i);
+            matrizLancamento[i][0] = String.valueOf(lancamento.getCodGrupo());
+            matrizLancamento[i][1] = lancamento.getHorLancamento();
+            matrizLancamento[i][2] = String.valueOf(lancamento.getStatus());
+
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizLancamento, colunas);
+        tabLancamentos.setModel(modeloTabela);
+
+    }
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,12 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.PeriodoDao;
+import br.com.fiap.entity.Periodo;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,14 +18,13 @@ import java.awt.Color;
  */
 public class FormPeriodo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormPeriodo
-     */
+    String[][] matrizPeriodo;
+
     public FormPeriodo() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-        
+        lblDashboard.setForeground(Color.blue);
+
     }
 
     /**
@@ -115,6 +119,27 @@ public class FormPeriodo extends javax.swing.JFrame {
         this.dispose();
         fnp.setVisible(true);
     }//GEN-LAST:event_btnNovoPeriodoActionPerformed
+
+    public void atualizarTabela() {
+
+        PeriodoDao dao = new PeriodoDao();
+
+        List<Periodo> lista = dao.listar();
+        matrizPeriodo = new String[lista.size()][2];
+        Periodo periodo;
+
+        String[] colunas = {"PERÍODOS", "ALTERAR", "EXCLUIR"};
+        for (int i = 0; i < lista.size(); i++) {
+
+            periodo = lista.get(i);
+            matrizPeriodo[i][0] = periodo.getNomPeriodo();
+
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizPeriodo, colunas);
+        tabPeriodos.setModel(modeloTabela);
+
+    }
 
     /**
      * @param args the command line arguments
