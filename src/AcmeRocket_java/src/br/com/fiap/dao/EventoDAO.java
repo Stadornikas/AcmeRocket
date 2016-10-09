@@ -17,7 +17,10 @@ public class EventoDAO {
     private ResultSet rs;
     private String sql;
     
-
+    /**
+     * Busca todos os eventos e retorna lista de eventos
+     * @return ArrayList<Evento>
+     */
     public ArrayList listar() {
         ArrayList<Evento> lista = new ArrayList();
 
@@ -40,6 +43,11 @@ public class EventoDAO {
         return lista;
     }
 
+    /**
+     * Remove um evento do banco de dados
+     * @param codEvento
+     * @return boolean
+     */
     public boolean deletar(int codEvento) {
         try {
             conn = Conexao.getConnection();
@@ -53,6 +61,10 @@ public class EventoDAO {
         return true;
     }
 
+    /**
+     * Persiste um novo evento no banco de dados
+     * @param evento 
+     */
     public void inserir(Evento evento) {
         try {
             conn = Conexao.getConnection();
@@ -69,6 +81,10 @@ public class EventoDAO {
         }
     }
     
+    /**
+     * Busca a quantidade de eventos cadastrados
+     * @return 
+     */
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
@@ -85,6 +101,11 @@ public class EventoDAO {
         return proximaColuna;
     }
 
+    /**
+     * Retorna o evento respectivo ao ID passado por parametro
+     * @param codEvento
+     * @return Evento
+     */
     public Evento buscar(int codEvento) {
         Evento evento = null;
         try {
@@ -106,6 +127,10 @@ public class EventoDAO {
         return evento;
     }
 
+    /**
+     * Edita um evento existente
+     * @param evento 
+     */
     public void alterar(Evento evento) {
         try {
             conn = Conexao.getConnection();

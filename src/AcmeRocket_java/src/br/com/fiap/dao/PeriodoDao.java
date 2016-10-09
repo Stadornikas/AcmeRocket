@@ -17,7 +17,11 @@ public class PeriodoDao {
     private ResultSet rs;
     private String sql;
     
-    public ArrayList listar() {
+    /**
+     * busca todos os períodos cadastrados e retorna um ArrayList<Periodo>
+     * @return 
+     */
+    public ArrayList<Periodo> listar() {
         ArrayList<Periodo> lista = new ArrayList();
 
         try {
@@ -38,6 +42,11 @@ public class PeriodoDao {
         return lista;
     }
 
+    /**
+     * Remove o período indicado por codPeriodo do banco de dados
+     * @param codPeriodo
+     * @return 
+     */
     public boolean deletar(int codPeriodo) {
         try {
             conn = Conexao.getConnection();
@@ -51,6 +60,10 @@ public class PeriodoDao {
         return true;
     }
 
+    /**
+     * Persiste um novo período no banco de dados
+     * @param periodo 
+     */
     public void inserir(Periodo periodo) {
         try {
             conn = Conexao.getConnection();
@@ -65,6 +78,11 @@ public class PeriodoDao {
         }
     }
 
+    /**
+     * Retora o Período indicado por codPeriodo
+     * @param codPeriodo
+     * @return 
+     */
     public Periodo buscar(int codPeriodo) {
         Periodo periodo = null;
 
@@ -86,6 +104,10 @@ public class PeriodoDao {
         return periodo;
     }
 
+    /**
+     * Edita um período existe no banco dedos
+     * @param periodo 
+     */
     public void alterar(Periodo periodo) {
         try {
             conn = Conexao.getConnection();
