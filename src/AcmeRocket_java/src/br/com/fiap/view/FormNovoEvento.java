@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlSalvarEvento;
 import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
@@ -163,30 +164,21 @@ public class FormNovoEvento extends javax.swing.JFrame {
     private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
         String nomeEvento = txtEvento.getText();
         String locEvento = txtLocalEvento.getText();
-        Date datEventoFormated = validarData(txtDataEvento.getText());
-        Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
-        EventoDAO eventoDAO = new EventoDAO();
+        String datEventoFormated = txtDataEvento.getText();
         
-        if(eventoDAO.inserir(novoEvento)){
-            JOptionPane.showMessageDialog(this, "Evento Criado com sucesso");
+        CtrlSalvarEvento controle = new CtrlSalvarEvento();
+        
+        boolean inserir = controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
+        
+        if(inserir){
+            JOptionPane.showMessageDialog(null, "Evento Criado com sucesso");
+            
         }else{
-            JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
+            JOptionPane.showMessageDialog(null, "Houve Algum erro ao inserir o Aluno, tente novamente");
         }
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
-    private Date validarData(String date){
-        String pattern = "MM/dd/yyyy";
-        SimpleDateFormat format = new SimpleDateFormat(pattern);
-        
-        try {
-            datEvento = format.parse(txtDataEvento.getText());
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(this, "Data não foi convertida com sucesso.");
-        }
-        java.sql.Date datEventoFormated = new java.sql.Date (datEvento.getTime());
-        
-        return datEventoFormated;
-    }
+    
     /**
      * @param args the command line arguments
      */

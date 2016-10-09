@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import br.com.fiap.entity.Evento;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class EventoDAO {
@@ -16,6 +18,10 @@ public class EventoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
+    
+    public EventoDAO() {
+        conn = Conexao.getConnection();
+    }
     
     /**
      * Busca todos os eventos e retorna lista de eventos
@@ -40,6 +46,13 @@ public class EventoDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao listar eventos! \n ERRO: " + ex);
         }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Erro ao finalizar a conexão: " + ex);
+            }
+        }
         return lista;
     }
 
@@ -63,10 +76,9 @@ public class EventoDAO {
 
     public boolean inserir(Evento evento) {
         int novoIndex = buscarIndex();
-        boolean sucesso = false;
-        JOptionPane.showConfirmDialog(null, novoIndex);    
+        boolean sucesso = false; 
         try {
-            conn = Conexao.getConnection();
+            
             sql = "INSERT INTO EVENTOS (COD_EVENTO, NOM_EVENTO, LOC_EVENTO, DAT_EVENTO) VALUES(?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
             
@@ -90,7 +102,7 @@ public class EventoDAO {
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
-            conn = Conexao.getConnection();
+            
             sql = "SELECT COUNT(*) colunas FROM EVENTOS";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -101,6 +113,7 @@ public class EventoDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar index: " + ex);
         }
+        
         return proximaColuna;
     }
 
