@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarTurma;
 import java.awt.Color;
 
 import br.com.fiap.dao.EventoDAO;
@@ -57,6 +58,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         lblTurma = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cmbPeriodo = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -83,11 +85,11 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel7.setText("Ano:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel8.setText("Período:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, 30));
 
         btnSalvar.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -96,7 +98,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 90, -1));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 90, -1));
 
         btnCancelarTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarTurma.setText("Cancelar");
@@ -105,11 +107,11 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 btnCancelarTurmaMouseClicked(evt);
             }
         });
-        getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 90, -1));
+        getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 11, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");
@@ -118,10 +120,10 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 lblDashboardMouseClicked(evt);
             }
         });
-        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 9, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
 
         lblTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblTurma.setText("Turmas");
@@ -130,13 +132,21 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 lblTurmaMouseClicked(evt);
             }
         });
-        getContentPane().add(lblTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
+        getContentPane().add(lblTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 20, -1));
 
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o periodo" }));
         getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 220, -1));
+
+        jButton1.setText("Deletar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -165,11 +175,8 @@ public class FormNovaTurma extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarTurmaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        List<Periodo> lista = new ArrayList();
-
-        PeriodoDAO dao = new PeriodoDAO();
-        String teste;
-        lista = dao.listar();
+        CtrlListarTurma ctrlTurma= new CtrlListarTurma();
+        ArrayList<Periodo> lista = ctrlTurma.CarregarRegistrosPeriodo();
 
         for (Periodo periodo : lista) {
             cmbPeriodo.addItem(periodo.getNomPeriodo());
@@ -192,6 +199,10 @@ public class FormNovaTurma extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -231,6 +242,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarTurma;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cmbPeriodo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
