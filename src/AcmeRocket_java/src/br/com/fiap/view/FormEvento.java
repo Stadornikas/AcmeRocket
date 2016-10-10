@@ -66,15 +66,23 @@ public class FormEvento extends javax.swing.JFrame {
         tabEventos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "EVENTOS", "LOCAL", "DATA", "ALTERAR", "EXCLUIR"
+                "ID", "EVENTOS", "LOCAL", "DATA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabEventos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 670, 230));
@@ -132,16 +140,17 @@ public class FormEvento extends javax.swing.JFrame {
         EventoDAO dao = new EventoDAO();
 
         List<Evento> lista = dao.listar();
-        matrizLista = new String[lista.size()][3];
+        matrizLista = new String[lista.size()][4];
         Evento evento;
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        String[] colunas = {"EVENTOS", "LOCAL", "DATA", "ALTERAR", "EXCLUIR"};
+        String[] colunas = {"ID", "EVENTOS", "LOCAL", "DATA"};
         for (int i = 0; i < lista.size(); i++) {
 
             evento = lista.get(i);
-            matrizLista[i][0] = evento.getNomEvento();
-            matrizLista[i][1] = evento.getLocEvento();
-            matrizLista[i][2] = formatoData.format(evento.getDatEvento());
+            matrizLista[i][0] = String.valueOf(evento.getCodEvento());
+            matrizLista[i][1] = evento.getNomEvento();
+            matrizLista[i][2] = evento.getLocEvento();
+            matrizLista[i][3] = formatoData.format(evento.getDatEvento());
             // matrizLista[i][3] = jLabel5.setIcon(icon);
 //            matrizLista[i][4] = evento.getCaminhoFoto();
 

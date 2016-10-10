@@ -39,7 +39,7 @@ public class EventoDAO {
                 String nomeEvento = rs.getString("NOM_EVENTO");
                 String localEvento = rs.getString("LOC_EVENTO");
                 Date datEvento = rs.getDate("DAT_EVENTO");
-                lista.add(new Evento(nomeEvento, localEvento, datEvento));
+                lista.add(new Evento(codEvento, nomeEvento, localEvento, datEvento));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao listar eventos! \n ERRO: " + ex);
@@ -69,6 +69,7 @@ public class EventoDAO {
 
     /**
      * Persiste um evento no banco de dados
+     *
      * @param evento
      * @return boolean
      */
