@@ -10,7 +10,7 @@ import br.com.fiap.entity.Periodo;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Controle de inclusao e alteração de periodo
  * @author Leandro
  */
 public class CtrlSalvarPeriodo {
@@ -22,7 +22,7 @@ public class CtrlSalvarPeriodo {
      * @param nomePeriodo
      * @return boolean 
      */
-    public boolean validarNomeDuplicidade(String nomePeriodo){
+    private boolean validarNomeDuplicidade(String nomePeriodo){
         PeriodoDAO dao = new PeriodoDAO();
         //retorna false caso o periodo exista no banco dados
         return !dao.existePeriodo(nomePeriodo); 
@@ -33,7 +33,7 @@ public class CtrlSalvarPeriodo {
      * @param nomePeriodo
      * @return boolean
      */
-    public boolean validarCamposObrigatorios(String nomePeriodo){
+    private boolean validarCamposObrigatorios(String nomePeriodo){
         return !(nomePeriodo.equalsIgnoreCase(""));
     }
     
@@ -102,10 +102,6 @@ public class CtrlSalvarPeriodo {
         return p;
     }
     
-    /**
-     * Destroi o objeto
-     */
-    public void destruirObj(){}
     
     
     

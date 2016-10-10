@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarPeriodo;
 import br.com.fiap.controller.CtrlSalvarPeriodo;
 import br.com.fiap.entity.Periodo;
 import java.awt.Color;
@@ -56,7 +57,6 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
-        setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -149,28 +149,26 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
 
     private void lblPeriodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPeriodoMouseClicked
         //CHAMANDO FORMULARIO PERIODOS(LISTA)
-        FormPeriodo fp = new FormPeriodo();
-        this.dispose();
-        fp.setVisible(true);
+        this.voltarParaLista();
     }//GEN-LAST:event_lblPeriodoMouseClicked
 
     private void btnCancelarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPeriodoActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
-            this.dispose();
-            FormPeriodo lf = new FormPeriodo(); //lf -> Last Form
-            lf.setVisible(true);
+            this.voltarParaLista();
         }
     }//GEN-LAST:event_btnCancelarPeriodoActionPerformed
 
     private void btnSalvarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarPeriodoActionPerformed
         String nomePeriodo = txtPeriodo.getText();
-        CtrlSalvarPeriodo PeriodoControler = new CtrlSalvarPeriodo();
-        if (codPeriodo == -1) {
-            PeriodoControler.inserirPeriodo(nomePeriodo);
+        CtrlSalvarPeriodo ctrlPeriodo = new CtrlSalvarPeriodo();
+        if (this.codPeriodo == -1) {
+            ctrlPeriodo.inserirPeriodo(nomePeriodo);
+            this.voltarParaLista();
         }else{
-            PeriodoControler.alterarPeriodo(codPeriodo, nomePeriodo);
+            ctrlPeriodo.alterarPeriodo(codPeriodo, nomePeriodo);
+            this.voltarParaLista();
         }
-        PeriodoControler.destruirObj();
+        ctrlPeriodo = null;
         
     }//GEN-LAST:event_btnSalvarPeriodoActionPerformed
 
@@ -179,24 +177,32 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
             CtrlSalvarPeriodo ctrlPeriodo = new CtrlSalvarPeriodo();
             Periodo p = ctrlPeriodo.carregarPeriodo(codPeriodo);
             txtPeriodo.setText(p.getNomPeriodo());
+            ctrlPeriodo = null;
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDeletarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarPeriodoActionPerformed
-        CtrlSalvarPeriodo PeriodoControler = new CtrlSalvarPeriodo();
-        if (codPeriodo == -1) {
-            
+        if (this.codPeriodo != -1) {
+            CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
+            if (ctrlPeriodo.confirmaExclusao()) {
+                ctrlPeriodo.excluirPeriodo(codPeriodo);
+                this.voltarParaLista();
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar","Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
-        PeriodoControler.destruirObj();
     }//GEN-LAST:event_btnDeletarPeriodoActionPerformed
 
+    private void voltarParaLista(){
+        this.dispose();
+        FormPeriodo lf = new FormPeriodo(); //lf -> Last Form
+        lf.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        
-        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
