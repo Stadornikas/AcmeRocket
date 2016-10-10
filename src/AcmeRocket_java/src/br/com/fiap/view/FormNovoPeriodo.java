@@ -49,11 +49,12 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblPeriodo = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnDeletarPeriodo = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
@@ -110,9 +111,9 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
-        jLabel4.setText("Período");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
+        lblStatus.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        lblStatus.setText("Inserir");
+        getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
@@ -136,6 +137,10 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        jLabel8.setText("Período");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,6 +183,9 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
             Periodo p = ctrlPeriodo.carregarPeriodo(codPeriodo);
             txtPeriodo.setText(p.getNomPeriodo());
             ctrlPeriodo = null;
+            lblStatus.setText("Editar");
+        }else{
+            lblStatus.setText("Inserir");
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -240,13 +248,14 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
     private javax.swing.JButton btnDeletarPeriodo;
     private javax.swing.JButton btnSalvarPeriodo;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblPeriodo;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JTextField txtPeriodo;
     // End of variables declaration//GEN-END:variables
 }

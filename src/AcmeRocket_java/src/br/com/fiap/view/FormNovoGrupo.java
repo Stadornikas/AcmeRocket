@@ -167,7 +167,6 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarGrupoActionPerformed
 
     private void btnCancelarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGrupoMouseClicked
-        // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
             FormGrupos lf = new FormGrupos();

@@ -60,12 +60,13 @@ public class TurmaDAO {
             ps.setInt(1, codTurma);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String nomTurma = rs.getString("NUM_TURMA");
+                String nomTurma = rs.getString("NOM_TURMA");
                 String anoTurma = rs.getString("ANO_TURMA");
                 int codPeriodo = rs.getInt("PERIODO_COD_PERIODO");
                 Turma = new Turma(codTurma, nomTurma, anoTurma, codPeriodo);
             }
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar Turma! \n ERRO:" + ex);
             Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -88,7 +89,7 @@ public class TurmaDAO {
             aux = true;
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "alterar Turmas! \n ERRO:" + e);
+            JOptionPane.showMessageDialog(null, "Erro alterar Turmas! \n ERRO:" + e);
         }
 
         return aux;

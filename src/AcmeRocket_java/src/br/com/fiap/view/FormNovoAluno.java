@@ -175,7 +175,6 @@ public class FormNovoAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_lblAlunosMouseClicked
 
     private void btnCancelarAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAlunoMouseClicked
-        // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
             FormAluno lf = new FormAluno();

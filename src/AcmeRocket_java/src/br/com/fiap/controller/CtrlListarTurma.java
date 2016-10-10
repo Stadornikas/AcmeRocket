@@ -12,15 +12,7 @@ public class CtrlListarTurma {
 
     public CtrlListarTurma() {
     }
-    
-    /**
-     * Carrega lista de Periodos para preenchimento do combobox
-     * @return 
-     */
-    public ArrayList<Periodo> CarregarRegistrosPeriodo(){
-        PeriodoDAO dao = new PeriodoDAO();
-        return dao.listar();
-    }
+
     
     /**
      * Carrega a lista de turmas cadastradas
@@ -41,4 +33,5 @@ public class CtrlListarTurma {
         return dao.buscarNomePeriodo(turma.getCodPeriodo());
     }
     
+
 }

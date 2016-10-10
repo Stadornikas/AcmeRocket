@@ -6,6 +6,7 @@
 package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlListarTurma;
+import br.com.fiap.controller.CtrlSalvarTurma;
 import java.awt.Color;
 
 import br.com.fiap.dao.EventoDAO;
@@ -24,6 +25,13 @@ import javax.swing.JOptionPane;
  */
 public class FormNovaTurma extends javax.swing.JFrame {
 
+    int codTurma = -1;
+
+    public void setCodTurma(int codTurma) {
+        this.codTurma = codTurma;
+    }
+
+    
     /**
      * Creates new form FormNovaTurma
      */
@@ -58,7 +66,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         lblTurma = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cmbPeriodo = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -140,13 +148,13 @@ public class FormNovaTurma extends javax.swing.JFrame {
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o periodo" }));
         getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 220, -1));
 
-        jButton1.setText("Deletar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeletarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -168,19 +176,31 @@ public class FormNovaTurma extends javax.swing.JFrame {
     private void btnCancelarTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarTurmaMouseClicked
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
-            this.dispose();
-            FormTurmas lf = new FormTurmas();
-            lf.setVisible(true);
+           this.voltarParaLista();
         }
     }//GEN-LAST:event_btnCancelarTurmaMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        CtrlListarTurma ctrlTurma= new CtrlListarTurma();
-        ArrayList<Periodo> lista = ctrlTurma.CarregarRegistrosPeriodo();
+       //Carrega os periodos cadastrados em caso de inserção de nova turma    
+        if (codTurma == -1) {
+            CtrlSalvarTurma ctrlTurma= new CtrlSalvarTurma();
+            ArrayList<Periodo> lista = ctrlTurma.carregarRegistrosPeriodo();
 
-        for (Periodo periodo : lista) {
-            cmbPeriodo.addItem(periodo.getNomPeriodo());
+            for (Periodo periodo : lista) {
+                cmbPeriodo.addItem(periodo.getNomPeriodo());
+            }
+        }else{
+            //Em caso de edicao os campos vem carregados com os dados da turma
+            CtrlSalvarTurma ctrlTurma = new CtrlSalvarTurma();
+            Turma turma = ctrlTurma.carregarTurma(codTurma);
+            if (turma == null) {
+                this.voltarParaLista();
+            }
+            txtTurma.setText(turma.getNomTurma());
+            txtAno.setText(turma.getAnoTurma());
+            //TODO: CARREGAR COMBOBOX COM OS PERIODOS CADATRADOS E DEIXAR SELECIONADO O PERIODO REREENTE A TURMA ATUAL
         }
+
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -200,9 +220,17 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnDeletarActionPerformed
+    
+    
+    private void voltarParaLista(){
+        this.dispose();
+        FormTurmas lf = new FormTurmas();
+        lf.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -240,9 +268,9 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarTurma;
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cmbPeriodo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -6,6 +6,7 @@
 package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlListarTurma;
+import br.com.fiap.controller.CtrlSalvarTurma;
 import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Turma;
@@ -77,10 +78,7 @@ public class FormTurmas extends javax.swing.JFrame {
         tabTurmas.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabTurmas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "TURMA", "ANO", "PERÍODO"
@@ -92,6 +90,11 @@ public class FormTurmas extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tabTurmas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabTurmasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabTurmas);
@@ -134,6 +137,17 @@ public class FormTurmas extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
+
+    private void tabTurmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTurmasMouseClicked
+        int linha = tabTurmas.getSelectedRow();
+        if (linha != -1) {
+            FormNovaTurma fnt = new FormNovaTurma();
+            int obj = Integer.parseInt(String.valueOf(tabTurmas.getValueAt(linha, 0)));
+            fnt.setCodTurma(obj);
+            this.dispose();
+            fnt.setVisible(true);
+        }
+    }//GEN-LAST:event_tabTurmasMouseClicked
 
     /**
      * Atualiza a jTable

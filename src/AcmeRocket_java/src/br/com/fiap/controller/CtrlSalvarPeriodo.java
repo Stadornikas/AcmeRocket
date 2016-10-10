@@ -99,10 +99,11 @@ public class CtrlSalvarPeriodo {
     public Periodo carregarPeriodo(int codPeriodo){
         PeriodoDAO dao = new PeriodoDAO();
         Periodo p = dao.buscar(codPeriodo);
+        if (p == null) {
+            JOptionPane.showMessageDialog(null, "Nenhum período encontrado");
+        }
         return p;
     }
-    
-    
     
     
 }
