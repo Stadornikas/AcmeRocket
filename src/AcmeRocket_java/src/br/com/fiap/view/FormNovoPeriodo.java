@@ -163,8 +163,10 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         CtrlSalvarPeriodo ctrlPeriodo = new CtrlSalvarPeriodo();
         if (this.codPeriodo == -1) {
             ctrlPeriodo.inserirPeriodo(nomePeriodo);
+            this.voltarParaLista();
         }else{
             ctrlPeriodo.alterarPeriodo(codPeriodo, nomePeriodo);
+            this.voltarParaLista();
         }
         ctrlPeriodo = null;
         
@@ -184,7 +186,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
             CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
             if (ctrlPeriodo.confirmaExclusao()) {
                 ctrlPeriodo.excluirPeriodo(codPeriodo);
-                
+                this.voltarParaLista();
             }
         }else{
             JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar","Selecione uma opção", JOptionPane.YES_NO_OPTION);

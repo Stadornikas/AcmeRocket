@@ -48,16 +48,18 @@ public class PeriodoDAO {
      * @return
      */
     public boolean deletar(int codPeriodo) {
+         boolean sucesso = false;
         try {
             conn = Conexao.getConnection();
             sql = "DELETE FROM PERIODO WHERE COD_PERIODO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codPeriodo);
-
+            ps.execute();
+            sucesso = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar periodos! \n ERRO: " + ex);
         }
-        return true;
+        return sucesso;
     }
 
     /**
@@ -165,6 +167,11 @@ public class PeriodoDAO {
         return proximaColuna;
     }
 
+    /**
+     * Verifica se o periodo existe 
+     * @param nomePeriodo
+     * @return 
+     */
     public boolean existePeriodo(String nomePeriodo) {
         Periodo p = null;
         try {
@@ -186,6 +193,11 @@ public class PeriodoDAO {
 
     }
 
+    /**
+     * Obtem o nome do periodo
+     * @param codigo
+     * @return 
+     */
     public String buscarNomePeriodo(int codigo) {
         String nomePeriodo = "";
 
@@ -210,6 +222,11 @@ public class PeriodoDAO {
         return nomePeriodo;
     }
 
+   /**
+    * Busca o id do periodo pelo nome
+    * @param periodo
+    * @return 
+    */     
     public int buscarIdComboPeriodo(String periodo) {
         int id = 0;
         try {
@@ -232,6 +249,11 @@ public class PeriodoDAO {
 
     }
     
+    /**
+     * busca a quantiade de turmas vinculadas ao periodo
+     * @param codPeriodo
+     * @return 
+     */
     public int verificaQauntidadeDependencia(int codPeriodo){
         int qtdTurmas = 0;
         try {
@@ -242,13 +264,12 @@ public class PeriodoDAO {
             rs = ps.executeQuery();
             
             while(rs.next()){
-                qtdTurmas++;
+                qtdTurmas = rs.getInt("qtd_turma");
             }           
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de turmas dependentes: " + ex);
         } 
-        
         
         return qtdTurmas;
     }
