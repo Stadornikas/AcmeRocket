@@ -58,7 +58,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
-        setMinimumSize(null);
+        setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -83,7 +83,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
                 btnCancelarPeriodoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, 90, -1));
+        getContentPane().add(btnCancelarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 100, -1));
 
         btnSalvarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarPeriodo.setText("Salvar");
@@ -137,7 +137,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
                 btnDeletarPeriodoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
+        getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 100, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel8.setText("Período");

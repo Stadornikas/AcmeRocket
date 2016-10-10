@@ -76,10 +76,10 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblEventos = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        txtDeletarEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,17 +94,17 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Evento:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
-        getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 230, -1));
+        getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Local:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
-        getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 230, -1));
+        getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Data:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
-        getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 106, -1));
+        getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 100, -1));
 
         btnCancelarEvento.setText("Cancelar");
         btnCancelarEvento.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +112,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
                 btnCancelarEventoMouseClicked(evt);
             }
         });
-        getContentPane().add(btnCancelarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 120, -1));
+        getContentPane().add(btnCancelarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
 
         btnSalvarEvento.setText("Salvar");
         btnSalvarEvento.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +120,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
                 btnSalvarEventoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 100, -1));
+        getContentPane().add(btnSalvarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -149,6 +149,9 @@ public class FormNovoEvento extends javax.swing.JFrame {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+
+        txtDeletarEvento.setText("Deletar");
+        getContentPane().add(txtDeletarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,6 +246,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblEventos;
     private javax.swing.JTextField txtDataEvento;
+    private javax.swing.JButton txtDeletarEvento;
     private javax.swing.JTextField txtEvento;
     private javax.swing.JTextField txtLocalEvento;
     // End of variables declaration//GEN-END:variables

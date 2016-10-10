@@ -54,10 +54,10 @@ public class FormNovoAluno extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblAlunos = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        txtDeletarAluno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -87,16 +87,16 @@ public class FormNovoAluno extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         txtRm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 70, -1));
+        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 100, -1));
 
         txtNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 210, -1));
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Grupo" }));
         cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
         cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
-        getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 210, 20));
+        getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, 20));
 
         btnCancelarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarAluno.setText("Cancelar");
@@ -105,7 +105,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
                 btnCancelarAlunoMouseClicked(evt);
             }
         });
-        getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 110, -1));
+        getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
 
         btnSalvarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarAluno.setText("Salvar");
@@ -114,7 +114,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
                 btnSalvarAlunoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(403, 230, 90, -1));
+        getContentPane().add(btnSalvarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -143,6 +143,9 @@ public class FormNovoAluno extends javax.swing.JFrame {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+
+        txtDeletarAluno.setText("Deletar");
+        getContentPane().add(txtDeletarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -246,6 +249,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblAlunos;
     private javax.swing.JLabel lblDashboard;
+    private javax.swing.JButton txtDeletarAluno;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRm;
     // End of variables declaration//GEN-END:variables

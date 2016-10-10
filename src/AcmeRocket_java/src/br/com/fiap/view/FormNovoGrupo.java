@@ -56,10 +56,10 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         btnSalvarGrupo = new javax.swing.JButton();
         cmbEvento = new javax.swing.JComboBox();
         cmbTurma = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -89,7 +89,7 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         txtGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 240, -1));
+        getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -131,7 +131,7 @@ public class FormNovoGrupo extends javax.swing.JFrame {
                 btnCancelarGrupoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 110, -1));
+        getContentPane().add(btnCancelarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
 
         btnSalvarGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarGrupo.setText("Salvar");
@@ -140,13 +140,16 @@ public class FormNovoGrupo extends javax.swing.JFrame {
                 btnSalvarGrupoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 110, -1));
+        getContentPane().add(btnSalvarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 100, -1));
 
         cmbEvento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o evento" }));
-        getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
+        getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         cmbTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a turma" }));
-        getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
+        getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, -1));
+
+        jButton1.setText("Deletar");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,6 +260,7 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     private javax.swing.JButton btnSalvarGrupo;
     private javax.swing.JComboBox cmbEvento;
     private javax.swing.JComboBox cmbTurma;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

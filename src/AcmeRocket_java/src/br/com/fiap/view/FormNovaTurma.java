@@ -70,7 +70,6 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -91,7 +90,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Turma:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
-        getContentPane().add(txtTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 220, -1));
+        getContentPane().add(txtTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
         getContentPane().add(txtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 90, -1));
 
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -109,7 +108,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 90, -1));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 100, -1));
 
         btnCancelarTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarTurma.setText("Cancelar");
@@ -118,7 +117,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 btnCancelarTurmaMouseClicked(evt);
             }
         });
-        getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 90, -1));
+        getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -149,7 +148,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 20, -1));
 
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o periodo" }));
-        getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 220, -1));
+        getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, -1));
 
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +156,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
                 btnDeletarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
