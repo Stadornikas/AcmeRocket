@@ -8,7 +8,7 @@ package br.com.fiap.view;
 import java.awt.Color;
 
 import br.com.fiap.dao.EventoDAO;
-import br.com.fiap.dao.PeriodoDao;
+import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Evento;
 import br.com.fiap.entity.Periodo;
@@ -167,7 +167,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         List<Periodo> lista = new ArrayList();
 
-        PeriodoDao dao = new PeriodoDao();
+        PeriodoDAO dao = new PeriodoDAO();
         String teste;
         lista = dao.listar();
 
