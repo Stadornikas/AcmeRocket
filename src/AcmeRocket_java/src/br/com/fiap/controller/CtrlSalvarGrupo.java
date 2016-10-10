@@ -5,8 +5,10 @@
  */
 package br.com.fiap.controller;
 
+import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.GrupoDAO;
 import br.com.fiap.dao.TurmaDAO;
+import br.com.fiap.entity.Evento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Turma;
 import java.util.ArrayList;
@@ -27,18 +29,104 @@ public class CtrlSalvarGrupo {
         return g;
     }
 
-    public ArrayList<Turma> carregarRegistrosTurma(){
+    public ArrayList<Turma> carregarRegistrosTurma() {
         TurmaDAO dao = new TurmaDAO();
         return dao.listar();
     }
-    
-    public Turma carregarTurma(int codTurma){
+
+    public ArrayList<Evento> carregarRegistrosEvento() {
+        EventoDAO dao = new EventoDAO();
+        return dao.listar();
+    }
+
+    public String carregarComboTurma(int codTurma) {
+        String t = "";
         TurmaDAO dao = new TurmaDAO();
-        Turma  t = dao.buscar(codTurma);
+        t = dao.buscarNomeTurma(codTurma);
         if (t == null) {
             JOptionPane.showMessageDialog(null, "Nenhum turma encontrada");
         }
         return t;
     }
-    
+
+    public int buscarIdComboTurma(String codTurma) {
+        int t = 0;
+        TurmaDAO dao = new TurmaDAO();
+        t = dao.buscarIdComboTurma(codTurma);
+        if (t == 0) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo turma");
+        }
+        return t;
+    }
+
+    public String carregarComboEvento(int codEvento) {
+        String e = "";
+
+        EventoDAO dao = new EventoDAO();
+        e = dao.buscarNomeEvento(codEvento);
+        if (e == null) {
+            JOptionPane.showMessageDialog(null, "Nenhum evento encontrada");
+        }
+
+        return e;
+    }
+
+    public int buscarIdComboEvento(String codEvento) {
+        int e = 0;
+
+        EventoDAO dao = new EventoDAO();
+        e = dao.buscarIdComboEvento(codEvento);
+        if (e == 0) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo evento");
+        }
+
+        return e;
+    }
+
+    public void inserirGrupo(String nomeGrupo, int codTurma, int codEvento) {
+
+        String msg = "Falha ao inserir período";
+        boolean validacao = true;
+
+//        if (!this.validarCamposObrigatorios(nomePeriodo)) {
+//            msg =  "Preencha os campos Obrigatórios";
+//            validacao = false;
+//        }
+//        if(!this.validarNomeDuplicidade(nomeGrupo)) {
+//            msg =  "Já existe um período com este nome";
+//            validacao = false;
+//        }
+        if (validacao) {
+            Grupo g = new Grupo(nomeGrupo, codTurma, codEvento);
+            GrupoDAO dao = new GrupoDAO();
+            if (dao.inserir(g)) {
+                msg = "Grupo Criado com sucesso";
+            }
+
+        }
+
+        JOptionPane.showMessageDialog(null, msg);
+
+    }
+
+    public void alterarGrupo(int codGrupo, String nomeGrupo, int codTurma, int codEvento) {
+        String msg = "Falha ao alterar período";
+        boolean validacao = true;
+
+//        if (!this.validarCamposObrigatorios(nomePeriodo)) {
+//            msg =  "Preencha os campos Obrigatórios";
+//            validacao = false;
+//        }
+        if (validacao) {
+            Grupo g = new Grupo(codGrupo, nomeGrupo, codTurma, codEvento);
+            GrupoDAO dao = new GrupoDAO();
+            if (dao.alterar(g)) {
+                msg = "Grupo Alteardo com sucesso";
+            }
+
+        }
+
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
 }

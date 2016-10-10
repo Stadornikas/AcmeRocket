@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarGrupo;
 import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.GrupoDAO;
@@ -23,13 +24,13 @@ import java.util.List;
  * @author Thiago
  */
 public class FormNovoGrupo extends javax.swing.JFrame {
-    
+
     private int codigoGrupo = -1;
-    
+
     public void setCodGrupo(int codigoGrupo) {
         this.codigoGrupo = codigoGrupo;
     }
-    
+
     public FormNovoGrupo() {
         initComponents();
         setLocationRelativeTo(this);
@@ -154,6 +155,11 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, -1));
 
         jButton1.setText("Deletar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
         pack();
@@ -189,44 +195,88 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
         if (codigoGrupo == -1) {
             CtrlSalvarGrupo ctrlGrupo = new CtrlSalvarGrupo();
-            ArrayList<Turma> lista = ctrlGrupo.carregarRegistrosTurma();
-            
-            for (Turma t : lista) {
+            ArrayList<Turma> listaTurma = ctrlGrupo.carregarRegistrosTurma();
+            ArrayList<Evento> listaEvento = ctrlGrupo.carregarRegistrosEvento();
+
+            for (Turma t : listaTurma) {
                 cmbTurma.addItem(t.getNomTurma());
+            }
+
+            for (Evento e : listaEvento) {
+                cmbEvento.addItem(e.getNomEvento());
             }
         } else {
             //Em caso de edicao os campos vem carregados com os dados da turma
             CtrlSalvarGrupo ctrlGrupo = new CtrlSalvarGrupo();
             Grupo g = ctrlGrupo.carregarGrupo(codigoGrupo);
-            
+            ArrayList<Turma> lista = ctrlGrupo.carregarRegistrosTurma();
+            ArrayList<Evento> listaEvento = ctrlGrupo.carregarRegistrosEvento();
+
             if (g == null) {
                 this.voltarParaLista();
             }
+
+            for (Turma t : lista) {
+                cmbTurma.addItem(t.getNomTurma());
+            }
+
+            for (Evento e : listaEvento) {
+                cmbEvento.addItem(e.getNomEvento());
+            }
+
             txtGrupo.setText(g.getNomGrupo());
-            cmbTurma.setSelectedItem(ctrlGrupo.carregarTurma(g.getCodTurma()));
-            
+            cmbTurma.setSelectedItem(ctrlGrupo.carregarComboTurma(g.getCodTurma()));
+            cmbEvento.setSelectedItem(ctrlGrupo.carregarComboEvento(g.getCodEvento()));
+
 
     }//GEN-LAST:event_formWindowOpened
     }
-    
+
     private void btnSalvarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarGrupoActionPerformed
-        
-        String nomeGrupo = txtGrupo.getText();
+
+        String nomePeriodo = txtGrupo.getText();
         String evento = String.valueOf(cmbEvento.getSelectedItem());
         String turma = String.valueOf(cmbTurma.getSelectedItem());
-        
-        GrupoDAO daoGrupo = new GrupoDAO();
-        EventoDAO daoEvento = new EventoDAO();
-        TurmaDAO daoTurma = new TurmaDAO();
-        
-        Grupo grupo = new Grupo(nomeGrupo, daoTurma.buscarIdComboTurma(String.valueOf(turma)), daoEvento.buscarIdComboEvento(String.valueOf(evento)));
-        
-        if (daoGrupo.inserir(grupo)) {
-            JOptionPane.showMessageDialog(this, "Grupo cadastrado com sucesso!");
+
+        CtrlSalvarGrupo ctrlGrupo = new CtrlSalvarGrupo();
+
+        if (this.codigoGrupo == -1) {
+            ctrlGrupo.inserirGrupo(nomePeriodo, ctrlGrupo.buscarIdComboTurma(turma), ctrlGrupo.buscarIdComboEvento(evento));
+            this.voltarParaLista();
+        } else {
+            ctrlGrupo.alterarGrupo(codigoGrupo, nomePeriodo, ctrlGrupo.buscarIdComboTurma(turma), ctrlGrupo.buscarIdComboEvento(evento));
+            this.voltarParaLista();
         }
+        ctrlGrupo = null;
+
+//        String nomeGrupo = txtGrupo.getText();
+//        String evento = String.valueOf(cmbEvento.getSelectedItem());
+//        String turma = String.valueOf(cmbTurma.getSelectedItem());
+//
+//        GrupoDAO daoGrupo = new GrupoDAO();
+//        EventoDAO daoEvento = new EventoDAO();
+//        TurmaDAO daoTurma = new TurmaDAO();
+//
+//        Grupo grupo = new Grupo(nomeGrupo, daoTurma.buscarIdComboTurma(String.valueOf(turma)), daoEvento.buscarIdComboEvento(String.valueOf(evento)));
+//
+//        if (daoGrupo.inserir(grupo)) {
+//            JOptionPane.showMessageDialog(this, "Grupo cadastrado com sucesso!");
+//        }
 
     }//GEN-LAST:event_btnSalvarGrupoActionPerformed
-    
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if (this.codigoGrupo != -1) {
+            CtrlDeletarGrupo ctrlPeriodo = new CtrlDeletarGrupo();
+//            if (ctrlPeriodo.confirmaExclusao()) {
+//                ctrlPeriodo.excluirGrupo(codigoGrupo);
+//                this.voltarParaLista();
+//            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar","Selecione uma opção", JOptionPane.YES_NO_OPTION);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void voltarParaLista() {
         this.dispose();
         FormGrupos fg = new FormGrupos();
@@ -287,9 +337,9 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     private javax.swing.JTextField txtGrupo;
     // End of variables declaration//GEN-END:variables
 }
-        /**
-         * COLOCANDO OS DADOS DA TURMA DO BANCO NO COMBOBOX
-         */
+/**
+ * COLOCANDO OS DADOS DA TURMA DO BANCO NO COMBOBOX
+ */
 //        List<Turma> listaTurma = new ArrayList();
 //        TurmaDAO daoTurma = new TurmaDAO();
 //        listaTurma = daoTurma.listar();
@@ -297,9 +347,9 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 //            cmbTurma.addItem(t.getNomTurma());
 //        }
 
-        /**
-         * COLOCANDO OS DADOS DO EVENTO DO BANCO NO COMBOBOX
-         */
+/**
+ * COLOCANDO OS DADOS DO EVENTO DO BANCO NO COMBOBOX
+ */
 //        List<Evento> listaEvento = new ArrayList();
 //        EventoDAO daoEvento = new EventoDAO();
 //        listaEvento = daoEvento.listar();

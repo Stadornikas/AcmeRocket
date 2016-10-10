@@ -49,7 +49,7 @@ public class GrupoDAO {
         try {
 
             conn = Conexao.getConnection();
-            sql = "UPDATE GRUPO SET (NOM_GRUPO = ?, TURMA_COD_TURMA = ?, EVENTOS_COD_EVENTO) WHERE COD_GRUPO = ?";
+            sql = "UPDATE GRUPO SET NOM_GRUPO = ?, TURMA_COD_TURMA = ?, EVENTOS_COD_EVENTO = ? WHERE COD_GRUPO = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, grupo.getNomGrupo());
             ps.setInt(2, grupo.getCodTurma());
