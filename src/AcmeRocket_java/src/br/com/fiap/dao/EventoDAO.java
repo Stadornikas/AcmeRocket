@@ -207,6 +207,26 @@ public class EventoDAO {
         return id;
 
     }
+    
+    public int verificarQuantidadeDependencia(int codEvento){
+        int qtdEventos = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT COUNT(*) qtd_evento FROM EVENTO WHERE EVENTO_COD_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codEvento);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                qtdEventos = rs.getInt("qtd_evento");
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de turmas dependentes: " + ex);
+        }
+        
+        return qtdEventos;
+    }
 }
 
 
