@@ -5,7 +5,9 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.GrupoDAO;
+import br.com.fiap.dao.TurmaDAO;
 import java.awt.Color;
 import br.com.fiap.entity.Grupo;
 import java.util.List;
@@ -65,15 +67,23 @@ public class FormGrupos extends javax.swing.JFrame {
         tabGrupos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "GRUPO", "TURMA", "EVENTO", "ALTERAR", "DELETAR"
+                "ID", "GRUPO", "TURMA", "EVENTO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabGrupos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 680, 240));
@@ -124,23 +134,26 @@ public class FormGrupos extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
         atualizarTabela();
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     public void atualizarTabela() {
 
-        GrupoDAO dao = new GrupoDAO();
+        GrupoDAO daoGrupo = new GrupoDAO();
+        TurmaDAO daoTurma = new TurmaDAO();
+        EventoDAO daoEvento = new EventoDAO();
 
-        List<Grupo> lista = dao.listar();
-        matrizGrupo = new String[lista.size()][5];
+        List<Grupo> lista = daoGrupo.listar();
+        matrizGrupo = new String[lista.size()][4];
         Grupo grupo;
-        String[] colunas = {"GRUPO", "TURMA", "EVENTO", "ALTERAR", "EXCLUIR"};
+        String[] colunas = {"ID", "GRUPO", "TURMA", "EVENTO"};
         for (int i = 0; i < lista.size(); i++) {
 
             grupo = lista.get(i);
-            matrizGrupo[i][0] = grupo.getNomGrupo();
-            matrizGrupo[i][1] = String.valueOf(grupo.getCodTurma());
-            matrizGrupo[i][2] = String.valueOf(grupo.getCodEvento());
+            matrizGrupo[i][0] = String.valueOf(grupo.getCodGrupo());
+            matrizGrupo[i][1] = grupo.getNomGrupo();
+            matrizGrupo[i][2] = daoTurma.buscarNomeTurma(grupo.getCodTurma());
+            matrizGrupo[i][3] = daoEvento.buscarNomeEvento(grupo.getCodEvento());
             // matrizLista[i][3] = jLabel5.setIcon(icon);
 //            matrizLista[i][4] = evento.getCaminhoFoto();
 

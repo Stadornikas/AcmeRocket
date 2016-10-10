@@ -6,8 +6,10 @@
 package br.com.fiap.view;
 
 import br.com.fiap.dao.EventoDAO;
+import br.com.fiap.dao.GrupoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Evento;
+import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Turma;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -130,10 +132,17 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
         btnSalvarGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarGrupo.setText("Salvar");
+        btnSalvarGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarGrupoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSalvarGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 110, -1));
 
+        cmbEvento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o evento" }));
         getContentPane().add(cmbEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 240, -1));
 
+        cmbTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a turma" }));
         getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 240, -1));
 
         pack();
@@ -159,7 +168,7 @@ public class FormNovoGrupo extends javax.swing.JFrame {
 
     private void btnCancelarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarGrupoMouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
             FormGrupos lf = new FormGrupos();
             lf.setVisible(true);
@@ -184,10 +193,28 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         EventoDAO daoEvento = new EventoDAO();
         listaEvento = daoEvento.listar();
         for (Evento e : listaEvento) {
-            cmbTurma.addItem(e.getNomEvento());
+            cmbEvento.addItem(e.getNomEvento());
         }
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnSalvarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarGrupoActionPerformed
+
+        String nomeGrupo = txtGrupo.getText();
+        String evento = String.valueOf(cmbEvento.getSelectedItem());
+        String turma = String.valueOf(cmbTurma.getSelectedItem());
+
+        GrupoDAO daoGrupo = new GrupoDAO();
+        EventoDAO daoEvento = new EventoDAO();
+        TurmaDAO daoTurma = new TurmaDAO();
+
+        Grupo grupo = new Grupo(nomeGrupo, daoTurma.buscarIdComboTurma(String.valueOf(turma)), daoEvento.buscarIdComboEvento(String.valueOf(evento)));
+
+        if (daoGrupo.inserir(grupo)) {
+            JOptionPane.showMessageDialog(this, "Grupo cadastrado com sucesso!");
+        }
+
+    }//GEN-LAST:event_btnSalvarGrupoActionPerformed
     /**
      * @param args the command line arguments
      */

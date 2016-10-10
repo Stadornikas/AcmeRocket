@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.*;
 
 public class GrupoDAO {
@@ -18,13 +19,15 @@ public class GrupoDAO {
     private String sql;
 
     public boolean inserir(Grupo grupo) {
+        int novoIndex = buscarIndex();
         boolean aux = false;
+
         try {
 
             conn = Conexao.getConnection();
             sql = "INSERT INTO GRUPO VALUES(?, ?, ?, ?)";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, grupo.getCodGrupo());
+            ps.setInt(1, novoIndex);
             ps.setString(2, grupo.getNomGrupo());
             ps.setInt(3, grupo.getCodTurma());
             ps.setInt(4, grupo.getCodEvento());
@@ -142,6 +145,25 @@ public class GrupoDAO {
 
         return lista;
 
+    }
+
+    public int buscarIndex() {
+        int proximaColuna = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT MAX(COD_GRUPO) as max_linhas FROM GRUPO";
+
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                proximaColuna = rs.getInt("max_linhas") + 1;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar index do grupo: " + ex);
+        }
+
+        return proximaColuna;
     }
 
 }

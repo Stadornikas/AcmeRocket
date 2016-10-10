@@ -163,4 +163,50 @@ public class EventoDAO {
             JOptionPane.showMessageDialog(null, "Erro ao alterar evento! \n ERRO: " + ex);
         }
     }
+
+    public String buscarNomeEvento(int codigo) {
+        String nomeEvento = "";
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM EVENTOS WHERE COD_EVENTO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codigo);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nomeEvento = rs.getString("NOM_EVENTO");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome do evento! \n ERROR: " + ex);
+
+        }
+        return nomeEvento;
+    }
+    
+    public int buscarIdComboEvento(String evento) {
+        int id = 0;
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM EVENTOS WHERE NOM_EVENTO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, evento);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("COD_EVENTO");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar id do evento! \n ERROR: " + ex);
+        }
+
+        return id;
+
+    }
 }
+
+

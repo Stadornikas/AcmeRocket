@@ -140,7 +140,6 @@ public class TurmaDAO {
         return lista;
 
     }
-    
 
     public int buscarIndex() {
         int proximaColuna = 0;
@@ -169,10 +168,11 @@ public class TurmaDAO {
             conn = Conexao.getConnection();
             sql = "SELECT * FROM TURMA WHERE COD_TURMA = ?";
             ps = conn.prepareStatement(sql);
+            ps.setInt(1, codigo);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                nomeTurma = rs.getString("NOM_TURMA") + 1;
+                nomeTurma = rs.getString("NOM_TURMA");
             }
 
         } catch (SQLException ex) {
@@ -181,6 +181,28 @@ public class TurmaDAO {
         }
 
         return nomeTurma;
+    }
+
+    public int buscarIdComboTurma(String turma) {
+        int id = 0;
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM TURMA WHERE NOM_TURMA = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, turma);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt("COD_TURMA");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar id da turma! \n ERROR: " + ex);
+        }
+
+        return id;
+
     }
 
 }
