@@ -1,11 +1,17 @@
 package br.com.fiap.controller;
 
+
 import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Periodo;
 import br.com.fiap.entity.Turma;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.fiap.dao.TurmaDAO;
+import br.com.fiap.entity.Turma;
+import java.util.ArrayList;
+
 
 public class CtrlListarTurma {
 
@@ -22,8 +28,10 @@ public class CtrlListarTurma {
         return dao.listar();
     }
     
+
     public String obterNomePeriodo(Turma turma){
         PeriodoDAO dao = new PeriodoDAO();
         return dao.buscarNomePeriodo(turma.getCodPeriodo());
     }
+    
 }
