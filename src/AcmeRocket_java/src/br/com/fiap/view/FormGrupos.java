@@ -21,7 +21,8 @@ import javax.swing.table.TableModel;
 public class FormGrupos extends javax.swing.JFrame {
 
     String[][] matrizGrupo;
-
+    int codigoGrupo;
+    
     public FormGrupos() {
         initComponents();
         setLocationRelativeTo(this);
@@ -84,6 +85,11 @@ public class FormGrupos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabGruposMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabGrupos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 680, 240));
@@ -136,6 +142,17 @@ public class FormGrupos extends javax.swing.JFrame {
         atualizarTabela();
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void tabGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabGruposMouseClicked
+      int linha = tabGrupos.getSelectedRow();
+        if (linha != -1) {
+            FormNovoGrupo fng = new FormNovoGrupo();
+            int obj = Integer.parseInt(String.valueOf(tabGrupos.getValueAt(linha, 0)));
+            fng.setCodGrupo(obj);
+            this.dispose();
+            fng.setVisible(true);
+        }
+    }//GEN-LAST:event_tabGruposMouseClicked
 
     public void atualizarTabela() {
 

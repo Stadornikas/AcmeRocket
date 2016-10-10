@@ -5,12 +5,14 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.GrupoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Evento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Turma;
+import br.com.fiap.controller.CtrlSalvarGrupo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -21,10 +23,13 @@ import java.util.List;
  * @author Thiago
  */
 public class FormNovoGrupo extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FormNovoGrupo
-     */
+    
+    private int codigoGrupo = -1;
+    
+    public void setCodGrupo(int codigoGrupo) {
+        this.codigoGrupo = codigoGrupo;
+    }
+    
     public FormNovoGrupo() {
         initComponents();
         setLocationRelativeTo(this);
@@ -181,45 +186,53 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarGrupoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        /**
-         * COLOCANDO OS DADOS DA TURMA DO BANCO NO COMBOBOX
-         */
-        List<Turma> listaTurma = new ArrayList();
-        TurmaDAO daoTurma = new TurmaDAO();
-        listaTurma = daoTurma.listar();
-        for (Turma t : listaTurma) {
-            cmbTurma.addItem(t.getNomTurma());
-        }
 
-        /**
-         * COLOCANDO OS DADOS DO EVENTO DO BANCO NO COMBOBOX
-         */
-        List<Evento> listaEvento = new ArrayList();
-        EventoDAO daoEvento = new EventoDAO();
-        listaEvento = daoEvento.listar();
-        for (Evento e : listaEvento) {
-            cmbEvento.addItem(e.getNomEvento());
-        }
+        if (codigoGrupo == -1) {
+            CtrlSalvarGrupo ctrlGrupo = new CtrlSalvarGrupo();
+            ArrayList<Turma> lista = ctrlGrupo.carregarRegistrosTurma();
+            
+            for (Turma t : lista) {
+                cmbTurma.addItem(t.getNomTurma());
+            }
+        } else {
+            //Em caso de edicao os campos vem carregados com os dados da turma
+            CtrlSalvarGrupo ctrlGrupo = new CtrlSalvarGrupo();
+            Grupo g = ctrlGrupo.carregarGrupo(codigoGrupo);
+            
+            if (g == null) {
+                this.voltarParaLista();
+            }
+            txtGrupo.setText(g.getNomGrupo());
+            cmbTurma.setSelectedItem(ctrlGrupo.carregarTurma(g.getCodTurma()));
+            
 
     }//GEN-LAST:event_formWindowOpened
-
+    }
+    
     private void btnSalvarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarGrupoActionPerformed
-
+        
         String nomeGrupo = txtGrupo.getText();
         String evento = String.valueOf(cmbEvento.getSelectedItem());
         String turma = String.valueOf(cmbTurma.getSelectedItem());
-
+        
         GrupoDAO daoGrupo = new GrupoDAO();
         EventoDAO daoEvento = new EventoDAO();
         TurmaDAO daoTurma = new TurmaDAO();
-
+        
         Grupo grupo = new Grupo(nomeGrupo, daoTurma.buscarIdComboTurma(String.valueOf(turma)), daoEvento.buscarIdComboEvento(String.valueOf(evento)));
-
+        
         if (daoGrupo.inserir(grupo)) {
             JOptionPane.showMessageDialog(this, "Grupo cadastrado com sucesso!");
         }
 
     }//GEN-LAST:event_btnSalvarGrupoActionPerformed
+    
+    private void voltarParaLista() {
+        this.dispose();
+        FormGrupos fg = new FormGrupos();
+        fg.setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -274,3 +287,22 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     private javax.swing.JTextField txtGrupo;
     // End of variables declaration//GEN-END:variables
 }
+        /**
+         * COLOCANDO OS DADOS DA TURMA DO BANCO NO COMBOBOX
+         */
+//        List<Turma> listaTurma = new ArrayList();
+//        TurmaDAO daoTurma = new TurmaDAO();
+//        listaTurma = daoTurma.listar();
+//        for (Turma t : listaTurma) {
+//            cmbTurma.addItem(t.getNomTurma());
+//        }
+
+        /**
+         * COLOCANDO OS DADOS DO EVENTO DO BANCO NO COMBOBOX
+         */
+//        List<Evento> listaEvento = new ArrayList();
+//        EventoDAO daoEvento = new EventoDAO();
+//        listaEvento = daoEvento.listar();
+//        for (Evento e : listaEvento) {
+//            cmbEvento.addItem(e.getNomEvento());
+//        }
