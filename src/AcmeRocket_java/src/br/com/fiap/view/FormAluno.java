@@ -5,8 +5,8 @@
  */
 package br.com.fiap.view;
 
-
 import br.com.fiap.dao.AlunoDAO;
+import br.com.fiap.dao.GrupoDAO;
 import br.com.fiap.entity.Aluno;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -69,15 +69,23 @@ public class FormAluno extends javax.swing.JFrame {
         tabAlunos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "RM", "NOME", "GRUPO", "ALTERAR", "EXCLUIR"
+                "RM", "NOME", "GRUPO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabAlunos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 640, 220));
@@ -131,22 +139,20 @@ public class FormAluno extends javax.swing.JFrame {
 
     public void atualizarTabela() {
 
-        AlunoDAO dao = new AlunoDAO();
+        AlunoDAO daoAluno = new AlunoDAO();
+        GrupoDAO daoGrupo = new GrupoDAO();
 
-        List<Aluno> lista = dao.listar();
+        List<Aluno> lista = daoAluno.listar();
         matrizAluno = new String[lista.size()][3];
         Aluno aluno;
-        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        String[] colunas = {"RM", "NOME", "GRUPO", "ALTERAR", "EXCLUIR"};
+
+        String[] colunas = {"RM", "NOME", "GRUPO"};
         for (int i = 0; i < lista.size(); i++) {
 
             aluno = lista.get(i);
             matrizAluno[i][0] = String.valueOf(aluno.getCodAluno());
             matrizAluno[i][1] = aluno.getNomComp();
-            matrizAluno[i][2] = String.valueOf(aluno.getCodGrupo());
-            // matrizLista[i][3] = jLabel5.setIcon(icon);
-//            matrizLista[i][4] = evento.getCaminhoFoto();
-
+            matrizAluno[i][2] = daoGrupo.buscarNomeGrupo(aluno.getCodGrupo());
         }
 
         TableModel modeloTabela = new DefaultTableModel(matrizAluno, colunas);

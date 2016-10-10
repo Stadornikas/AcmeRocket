@@ -166,4 +166,50 @@ public class GrupoDAO {
         return proximaColuna;
     }
 
+    public String buscarNomeGrupo(int codigo) {
+        String nomeGrupo = "";
+
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM GRUPO WHERE COD_GRUPO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codigo);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nomeGrupo = rs.getString("NOM_GRUPO");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome do grupo! \n ERROR: " + ex);
+
+        }
+
+        return nomeGrupo;
+    }
+
+    public int buscarIdComboGrupo(String nomeGrupo) {
+        int idGrupo = 0;
+
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM GRUPO WHERE NOM_GRUPO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nomeGrupo);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                idGrupo = rs.getInt("COD_GRUPO");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar id do grupo! \n ERROR: " + ex);
+        }
+
+        return idGrupo;
+    }
+
 }
