@@ -5,26 +5,61 @@
  */
 package br.com.fiap.controller;
 
+import br.com.fiap.dao.PeriodoDAO;
+import br.com.fiap.entity.Periodo;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author root
+ * Controle de exclusao de periodo
+ * @author Leandro
  */
 public class CtrlDeletarPeriodo {
 
     public CtrlDeletarPeriodo() {
     }
  
-    public boolean ValidarDependecia(){
-        return true;
+    /**
+     * Verifica se o periodo possui turmas dependentes (vinculadas)
+     * @param codPeriodo
+     * @return boolean
+     */
+    private boolean validarDependecia(int codPeriodo){
+        PeriodoDAO dao = new PeriodoDAO();
+        //Caso a quantidade de turmas dependetes do periodo for maior que zero a validacao retorna false
+        return dao.verificaQauntidadeDependencia(codPeriodo) > 0 ? false : true;
+        
     }
     
-    public boolean ConfirmaExclusao(){
+    /**
+     * Confirma se o usuário realmente deseja excluir
+     * @return 
+     */
+    public boolean confirmaExclusao(){
         boolean out = false;
-        if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar o perído?") == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Tem certeza que deseja deletar o perído?","Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             out = true;
         }
         return out;
+    }
+    
+    /**
+     * Remove o período do banco de dados
+     * @param codPeriodo 
+     */
+    public void excluirPeriodo(int codPeriodo){
+        String msg = "Falha ao deletar período";
+        boolean validacao = true;
+        
+        if (!this.validarDependecia(codPeriodo)) {
+            msg = "Antes de deletar o período é necessário excluir as turmas vinculadas a ele";
+            validacao = false;
+        }
+        
+        if (validacao) {
+            PeriodoDAO dao = new PeriodoDAO();
+            if(dao.deletar(codPeriodo)) msg = "Período deletado com sucesso";
+        }
+        
+        JOptionPane.showMessageDialog(null, msg); 
     }
 }

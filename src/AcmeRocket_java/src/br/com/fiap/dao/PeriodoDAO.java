@@ -182,5 +182,26 @@ public class PeriodoDAO {
         return (p != null);
         
     }
+    
+    public int verificaQauntidadeDependencia(int codPeriodo){
+        int qtdTurmas = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT COUNT(*) qtd_turma FROM TURMA WHERE PERIODO_COD_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codPeriodo);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                qtdTurmas++;
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de turmas dependentes: " + ex);
+        } 
+        
+        
+        return qtdTurmas;
+    }
 
 }
