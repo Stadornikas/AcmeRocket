@@ -5,7 +5,7 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.dao.EventoDAO;
+import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
@@ -83,6 +83,11 @@ public class FormEvento extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabEventosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabEventos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 670, 230));
@@ -134,12 +139,23 @@ public class FormEvento extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
+    private void tabEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEventosMouseClicked
+        // TODO add your handling code here:
+        int linha = tabEventos.getSelectedRow();
+        if (linha != -1) {
+            FormNovoEvento fne = new FormNovoEvento();
+            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+            fne.setCodEvento(obj);
+            this.dispose();
+            fne.setVisible(true);
+        }
+    }//GEN-LAST:event_tabEventosMouseClicked
+
     //ATUALIZANDO A TABELA
     public void atualizarTabela() {
-
-        EventoDAO dao = new EventoDAO();
-
-        List<Evento> lista = dao.listar();
+        CtrlListarEvento ctrl = new CtrlListarEvento();
+        List<Evento> lista = ctrl.carregarRegistros();
+        
         matrizLista = new String[lista.size()][4];
         Evento evento;
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
