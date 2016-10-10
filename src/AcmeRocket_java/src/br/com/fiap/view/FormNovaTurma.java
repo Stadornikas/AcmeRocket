@@ -157,7 +157,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
     private void btnCancelarTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarTurmaMouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
             FormTurmas lf = new FormTurmas();
             lf.setVisible(true);
@@ -182,11 +182,12 @@ public class FormNovaTurma extends javax.swing.JFrame {
         String ano = txtAno.getText();
         String periodo = String.valueOf(cmbPeriodo.getSelectedItem());
 
-        TurmaDAO dao = new TurmaDAO();
+        TurmaDAO daoTurma = new TurmaDAO();
+        PeriodoDAO daoPeriodo = new PeriodoDAO();
 
-        Turma turma = new Turma(nomeTurma, ano, dao.buscarIdCombo(String.valueOf(periodo)));
+        Turma turma = new Turma(nomeTurma, ano, daoPeriodo.buscarIdComboPeriodo(String.valueOf(periodo)));
 
-        if (dao.inserir(turma)) {
+        if (daoTurma.inserir(turma)) {
             JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso!");
         }
 
