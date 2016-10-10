@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarTurma;
 import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Turma;
@@ -104,14 +105,14 @@ public class FormTurmas extends javax.swing.JFrame {
                 lblDashboardMouseClicked(evt);
             }
         });
-        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel8.setText("Turmas");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -134,12 +135,13 @@ public class FormTurmas extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
+    /**
+     * Atualiza a jTable
+     */
     public void atualizarTabela() {
-
-        TurmaDAO daoTurma = new TurmaDAO();
-        PeriodoDAO daoPeriodo = new PeriodoDAO();
-
-        List<Turma> lista = daoTurma.listar();
+        CtrlListarTurma ctrlTurma = new CtrlListarTurma();
+        List<Turma> lista = ctrlTurma.CarregarRegistrosTurmas();
+        
         matrizTurma = new String[lista.size()][4];
         Turma turma;
 
@@ -151,11 +153,7 @@ public class FormTurmas extends javax.swing.JFrame {
             matrizTurma[i][0] = String.valueOf(turma.getCodTurma());
             matrizTurma[i][1] = turma.getNomTurma();
             matrizTurma[i][2] = turma.getAnoTurma();
-            matrizTurma[i][3] = daoPeriodo.buscarNomePeriodo(turma.getCodPeriodo());
-
-//            matrizTurma[i][2] = formatoData.format(evento.getDatEvento());
-//            // matrizLista[i][3] = jLabel5.setIcon(icon);
-////            matrizLista[i][4] = evento.getCaminhoFoto();
+            matrizTurma[i][3] = ctrlTurma.obterNomePeriodo(turma);
         }
 
         TableModel modeloTabela = new DefaultTableModel(matrizTurma, colunas);

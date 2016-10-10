@@ -7,6 +7,7 @@ package br.com.fiap.controller;
 
 import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.entity.Periodo;
+import br.com.fiap.entity.Turma;
 import java.util.ArrayList;
 
 /**
