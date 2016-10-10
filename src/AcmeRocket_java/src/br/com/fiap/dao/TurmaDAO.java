@@ -22,8 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class TurmaDAO {
 
-    private Connection connection;
-    private PreparedStatement p;
+    private Connection conn;
+    private PreparedStatement ps;
     private String sql;
     private ResultSet rs;
 
@@ -32,15 +32,15 @@ public class TurmaDAO {
         int novoIndex = buscarIndex();
 
         sql = "INSERT INTO TURMA VALUES (?, ?, ?, ?)";
-        connection = Conexao.getConnection();
+        conn = Conexao.getConnection();
 
         try {
-            p = connection.prepareStatement(sql);
-            p.setInt(1, novoIndex);
-            p.setString(2, turma.getNomTurma());
-            p.setString(3, turma.getAnoTurma());
-            p.setInt(4, turma.getCodPeriodo());
-            p.execute();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, novoIndex);
+            ps.setString(2, turma.getNomTurma());
+            ps.setString(3, turma.getAnoTurma());
+            ps.setInt(4, turma.getCodPeriodo());
+            ps.execute();
 
             aux = true;
         } catch (SQLException e) {
@@ -52,13 +52,13 @@ public class TurmaDAO {
 
     public Turma buscar(int codTurma) {
         Turma Turma = null;
-        connection = Conexao.getConnection();
+        conn = Conexao.getConnection();
         sql = "SELECT * FROM TURMA WHERE COD_TURMA = ?";
 
         try {
-            p = connection.prepareStatement(sql);
-            p.setInt(1, codTurma);
-            rs = p.executeQuery();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codTurma);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 String nomTurma = rs.getString("NUM_TURMA");
                 String anoTurma = rs.getString("ANO_TURMA");
@@ -76,14 +76,14 @@ public class TurmaDAO {
 
         boolean aux = false;
 
-        connection = Conexao.getConnection();
+        conn = Conexao.getConnection();
         sql = "UPDATE TURMA SET NOM_TURMA = ?, ANO_TURMA = ?, PERIODO_COD_PERIODO = ? WHERE COD_TURMA = ?";
         try {
-            p = connection.prepareStatement(sql);
-            p.setString(1, turma.getNomTurma());
-            p.setString(2, turma.getAnoTurma());
-            p.setInt(3, turma.getCodPeriodo());
-            p.execute();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, turma.getNomTurma());
+            ps.setString(2, turma.getAnoTurma());
+            ps.setInt(3, turma.getCodPeriodo());
+            ps.execute();
 
             aux = true;
 
@@ -98,12 +98,12 @@ public class TurmaDAO {
 
         boolean aux = false;
 
-        connection = Conexao.getConnection();
+        conn = Conexao.getConnection();
         sql = "DELETE FROM TURMA WHERE COD_TURMA = ?";
         try {
-            p = connection.prepareStatement(sql);
-            p.setInt(1, codTurma);
-            p.execute();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codTurma);
+            ps.execute();
 
             aux = true;
         } catch (SQLException e) {
@@ -117,12 +117,12 @@ public class TurmaDAO {
 
         ArrayList<Turma> lista = new ArrayList();
 
-        connection = Conexao.getConnection();
+        conn = Conexao.getConnection();
         sql = "SELECT * FROM TURMA";
 
         try {
-            p = connection.prepareStatement(sql);
-            rs = p.executeQuery();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 int codTurma = rs.getInt("COD_TURMA");
@@ -140,37 +140,16 @@ public class TurmaDAO {
         return lista;
 
     }
-
-    public int buscarIdCombo(String periodo) {
-        int id = 0;
-        try {
-
-            connection = Conexao.getConnection();
-            sql = "SELECT * FROM PERIODO WHERE NOM_PERIODO = ?";
-            p = connection.prepareStatement(sql);
-            p.setString(1, periodo);
-
-            rs = p.executeQuery();
-//            id = rs.getInt("COD_PERIODO");
-            while (rs.next()) {
-                id = rs.getInt("COD_PERIODO");
-            }
-        } catch (SQLException ex) {
-
-        }
-
-        return id;
-
-    }
+    
 
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
-            connection = Conexao.getConnection();
+            conn = Conexao.getConnection();
             sql = "SELECT MAX(COD_TURMA) as max_linhas FROM TURMA";
 
-            p = connection.prepareStatement(sql);
-            rs = p.executeQuery();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 proximaColuna = rs.getInt("max_linhas") + 1;
             }
@@ -180,6 +159,28 @@ public class TurmaDAO {
         }
 
         return proximaColuna;
+    }
+
+    public String buscarNomeTurma(int codigo) {
+        String nomeTurma = "";
+
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM TURMA WHERE COD_TURMA = ?";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nomeTurma = rs.getString("NOM_TURMA") + 1;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome da turma! \n ERROR: " + ex);
+
+        }
+
+        return nomeTurma;
     }
 
 }

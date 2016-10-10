@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Turma;
 import java.awt.Color;
@@ -75,15 +76,23 @@ public class FormTurmas extends javax.swing.JFrame {
         tabTurmas.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         tabTurmas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "TURMA", "ANO", "PERÍODO", "ALTERAR", "DELETAR"
+                "ID", "TURMA", "ANO", "PERÍODO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabTurmas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 690, 230));
@@ -127,18 +136,23 @@ public class FormTurmas extends javax.swing.JFrame {
 
     public void atualizarTabela() {
 
-        TurmaDAO dao = new TurmaDAO();
+        TurmaDAO daoTurma = new TurmaDAO();
+        PeriodoDAO daoPeriodo = new PeriodoDAO();
 
-        List<Turma> lista = dao.listar();
-        matrizTurma = new String[lista.size()][3];
+        List<Turma> lista = daoTurma.listar();
+        matrizTurma = new String[lista.size()][4];
         Turma turma;
 
-        String[] colunas = {"TURMA", "ANO", "PERÍODO", "ALTERAR", "EXCLUIR"};
+        String[] colunas = {"ID", "TURMA", "ANO", "PERÍODO"};
         for (int i = 0; i < lista.size(); i++) {
 
             turma = lista.get(i);
-            matrizTurma[i][0] = turma.getNomTurma();
-            matrizTurma[i][1] = turma.getAnoTurma();
+
+            matrizTurma[i][0] = String.valueOf(turma.getCodTurma());
+            matrizTurma[i][1] = turma.getNomTurma();
+            matrizTurma[i][2] = turma.getAnoTurma();
+            matrizTurma[i][3] = daoPeriodo.buscarNomePeriodo(turma.getCodPeriodo());
+
 //            matrizTurma[i][2] = formatoData.format(evento.getDatEvento());
 //            // matrizLista[i][3] = jLabel5.setIcon(icon);
 ////            matrizLista[i][4] = evento.getCaminhoFoto();
