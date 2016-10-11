@@ -65,7 +65,7 @@ public class FormPeriodo extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabPeriodos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        tabPeriodos.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        tabPeriodos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabPeriodos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

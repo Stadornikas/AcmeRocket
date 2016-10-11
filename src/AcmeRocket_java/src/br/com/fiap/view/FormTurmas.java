@@ -75,7 +75,7 @@ public class FormTurmas extends javax.swing.JFrame {
         });
         getContentPane().add(btnNovaTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 80, 100, 40));
 
-        tabTurmas.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        tabTurmas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabTurmas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

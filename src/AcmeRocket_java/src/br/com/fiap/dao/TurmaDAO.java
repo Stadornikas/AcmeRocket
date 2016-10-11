@@ -5,7 +5,8 @@
  */
 package br.com.fiap.dao;
 
-import br.com.fiap.conexao.Conexao;
+//import br.com.fiap.conexao.Conexao;
+import br.com.fiap.connection.Conexao;
 import br.com.fiap.entity.Turma;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

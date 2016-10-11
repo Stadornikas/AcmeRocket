@@ -49,16 +49,6 @@ public class CtrlSalvarGrupo {
         return t;
     }
 
-    public int buscarIdComboTurma(String codTurma) {
-        int t = 0;
-        TurmaDAO dao = new TurmaDAO();
-        t = dao.buscarIdComboTurma(codTurma);
-        if (t == 0) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo turma");
-        }
-        return t;
-    }
-
     public String carregarComboEvento(int codEvento) {
         String e = "";
 
@@ -70,21 +60,9 @@ public class CtrlSalvarGrupo {
 
         return e;
     }
-
-    public int buscarIdComboEvento(String codEvento) {
-        int e = 0;
-
-        EventoDAO dao = new EventoDAO();
-        e = dao.buscarIdComboEvento(codEvento);
-        if (e == 0) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo evento");
-        }
-
-        return e;
-    }
-
     public void inserirGrupo(String nomeGrupo, int codTurma, int codEvento) {
-
+        //int codTurma = this.buscarIdComboTurma(nomeTurma);
+        //int codEvento = this.buscarIdComboEvento(nomeEvento);
         String msg = "Falha ao inserir período";
         boolean validacao = true;
 

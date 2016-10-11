@@ -7,6 +7,7 @@ package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlDeletarGrupo;
 import br.com.fiap.controller.CtrlListarEvento;
+import br.com.fiap.controller.CtrlListarTurma;
 import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.GrupoDAO;
 import br.com.fiap.dao.TurmaDAO;
@@ -94,7 +95,7 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         jLabel8.setText("Turma:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
-        txtGrupo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        txtGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -239,12 +240,14 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         String turma = String.valueOf(cmbTurma.getSelectedItem());
 
         CtrlSalvarGrupo ctrlGrupo = new CtrlSalvarGrupo();
-
+        CtrlListarTurma ctrlTurma = new CtrlListarTurma();
+        CtrlListarEvento ctrlEvento = new CtrlListarEvento();
         if (this.codigoGrupo == -1) {
-            ctrlGrupo.inserirGrupo(nomePeriodo, ctrlGrupo.buscarIdComboTurma(turma), ctrlGrupo.buscarIdComboEvento(evento));
+
+            ctrlGrupo.inserirGrupo(nomePeriodo, ctrlTurma.buscarIdComboTurma(turma), ctrlEvento.buscarIdComboEvento(evento));
             this.voltarParaLista();
         } else {
-            ctrlGrupo.alterarGrupo(codigoGrupo, nomePeriodo, ctrlGrupo.buscarIdComboTurma(turma), ctrlGrupo.buscarIdComboEvento(evento));
+            ctrlGrupo.alterarGrupo(codigoGrupo, nomePeriodo, ctrlTurma.buscarIdComboTurma(turma), ctrlEvento.buscarIdComboEvento(evento));
             this.voltarParaLista();
         }
         ctrlGrupo = null;
@@ -266,14 +269,14 @@ public class FormNovoGrupo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarGrupoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if (this.codigoGrupo != -1) {
-            CtrlDeletarGrupo ctrlPeriodo = new CtrlDeletarGrupo();
-//            if (ctrlPeriodo.confirmaExclusao()) {
-//                ctrlPeriodo.excluirGrupo(codigoGrupo);
-//                this.voltarParaLista();
-//            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar","Selecione uma opção", JOptionPane.YES_NO_OPTION);
+        if (this.codigoGrupo != -1) {
+            CtrlDeletarGrupo ctrlGrupo = new CtrlDeletarGrupo();
+            if (ctrlGrupo.confirmaExclusao()) {
+                ctrlGrupo.excluirGrupo(codigoGrupo);
+                this.voltarParaLista();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

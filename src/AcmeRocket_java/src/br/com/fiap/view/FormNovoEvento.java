@@ -105,16 +105,22 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Evento:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+
+        txtEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Local:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+
+        txtLocalEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Data:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+
+        txtDataEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 100, -1));
 
         btnCancelarEvento.setText("Cancelar");

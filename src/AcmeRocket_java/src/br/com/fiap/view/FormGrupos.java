@@ -65,7 +65,7 @@ public class FormGrupos extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-03 51x51.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        tabGrupos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        tabGrupos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

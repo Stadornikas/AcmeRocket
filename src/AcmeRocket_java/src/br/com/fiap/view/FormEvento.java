@@ -63,7 +63,7 @@ public class FormEvento extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-06 51x51.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        tabEventos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        tabEventos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

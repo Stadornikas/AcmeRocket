@@ -6,6 +6,7 @@ import br.com.fiap.entity.Periodo;
 import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Turma;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 public class CtrlListarTurma {
@@ -33,5 +34,14 @@ public class CtrlListarTurma {
         return dao.buscarNomePeriodo(turma.getCodPeriodo());
     }
     
+      public int buscarIdComboTurma(String codTurma) {
+        int t = 0;
+        TurmaDAO dao = new TurmaDAO();
+        t = dao.buscarIdComboTurma(codTurma);
+        if (t == 0) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo turma");
+        }
+        return t;
+    }
 
 }
