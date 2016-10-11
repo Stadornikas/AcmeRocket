@@ -9,14 +9,11 @@ import br.com.fiap.controller.CtrlListarTurma;
 import br.com.fiap.controller.CtrlSalvarTurma;
 import java.awt.Color;
 
-import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
-import br.com.fiap.entity.Evento;
 import br.com.fiap.entity.Periodo;
 import br.com.fiap.entity.Turma;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +49,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtTurma = new javax.swing.JTextField();
         txtAno = new javax.swing.JTextField();
@@ -67,6 +64,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         cmbPeriodo = new javax.swing.JComboBox();
         btnDeletar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -83,9 +81,9 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
-        jLabel4.setText("Turma");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
+        lblStatus.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        lblStatus.setText("Inserir");
+        getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Turma:");
@@ -158,6 +156,10 @@ public class FormNovaTurma extends javax.swing.JFrame {
         });
         getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
+        jLabel9.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        jLabel9.setText("Turma");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -184,23 +186,32 @@ public class FormNovaTurma extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        //Carrega os periodos cadastrados em caso de inserção de nova turma    
+        CtrlSalvarTurma ctrlTurma= new CtrlSalvarTurma();
+        ArrayList<Periodo> lista = ctrlTurma.carregarRegistrosPeriodo();
+        
+  
         if (codTurma == -1) {
-            CtrlSalvarTurma ctrlTurma= new CtrlSalvarTurma();
-            ArrayList<Periodo> lista = ctrlTurma.carregarRegistrosPeriodo();
-
             for (Periodo periodo : lista) {
                 cmbPeriodo.addItem(periodo.getNomPeriodo());
             }
         }else{
             //Em caso de edicao os campos vem carregados com os dados da turma
-            CtrlSalvarTurma ctrlTurma = new CtrlSalvarTurma();
             Turma turma = ctrlTurma.carregarTurma(codTurma);
             if (turma == null) {
                 this.voltarParaLista();
             }
             txtTurma.setText(turma.getNomTurma());
             txtAno.setText(turma.getAnoTurma());
-            //TODO: CARREGAR COMBOBOX COM OS PERIODOS CADATRADOS E DEIXAR SELECIONADO O PERIODO REREENTE A TURMA ATUAL
+            
+            int index = 0, selected = 0;
+            for (Periodo periodo : lista) {
+                cmbPeriodo.addItem(periodo.getNomPeriodo());
+                index++;
+                if (periodo.getCodPeriodo() == turma.getCodPeriodo()) {
+                    selected = index;
+                }
+            }
+            cmbPeriodo.setSelectedIndex(selected);
         }
 
 
@@ -276,12 +287,13 @@ public class FormNovaTurma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblDashboard;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTurma;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtTurma;
