@@ -60,4 +60,14 @@ public class CtrlSalvarEvento {
         
         return datEventoFormated;
     }
+    
+    public Evento carregarEvento(int codEvento) {
+        EventoDAO dao = new EventoDAO();
+        Evento e = dao.buscar(codEvento);
+        if (e == null) {
+            JOptionPane.showMessageDialog(null, "Nenhum evento encontrado");
+        }
+        
+        return e;
+    }
 }

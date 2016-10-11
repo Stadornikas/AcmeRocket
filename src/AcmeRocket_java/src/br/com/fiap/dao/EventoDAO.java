@@ -55,16 +55,18 @@ public class EventoDAO {
      * @return boolean
      */
     public boolean deletar(int codEvento) {
+        boolean sucesso = false;
         try {
             conn = Conexao.getConnection();
             sql = "DELETE FROM EVENTOS WHERE COD_EVENTO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codEvento);
-
+            ps.execute();
+            sucesso = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar eventos! \n ERRO: " + ex);
         }
-        return true;
+        return sucesso;
     }
 
     /**
@@ -132,12 +134,14 @@ public class EventoDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codEvento);
             rs = ps.executeQuery();
-
-            String nomeEvento = rs.getString("NOM_EVENTO");
-            String localEvento = rs.getString("LOC_EVENTO");
-            Date dataEvento = rs.getDate("DAT_EVENTO");
-
-            evento = new Evento(nomeEvento, localEvento, dataEvento);
+               
+            while(rs.next()){
+                String nomeEvento = rs.getString("NOM_EVENTO");
+                String localEvento = rs.getString("LOC_EVENTO");
+                Date dataEvento = rs.getDate("DAT_EVENTO");
+                
+                evento = new Evento(nomeEvento, localEvento, dataEvento);
+            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar evento! \n ERRO: " + ex);
@@ -212,7 +216,7 @@ public class EventoDAO {
         int qtdEventos = 0;
         try {
             conn = Conexao.getConnection();
-            sql = "SELECT COUNT(*) qtd_evento FROM EVENTO WHERE EVENTO_COD_PERIODO = ?";
+            sql = "SELECT COUNT(*) qtd_evento FROM GRUPO WHERE EVENTOS_COD_EVENTO = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codEvento);
             rs = ps.executeQuery();

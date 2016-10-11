@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.JOptionPane.*;
 
 public class LancamentoDAO {
@@ -15,7 +17,7 @@ public class LancamentoDAO {
     private PreparedStatement ps;
     private ResultSet rs;
     private String sql;
-    
+
     public boolean inserir(Lancamento lancamento) {
         boolean aux = false;
 
@@ -72,6 +74,7 @@ public class LancamentoDAO {
         } catch (SQLException ex) {
             showMessageDialog(null, "Erro ao deletar lançamento! \n ERRO: " + ex);
         }
+        
         return aux;
     }
 
@@ -158,7 +161,7 @@ public class LancamentoDAO {
 
         } catch (SQLException ex) {
             showMessageDialog(null, "Erro ao listar lançamento! \n ERRO: " + ex);
-        }
+        } 
 
         return lista;
 
@@ -173,7 +176,7 @@ public class LancamentoDAO {
             sql = "UPDATE LANCAMENTO SET(COD_LANCAMENTO = ?, GRUPO_COD_GRUPO = ?, HOR_LANCAMENTO = ?, STATUS = ?, ANG_LANCAMENTO = ?, "
                     + "VEL_VENTO = ?, DIS_ALVO = ?, PES_FOGUTE = ?, ALT_MAX = ?, VEL_MAX = ?, TEM_PRP = ?, PIC_ACL = ?, ACL_MAX = ?, TEM_APDC = ?, "
                     + "TEM_EJE = ?, ALT_EJE = ?, TAX_DES = ?, DUR_VOO = ?, DIS_QUEDA = ?)";
-            
+
             ps = conn.prepareCall(sql);
 
             ps.setInt(1, lancamento.getCodLancamento());
@@ -197,7 +200,7 @@ public class LancamentoDAO {
             ps.setFloat(19, lancamento.getDisQueda());
 
             ps.execute();
-            
+
             aux = true;
 
         } catch (SQLException ex) {

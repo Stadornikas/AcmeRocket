@@ -73,7 +73,7 @@ public class FormLancamento extends javax.swing.JFrame {
         });
         getContentPane().add(btnNovoLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 80, 100, 40));
 
-        tabLancamentos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        tabLancamentos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabLancamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

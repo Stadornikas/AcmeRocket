@@ -88,7 +88,11 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel6.setText("Turma:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+
+        txtTurma.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
+
+        txtAno.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 90, -1));
 
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -145,6 +149,7 @@ public class FormNovaTurma extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 20, -1));
 
+        cmbPeriodo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o periodo" }));
         getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, -1));
 

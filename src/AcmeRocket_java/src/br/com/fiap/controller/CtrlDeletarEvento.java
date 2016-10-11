@@ -31,7 +31,9 @@ public class CtrlDeletarEvento {
         
         if (validacao) {
             EventoDAO dao = new EventoDAO();
-            if(dao.deletar(codEvento)) msg = "Evento deletado com sucesso";
+            if(dao.deletar(codEvento)){
+                msg = "Evento deletado com sucesso";
+            }
         }
         
         JOptionPane.showMessageDialog(null, msg); 

@@ -21,7 +21,8 @@ import javax.swing.table.TableModel;
 public class FormGrupos extends javax.swing.JFrame {
 
     String[][] matrizGrupo;
-
+    int codigoGrupo;
+    
     public FormGrupos() {
         initComponents();
         setLocationRelativeTo(this);
@@ -64,7 +65,7 @@ public class FormGrupos extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-03 51x51.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        tabGrupos.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        tabGrupos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabGrupos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -82,6 +83,11 @@ public class FormGrupos extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tabGrupos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabGruposMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabGrupos);
@@ -136,6 +142,17 @@ public class FormGrupos extends javax.swing.JFrame {
         atualizarTabela();
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void tabGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabGruposMouseClicked
+      int linha = tabGrupos.getSelectedRow();
+        if (linha != -1) {
+            FormNovoGrupo fng = new FormNovoGrupo();
+            int obj = Integer.parseInt(String.valueOf(tabGrupos.getValueAt(linha, 0)));
+            fng.setCodGrupo(obj);
+            this.dispose();
+            fng.setVisible(true);
+        }
+    }//GEN-LAST:event_tabGruposMouseClicked
 
     public void atualizarTabela() {
 

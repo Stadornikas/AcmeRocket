@@ -153,12 +153,12 @@ public class FormNovoAluno extends javax.swing.JFrame {
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
         int rm = Integer.parseInt(txtRm.getText());
         String nome = txtNome.getText();
-        int grupo = cmbGrupo.getSelectedIndex();
+        String grupo = String.valueOf(cmbGrupo.getSelectedItem());
 
         AlunoDAO dao = new AlunoDAO();
         GrupoDAO daoGrupo = new GrupoDAO();
 
-        Aluno aluno = new Aluno(rm, nome, daoGrupo.buscarIdComboGrupo(String.valueOf(grupo)));
+        Aluno aluno = new Aluno(rm, nome, daoGrupo.buscarIdComboGrupo(grupo));
 
         if (dao.inserir(aluno)) {
             JOptionPane.showMessageDialog(this, "Aluno insirido com sucesso! ");

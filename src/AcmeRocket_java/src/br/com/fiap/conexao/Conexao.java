@@ -12,7 +12,7 @@ public class Conexao {
     private static String usuario = "acmerocket";
     private static String senha = "Acme@2016";
 
-    public static Connection getConnection() {
+    public Connection getConnection() {
         if (connection == null) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");

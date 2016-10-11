@@ -5,8 +5,9 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarEvento;
+import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.controller.CtrlSalvarEvento;
-import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.sql.Date;
@@ -30,6 +31,11 @@ public class FormNovoEvento extends javax.swing.JFrame {
      */
     public java.util.Date datEvento;
     private MaskFormatter mascaraData;
+    private int codEvento = -1;
+    
+    public void setCodEvento(int codEvento) {
+        this.codEvento = codEvento;
+    }
     
     public FormNovoEvento() {
         initComponents();
@@ -82,6 +88,11 @@ public class FormNovoEvento extends javax.swing.JFrame {
         setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
@@ -94,16 +105,22 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Evento:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+
+        txtEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Local:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+
+        txtLocalEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Data:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+
+        txtDataEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtDataEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 100, -1));
 
         btnCancelarEvento.setText("Cancelar");
@@ -151,6 +168,11 @@ public class FormNovoEvento extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         txtDeletarEvento.setText("Deletar");
+        txtDeletarEvento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDeletarEventoMouseClicked(evt);
+            }
+        });
         getContentPane().add(txtDeletarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
 
         pack();
@@ -185,6 +207,8 @@ public class FormNovoEvento extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
         }
+        
+        this.voltarParaLista();
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
     private void btnCancelarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEventoMouseClicked
@@ -196,6 +220,36 @@ public class FormNovoEvento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarEventoMouseClicked
 
+    private void txtDeletarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDeletarEventoMouseClicked
+        // TODO add your handling code here:
+        String msgBoxVazia = "Por favor informe o evento que deseja excluir.";
+        if (this.codEvento != -1) {
+            CtrlDeletarEvento ctrlDel = new CtrlDeletarEvento();
+            if (ctrlDel.confirmaExclusao()) {
+                ctrlDel.excluirEvento(codEvento);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, msgBoxVazia);
+        }
+        this.voltarParaLista();
+    }//GEN-LAST:event_txtDeletarEventoMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        if (codEvento != -1) {
+            CtrlSalvarEvento ctrlEvento = new CtrlSalvarEvento();
+            Evento e = ctrlEvento.carregarEvento(codEvento);
+            txtEvento.setText(e.getNomEvento());
+            ctrlEvento = null;
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void voltarParaLista(){
+        this.dispose();
+        FormEvento lf = new FormEvento(); //lf -> Last Form
+        lf.setVisible(true);
+    }
     
     /**
      * @param args the command line arguments

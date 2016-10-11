@@ -73,7 +73,7 @@ public class FormNovoPeriodo extends javax.swing.JFrame {
         jLabel6.setText("Período:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
-        txtPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        txtPeriodo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 320, -1));
 
         btnCancelarPeriodo.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
