@@ -85,8 +85,6 @@ public class FormNovoEvento extends javax.swing.JFrame {
         txtDeletarEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -202,13 +200,20 @@ public class FormNovoEvento extends javax.swing.JFrame {
         boolean inserir = controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
         
         if(inserir){
-            JOptionPane.showMessageDialog(this, "Evento Criado com sucesso");
+            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso\nDeseja cadastrar outro evento?", "Selecione uma opção", YES_NO_OPTION) == 1) {
+                this.voltarParaLista();
+            }
+            else{
+                this.txtEvento.setText("");
+                this.txtLocalEvento.setText("");
+                this.txtDataEvento.setText("");
+            }
             
         }else{
             JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
         }
         
-        this.voltarParaLista();
+//        this.voltarParaLista();
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
     private void btnCancelarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEventoMouseClicked
