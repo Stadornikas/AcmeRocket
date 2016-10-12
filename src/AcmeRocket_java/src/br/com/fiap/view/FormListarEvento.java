@@ -5,12 +5,14 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarEvento;
 import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -21,6 +23,7 @@ import javax.swing.table.TableModel;
 public class FormListarEvento extends javax.swing.JFrame {
 
     private String matrizLista[][];
+    private int codEvento;
 
     public FormListarEvento() {
         initComponents();
@@ -50,7 +53,6 @@ public class FormListarEvento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -124,9 +126,19 @@ public class FormListarEvento extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         btnDeletarEvento.setText("Deletar");
+        btnDeletarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarEventoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDeletarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 100, 40));
 
         btnALterarEvento.setText("Alterar");
+        btnALterarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALterarEventoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnALterarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 100, 40));
 
         pack();
@@ -152,21 +164,55 @@ public class FormListarEvento extends javax.swing.JFrame {
 
     private void tabEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEventosMouseClicked
         // TODO add your handling code here:
+//        int linha = tabEventos.getSelectedRow();
+//        if (linha != -1) {
+//            FormSalvarEvento fne = new FormSalvarEvento();
+//            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+//            fne.setCodEvento(obj);
+//            this.dispose();
+//            fne.setVisible(true);
+//        }
+    }//GEN-LAST:event_tabEventosMouseClicked
+
+    private void btnDeletarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarEventoActionPerformed
+
         int linha = tabEventos.getSelectedRow();
         if (linha != -1) {
-            FormSalvarEvento fne = new FormSalvarEvento();
-            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
-            fne.setCodEvento(obj);
-            this.dispose();
-            fne.setVisible(true);
+            if (this.codEvento != -1) {
+                int codigoEvento = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+                CtrlDeletarEvento ctrlEvento = new CtrlDeletarEvento();
+                if (ctrlEvento.confirmaExclusao()) {
+                    ctrlEvento.excluirEvento(codigoEvento);
+                    //this.voltarParaLista();
+                    atualizarTabela();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um evento da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um evento da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
-    }//GEN-LAST:event_tabEventosMouseClicked
+
+    }//GEN-LAST:event_btnDeletarEventoActionPerformed
+
+    private void btnALterarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarEventoActionPerformed
+
+        int linha = tabEventos.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarEvento fng = new FormSalvarEvento();
+            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+            fng.setCodEvento(obj);
+            this.dispose();
+            fng.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnALterarEventoActionPerformed
 
     //ATUALIZANDO A TABELA
     public void atualizarTabela() {
         CtrlListarEvento ctrl = new CtrlListarEvento();
         List<Evento> lista = ctrl.carregarRegistros();
-        
+
         matrizLista = new String[lista.size()][4];
         Evento evento;
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
