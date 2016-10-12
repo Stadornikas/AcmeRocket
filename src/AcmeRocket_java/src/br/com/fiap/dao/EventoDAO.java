@@ -1,6 +1,5 @@
 package br.com.fiap.dao;
 
-
 import br.com.fiap.conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -135,12 +134,12 @@ public class EventoDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codEvento);
             rs = ps.executeQuery();
-               
-            while(rs.next()){
+
+            while (rs.next()) {
                 String nomeEvento = rs.getString("NOM_EVENTO");
                 String localEvento = rs.getString("LOC_EVENTO");
                 Date dataEvento = rs.getDate("DAT_EVENTO");
-                
+
                 evento = new Evento(nomeEvento, localEvento, dataEvento);
             }
 
@@ -155,18 +154,22 @@ public class EventoDAO {
      *
      * @param evento
      */
-    public void alterar(Evento evento) {
+    public boolean alterar(Evento evento) {
+        boolean aux = false;
         try {
             conn = Conexao.getConnection();
-            sql = "UPDATE EVENTOS SET NOM_EVENTO = ?, LOC_EVENTO = ?, DAT_EVENTO = ?";
+            sql = "UPDATE EVENTOS SET NOM_EVENTO = ?, LOC_EVENTO = ?, DAT_EVENTO = ? WHERE COD_EVENTO = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, evento.getNomEvento());
             ps.setString(2, evento.getLocEvento());
             ps.setDate(3, evento.getDatEvento());
+            ps.setInt(4, evento.getCodEvento());
             ps.execute();
+            aux = true;
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar evento! \n ERRO: " + ex);
         }
+        return aux;
     }
 
     public String buscarNomeEvento(int codigo) {
@@ -190,7 +193,7 @@ public class EventoDAO {
         }
         return nomeEvento;
     }
-    
+
     public int buscarIdComboEvento(String evento) {
         int id = 0;
         try {
@@ -212,8 +215,8 @@ public class EventoDAO {
         return id;
 
     }
-    
-    public int verificarQuantidadeDependencia(int codEvento){
+
+    public int verificarQuantidadeDependencia(int codEvento) {
         int qtdEventos = 0;
         try {
             conn = Conexao.getConnection();
@@ -221,17 +224,15 @@ public class EventoDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, codEvento);
             rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 qtdEventos = rs.getInt("qtd_evento");
-            }           
+            }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de turmas dependentes: " + ex);
         }
-        
+
         return qtdEventos;
     }
 }
-
-

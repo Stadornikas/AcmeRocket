@@ -20,33 +20,44 @@ public class CtrlSalvarEvento {
 
     public CtrlSalvarEvento() {
     }
-    
-    public boolean validarNumCaracteres(){
+
+    public boolean validarNumCaracteres() {
         boolean sucesso = false;
         return sucesso;
     }
-    public boolean verificarExistencia(){
+
+    public boolean verificarExistencia() {
         boolean sucesso = false;
         return sucesso;
     }
-    public boolean inserirEvento(String nomeEvento, String locEvento, String dataEvento){
+
+    public boolean inserirEvento(String nomeEvento, String locEvento, String dataEvento) {
         Date datEventoFormated = validarData(dataEvento);
         Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
         boolean sucesso = false;
-        
+
         EventoDAO eventoDAO = new EventoDAO();
-        
-        if(eventoDAO.inserir(novoEvento)){
+
+        if (eventoDAO.inserir(novoEvento)) {
             sucesso = true;
         }
-        
+
         return sucesso;
     }
-    public void editarEvento(){
-        
+
+    public void editarEvento(int codEvento, String nomeEvento, String locEvento, String dataEvento) {
+        String msg = "Falha ao alterar evento";
+        Date datEventoFormated = validarData(dataEvento);
+        Evento novoEvento = new Evento(codEvento, nomeEvento, locEvento, datEventoFormated);
+
+        EventoDAO eventoDAO = new EventoDAO();
+
+        if (eventoDAO.alterar(novoEvento)) {
+            JOptionPane.showMessageDialog(null, "Evento alterado com sucesso!");
+        }
     }
-    
-    private Date validarData(String dataEvento){
+
+    private Date validarData(String dataEvento) {
         String pattern = "dd/MM/yyyy";
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         java.util.Date dataEventoDate = new Date(0);
@@ -57,17 +68,17 @@ public class CtrlSalvarEvento {
             JOptionPane.showMessageDialog(null, "Data não foi convertida com sucesso.");
         }
         datEventoFormated = new Date(dataEventoDate.getTime());
-        
+
         return datEventoFormated;
     }
-    
+
     public Evento carregarEvento(int codEvento) {
         EventoDAO dao = new EventoDAO();
         Evento e = dao.buscar(codEvento);
         if (e == null) {
             JOptionPane.showMessageDialog(null, "Nenhum evento encontrado");
         }
-        
+
         return e;
     }
 }

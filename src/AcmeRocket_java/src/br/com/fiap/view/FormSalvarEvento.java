@@ -9,6 +9,7 @@ import br.com.fiap.controller.CtrlSalvarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -26,22 +27,23 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     public java.util.Date datEvento;
     private MaskFormatter mascaraData;
     private int codEvento = -1;
-    
+
     public void setCodEvento(int codEvento) {
         this.codEvento = codEvento;
     }
-    
+
     public FormSalvarEvento() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-         lblEventos.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
+        lblEventos.setForeground(Color.blue);
     }
+
     public FormSalvarEvento(int elemento) {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
-         lblEventos.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
+        lblEventos.setForeground(Color.blue);
     }
 
     /**
@@ -164,7 +166,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-         //CHAMANDO FORMULARIO PRINCIPAL
+        //CHAMANDO FORMULARIO PRINCIPAL
         FormPrincipal fp = new FormPrincipal();
         this.dispose();
         fp.setVisible(true);
@@ -178,34 +180,42 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_lblEventosMouseClicked
 
     private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
+
         String nomeEvento = txtEvento.getText();
         String locEvento = txtLocalEvento.getText();
         String datEventoFormated = txtDataEvento.getText();
-        
+//
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
-        
-        boolean inserir = controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-        
-        if(inserir){
-            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso\nDeseja cadastrar outro evento?", "Selecione uma opção", YES_NO_OPTION) == 1) {
-                this.voltarParaLista();
-            }
-            else{
-                this.txtEvento.setText("");
-                this.txtLocalEvento.setText("");
-                this.txtDataEvento.setText("");
-            }
+//
+//        boolean inserir = controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
+//
+//        if (inserir) {
+//            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso\nDeseja cadastrar outro evento?", "Selecione uma opção", YES_NO_OPTION) == 1) {
+//                this.voltarParaLista();
+//            } else {
+//                this.txtEvento.setText("");
+//                this.txtLocalEvento.setText("");
+//                this.txtDataEvento.setText("");
+//            }
+//
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
+//        }
+
+        if (this.codEvento == -1) {
+
+            controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
             
-        }else{
-            JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
+        } else {
+            controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
         }
-        
+
 //        this.voltarParaLista();
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
     private void btnCancelarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEventoMouseClicked
         // TODO add your handling code here:
-        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
             FormListarEvento lf = new FormListarEvento();
             lf.setVisible(true);
@@ -215,21 +225,24 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         if (codEvento != -1) {
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
             CtrlSalvarEvento ctrlEvento = new CtrlSalvarEvento();
             Evento e = ctrlEvento.carregarEvento(codEvento);
             txtEvento.setText(e.getNomEvento());
             //txtDeletarEvento.setText(e.getDatEvento());
             txtLocalEvento.setText(e.getLocEvento());
+            txtDataEvento.setText(formato.format(e.getDatEvento()));
             ctrlEvento = null;
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void voltarParaLista(){
+    private void voltarParaLista() {
         this.dispose();
         FormListarEvento lf = new FormListarEvento(); //lf -> Last Form
         lf.setVisible(true);
     }
-    
+
     /**
      * @param args the command line arguments
      */
