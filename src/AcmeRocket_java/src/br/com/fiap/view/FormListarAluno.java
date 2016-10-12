@@ -122,9 +122,19 @@ public class FormListarAluno extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         btnALterarAluno.setText("Alterar");
+        btnALterarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALterarAlunoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnALterarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, 40));
 
         btnDeletarAluno.setText("Remover");
+        btnDeletarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarAlunoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDeletarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 100, 40));
 
         pack();
@@ -147,6 +157,14 @@ public class FormListarAluno extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnDeletarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletarAlunoActionPerformed
+
+    private void btnALterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnALterarAlunoActionPerformed
 
     public void atualizarTabela() {
 
