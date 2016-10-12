@@ -1,1 +1,3 @@
 /src/AcmeRocket_java/src/config/database.properties
+/src/AcmeRocket_java/dist/
+/src/AcmeRocket_java/nbproject/private/
