@@ -5,12 +5,13 @@
  */
 package br.com.fiap.view;
 
-
+import br.com.fiap.controller.CtrlDeletarPeriodo;
 import br.com.fiap.controller.CtrlListarPeriodo;
 import br.com.fiap.entity.Periodo;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,14 +20,12 @@ import javax.swing.table.TableModel;
  *
  * @author Thiago
  */
-public class FormPeriodo extends javax.swing.JFrame {
-
+public class FormListarPeriodo extends javax.swing.JFrame {
 
     private String matrizLista[][];
     int codPeriodo;
 
-
-    public FormPeriodo() {
+    public FormListarPeriodo() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -50,10 +49,12 @@ public class FormPeriodo extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnDeletarPeriodo = new javax.swing.JButton();
+        btnALterarPeriodo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(723, 420));
-        setMinimumSize(new java.awt.Dimension(723, 420));
+        setMaximumSize(null);
+        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -128,6 +129,17 @@ public class FormPeriodo extends javax.swing.JFrame {
         jLabel4.setText("Período");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
+        btnDeletarPeriodo.setText("Deletar");
+        btnDeletarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarPeriodoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 100, 40));
+
+        btnALterarPeriodo.setText("Alterar");
+        getContentPane().add(btnALterarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -140,7 +152,7 @@ public class FormPeriodo extends javax.swing.JFrame {
 
     private void btnNovoPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPeriodoActionPerformed
         //CHAMANDO FORMULARIO NOVO PERIODO
-        FormNovoPeriodo fnp = new FormNovoPeriodo();
+        FormSalvarPeriodo fnp = new FormSalvarPeriodo();
         this.dispose();
         fnp.setVisible(true);
     }//GEN-LAST:event_btnNovoPeriodoActionPerformed
@@ -151,31 +163,50 @@ public class FormPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void tabPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPeriodosMouseClicked
-    
-        int linha = tabPeriodos.getSelectedRow();
-        if (linha != -1) {
-            FormNovoPeriodo fnp = new FormNovoPeriodo();
-            int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
-            fnp.setCodPeriodo(obj);
-            this.dispose();
-            fnp.setVisible(true);
-        }
+
+//        int linha = tabPeriodos.getSelectedRow();
+//        if (linha != -1) {
+//            FormSalvarPeriodo fnp = new FormSalvarPeriodo();
+//            int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
+//            fnp.setCodPeriodo(obj);
+//            this.dispose();
+//            fnp.setVisible(true);
+//        }
     }//GEN-LAST:event_tabPeriodosMouseClicked
+
+    private void btnDeletarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarPeriodoActionPerformed
+        int linha = tabPeriodos.getSelectedRow();
+
+        if (linha != -1) {
+
+            if (this.codPeriodo != -1) {
+                CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
+                if (ctrlPeriodo.confirmaExclusao()) {
+                    ctrlPeriodo.excluirPeriodo(codPeriodo);
+                    atualizarTabela();
+                }
+            } else {
+                //JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+        }
+
+    }//GEN-LAST:event_btnDeletarPeriodoActionPerformed
 
     /**
      * Atualiza a tabela de registros
      */
-    private void atualizarTabela(){
+    private void atualizarTabela() {
         CtrlListarPeriodo controle = new CtrlListarPeriodo();
         List<Periodo> lista = controle.CarregarRegistros();
         Periodo periodo;
-        
+
         if (lista.size() > 0) {
-       
+
             matrizLista = new String[lista.size()][3];
             String[] colunas = {"ID", "PERÍODOS"};
-            
-            
+
             for (int i = 0; i < lista.size(); i++) {
                 periodo = lista.get(i);
                 matrizLista[i][0] = Integer.toString(periodo.getCodPeriodo());
@@ -186,8 +217,6 @@ public class FormPeriodo extends javax.swing.JFrame {
             tabPeriodos.setModel(modeloTabela);
         }
     }
-    
-    
 
     /**
      * @param args the command line arguments
@@ -206,25 +235,28 @@ public class FormPeriodo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarPeriodo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPeriodo().setVisible(true);
+                new FormListarPeriodo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALterarPeriodo;
+    private javax.swing.JButton btnDeletarPeriodo;
     private javax.swing.JButton btnNovoPeriodo;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;

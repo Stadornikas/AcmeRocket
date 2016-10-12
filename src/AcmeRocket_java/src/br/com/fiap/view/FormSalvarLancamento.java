@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author Thiago
  */
-public class FormNovoLancamento extends javax.swing.JFrame {
+public class FormSalvarLancamento extends javax.swing.JFrame {
 
     /**
      * Creates new form FormNovoLancamento
      */
-    public FormNovoLancamento() {
+    public FormSalvarLancamento() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -82,8 +82,6 @@ public class FormNovoLancamento extends javax.swing.JFrame {
         txtRm15 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -292,7 +290,7 @@ public class FormNovoLancamento extends javax.swing.JFrame {
 
     private void lblLancamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLancamentoMouseClicked
         //CHAMANDO FORMULARIO LANÇAMENTO(LISTA)
-        FormLancamento fl = new FormLancamento();
+        FormListarLancamento fl = new FormListarLancamento();
         this.dispose();
         fl.setVisible(true);
     }//GEN-LAST:event_lblLancamentoMouseClicked
@@ -322,20 +320,21 @@ public class FormNovoLancamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormNovoLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormNovoLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormNovoLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormNovoLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormNovoLancamento().setVisible(true);
+                new FormSalvarLancamento().setVisible(true);
             }
         });
     }

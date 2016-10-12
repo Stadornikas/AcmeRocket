@@ -5,12 +5,12 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.dao.AlunoDAO;
-import br.com.fiap.dao.GrupoDAO;
-import br.com.fiap.entity.Aluno;
+import br.com.fiap.controller.CtrlListarEvento;
+import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -18,11 +18,11 @@ import javax.swing.table.TableModel;
  *
  * @author Thiago
  */
-public class FormAluno extends javax.swing.JFrame {
+public class FormListarEvento extends javax.swing.JFrame {
 
-    private String[][] matrizAluno;
+    private String matrizLista[][];
 
-    public FormAluno() {
+    public FormListarEvento() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -40,15 +40,17 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabAlunos = new javax.swing.JTable();
-        btnNovoAluno = new javax.swing.JButton();
+        tabEventos = new javax.swing.JTable();
+        btnNovoEvento = new javax.swing.JButton();
         lblDashboard = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnDeletarEvento = new javax.swing.JButton();
+        btnALterarEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Acme Rocket");
         setMaximumSize(null);
+        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -60,45 +62,50 @@ public class FormAluno extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
-        jLabel3.setText("Aluno");
+        jLabel3.setText("Eventos");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-04 51x51.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-06 51x51.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        tabAlunos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tabAlunos.setModel(new javax.swing.table.DefaultTableModel(
+        tabEventos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        tabEventos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "RM", "NOME", "GRUPO"
+                "ID", "EVENTOS", "LOCAL", "DATA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabAlunos);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 640, 220));
-
-        btnNovoAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        btnNovoAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N
-        btnNovoAluno.setText("Novo");
-        btnNovoAluno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoAlunoActionPerformed(evt);
+        tabEventos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabEventosMouseClicked(evt);
             }
         });
-        getContentPane().add(btnNovoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 100, 40));
+        jScrollPane1.setViewportView(tabEventos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 670, 230));
+
+        btnNovoEvento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        btnNovoEvento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N
+        btnNovoEvento.setText("Novo");
+        btnNovoEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoEventoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNovoEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(591, 80, 100, 40));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");
@@ -110,11 +117,17 @@ public class FormAluno extends javax.swing.JFrame {
         getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        jLabel9.setText("Alunos");
+        jLabel9.setText("Eventos");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+
+        btnDeletarEvento.setText("Deletar");
+        getContentPane().add(btnDeletarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 100, 40));
+
+        btnALterarEvento.setText("Alterar");
+        getContentPane().add(btnALterarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 100, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,37 +139,53 @@ public class FormAluno extends javax.swing.JFrame {
         fp.setVisible(true);
     }//GEN-LAST:event_lblDashboardMouseClicked
 
-    private void btnNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAlunoActionPerformed
-        //CHAMANDO FORMULARIO PARA O NOVO ALUNO 
-        FormNovoAluno fna = new FormNovoAluno();
+    private void btnNovoEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoEventoActionPerformed
+        //CHAMANDO FORMULARIO PARA NOVO EVENTO
+        FormSalvarEvento fne = new FormSalvarEvento();
         this.dispose();
-        fna.setVisible(true);
-    }//GEN-LAST:event_btnNovoAlunoActionPerformed
+        fne.setVisible(true);
+    }//GEN-LAST:event_btnNovoEventoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
+    private void tabEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEventosMouseClicked
+        // TODO add your handling code here:
+        int linha = tabEventos.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarEvento fne = new FormSalvarEvento();
+            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+            fne.setCodEvento(obj);
+            this.dispose();
+            fne.setVisible(true);
+        }
+    }//GEN-LAST:event_tabEventosMouseClicked
+
+    //ATUALIZANDO A TABELA
     public void atualizarTabela() {
-
-        AlunoDAO daoAluno = new AlunoDAO();
-        GrupoDAO daoGrupo = new GrupoDAO();
-
-        List<Aluno> lista = daoAluno.listar();
-        matrizAluno = new String[lista.size()][3];
-        Aluno aluno;
-
-        String[] colunas = {"RM", "NOME", "GRUPO"};
+        CtrlListarEvento ctrl = new CtrlListarEvento();
+        List<Evento> lista = ctrl.carregarRegistros();
+        
+        matrizLista = new String[lista.size()][4];
+        Evento evento;
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+        String[] colunas = {"ID", "EVENTOS", "LOCAL", "DATA"};
         for (int i = 0; i < lista.size(); i++) {
 
-            aluno = lista.get(i);
-            matrizAluno[i][0] = String.valueOf(aluno.getCodAluno());
-            matrizAluno[i][1] = aluno.getNomComp();
-            matrizAluno[i][2] = daoGrupo.buscarNomeGrupo(aluno.getCodGrupo());
+            evento = lista.get(i);
+            matrizLista[i][0] = String.valueOf(evento.getCodEvento());
+            matrizLista[i][1] = evento.getNomEvento();
+            matrizLista[i][2] = evento.getLocEvento();
+            matrizLista[i][3] = formatoData.format(evento.getDatEvento());
+            // matrizLista[i][3] = jLabel5.setIcon(icon);
+//            matrizLista[i][4] = evento.getCaminhoFoto();
+
         }
 
-        TableModel modeloTabela = new DefaultTableModel(matrizAluno, colunas);
-        tabAlunos.setModel(modeloTabela);
+        TableModel modeloTabela = new DefaultTableModel(matrizLista, colunas);
+        tabEventos.setModel(modeloTabela);
+
     }
 
     /**
@@ -176,32 +205,35 @@ public class FormAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormAluno().setVisible(true);
+                new FormListarEvento().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNovoAluno;
+    private javax.swing.JButton btnALterarEvento;
+    private javax.swing.JButton btnDeletarEvento;
+    private javax.swing.JButton btnNovoEvento;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDashboard;
-    private javax.swing.JTable tabAlunos;
+    private javax.swing.JTable tabEventos;
     // End of variables declaration//GEN-END:variables
 }

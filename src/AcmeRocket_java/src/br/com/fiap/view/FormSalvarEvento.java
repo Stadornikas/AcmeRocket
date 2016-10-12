@@ -24,10 +24,10 @@ import static javax.swing.JOptionPane.*;
  *
  * @author Thiago
  */
-public class FormNovoEvento extends javax.swing.JFrame {
+public class FormSalvarEvento extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormNovoEvento
+     * Creates new form FormSalvarEvento
      */
     public java.util.Date datEvento;
     private MaskFormatter mascaraData;
@@ -37,13 +37,13 @@ public class FormNovoEvento extends javax.swing.JFrame {
         this.codEvento = codEvento;
     }
     
-    public FormNovoEvento() {
+    public FormSalvarEvento() {
         initComponents();
         setLocationRelativeTo(this);
          lblDashboard.setForeground(Color.blue);
          lblEventos.setForeground(Color.blue);
     }
-    public FormNovoEvento(int elemento) {
+    public FormSalvarEvento(int elemento) {
         initComponents();
         setLocationRelativeTo(this);
          lblDashboard.setForeground(Color.blue);
@@ -82,7 +82,6 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblEventos = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtDeletarEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -168,14 +167,6 @@ public class FormNovoEvento extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
-        txtDeletarEvento.setText("Deletar");
-        txtDeletarEvento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtDeletarEventoMouseClicked(evt);
-            }
-        });
-        getContentPane().add(txtDeletarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -189,7 +180,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
     private void lblEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosMouseClicked
         //CHAMANDO FORMULARIO EVENTOS(LISTA)
         this.dispose();
-        FormEvento fe = new FormEvento();
+        FormListarEvento fe = new FormListarEvento();
         fe.setVisible(true);
     }//GEN-LAST:event_lblEventosMouseClicked
 
@@ -223,25 +214,10 @@ public class FormNovoEvento extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
             this.dispose();
-            FormEvento lf = new FormEvento();
+            FormListarEvento lf = new FormListarEvento();
             lf.setVisible(true);
         }
     }//GEN-LAST:event_btnCancelarEventoMouseClicked
-
-    private void txtDeletarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDeletarEventoMouseClicked
-        // TODO add your handling code here:
-        String msgBoxVazia = "Por favor informe o evento que deseja excluir.";
-        if (this.codEvento != -1) {
-            CtrlDeletarEvento ctrlDel = new CtrlDeletarEvento();
-            if (ctrlDel.confirmaExclusao()) {
-                ctrlDel.excluirEvento(codEvento);
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(this, msgBoxVazia);
-        }
-        this.voltarParaLista();
-    }//GEN-LAST:event_txtDeletarEventoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -257,7 +233,7 @@ public class FormNovoEvento extends javax.swing.JFrame {
 
     private void voltarParaLista(){
         this.dispose();
-        FormEvento lf = new FormEvento(); //lf -> Last Form
+        FormListarEvento lf = new FormListarEvento(); //lf -> Last Form
         lf.setVisible(true);
     }
     
@@ -278,20 +254,21 @@ public class FormNovoEvento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormNovoEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormNovoEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormNovoEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormNovoEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormNovoEvento().setVisible(true);
+                new FormSalvarEvento().setVisible(true);
             }
         });
     }
@@ -310,7 +287,6 @@ public class FormNovoEvento extends javax.swing.JFrame {
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblEventos;
     private javax.swing.JTextField txtDataEvento;
-    private javax.swing.JButton txtDeletarEvento;
     private javax.swing.JTextField txtEvento;
     private javax.swing.JTextField txtLocalEvento;
     // End of variables declaration//GEN-END:variables

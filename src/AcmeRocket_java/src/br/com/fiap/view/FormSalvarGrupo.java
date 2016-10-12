@@ -65,6 +65,9 @@ public class FormSalvarGrupo extends javax.swing.JFrame {
         cmbTurma = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -241,19 +244,6 @@ public class FormSalvarGrupo extends javax.swing.JFrame {
         }
         ctrlGrupo = null;
 
-//        String nomeGrupo = txtGrupo.getText();
-//        String evento = String.valueOf(cmbEvento.getSelectedItem());
-//        String turma = String.valueOf(cmbTurma.getSelectedItem());
-//
-//        GrupoDAO daoGrupo = new GrupoDAO();
-//        EventoDAO daoEvento = new EventoDAO();
-//        TurmaDAO daoTurma = new TurmaDAO();
-//
-//        Grupo grupo = new Grupo(nomeGrupo, daoTurma.buscarIdComboTurma(String.valueOf(turma)), daoEvento.buscarIdComboEvento(String.valueOf(evento)));
-//
-//        if (daoGrupo.inserir(grupo)) {
-//            JOptionPane.showMessageDialog(this, "Grupo cadastrado com sucesso!");
-//        }
 
     }//GEN-LAST:event_btnSalvarGrupoActionPerformed
 

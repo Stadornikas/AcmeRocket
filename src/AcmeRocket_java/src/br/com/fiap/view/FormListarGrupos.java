@@ -24,7 +24,7 @@ public class FormListarGrupos extends javax.swing.JFrame {
 
     String[][] matrizGrupo;
     int codigoGrupo;
-    
+
     public FormListarGrupos() {
         initComponents();
         setLocationRelativeTo(this);
@@ -53,6 +53,7 @@ public class FormListarGrupos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
+        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -165,7 +166,7 @@ public class FormListarGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void tabGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabGruposMouseClicked
-      /*int linha = tabGrupos.getSelectedRow();
+        /*int linha = tabGrupos.getSelectedRow();
         if (linha != -1) {
             FormSalvarGrupo fng = new FormSalvarGrupo();
             int obj = Integer.parseInt(String.valueOf(tabGrupos.getValueAt(linha, 0)));
@@ -184,18 +185,22 @@ public class FormListarGrupos extends javax.swing.JFrame {
             this.dispose();
             fng.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_btnEditarGrupoActionPerformed
 
     private void btnDeletarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarGrupoActionPerformed
         int linha = tabGrupos.getSelectedRow();
-        int codigoGrupo = Integer.parseInt(String.valueOf(tabGrupos.getValueAt(linha, 0)));
-        if (this.codigoGrupo != -1) {
-            CtrlDeletarGrupo ctrlGrupo = new CtrlDeletarGrupo();
-            if (ctrlGrupo.confirmaExclusao()) {
-                ctrlGrupo.excluirGrupo(codigoGrupo);
-                //this.voltarParaLista();
-                atualizarTabela();
+        if (linha != -1) {
+            if (this.codigoGrupo != -1) {
+                int codigoGrupo = Integer.parseInt(String.valueOf(tabGrupos.getValueAt(linha, 0)));
+                CtrlDeletarGrupo ctrlGrupo = new CtrlDeletarGrupo();
+                if (ctrlGrupo.confirmaExclusao()) {
+                    ctrlGrupo.excluirGrupo(codigoGrupo);
+                    //this.voltarParaLista();
+                    atualizarTabela();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);

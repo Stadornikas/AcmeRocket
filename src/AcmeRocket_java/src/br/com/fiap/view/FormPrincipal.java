@@ -14,7 +14,7 @@ import java.awt.Color;
 public class FormPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormAluno
+     * Creates new form FormListarAluno
      */
     public FormPrincipal() {
         initComponents();
@@ -348,7 +348,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void lblEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEventosMouseClicked
         //CHAMANDO FORMULARIO EVENTO
-        FormEvento fe = new FormEvento();
+        FormListarEvento fe = new FormListarEvento();
         this.dispose();
         fe.setVisible(true);
         
@@ -356,7 +356,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void lblPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPeriodosMouseClicked
         //CHAMANDO FORMULARIO PERIODO
-        FormPeriodo fp = new FormPeriodo();
+        FormListarPeriodo fp = new FormListarPeriodo();
         this.dispose();
         fp.setVisible(true);
     }//GEN-LAST:event_lblPeriodosMouseClicked
@@ -377,21 +377,21 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void lblAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlunoMouseClicked
         //CHAMANDO FORMULARIO ALUNO
-        FormAluno fa = new FormAluno();
+        FormListarAluno fa = new FormListarAluno();
         this.dispose();
         fa.setVisible(true);
     }//GEN-LAST:event_lblAlunoMouseClicked
 
     private void lblLancamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLancamentosMouseClicked
         //CHAMANDO FORMULARIO LANÇAMENTO
-        FormLancamento fl = new FormLancamento();
+        FormListarLancamento fl = new FormListarLancamento();
         this.dispose();
         fl.setVisible(true);
     }//GEN-LAST:event_lblLancamentosMouseClicked
 
     private void lblRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRankingMouseClicked
         //CHAMANDO FORMULARIO RANKING
-        FormRanking fr = new FormRanking();
+        FormListarRanking fr = new FormListarRanking();
         this.dispose();
         fr.setVisible(true);
     }//GEN-LAST:event_lblRankingMouseClicked

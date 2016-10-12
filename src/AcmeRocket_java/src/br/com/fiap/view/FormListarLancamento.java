@@ -17,11 +17,11 @@ import javax.swing.table.TableModel;
  *
  * @author Thiago
  */
-public class FormLancamento extends javax.swing.JFrame {
+public class FormListarLancamento extends javax.swing.JFrame {
 
     String[][] matrizLancamento;
 
-    public FormLancamento() {
+    public FormListarLancamento() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -44,9 +44,12 @@ public class FormLancamento extends javax.swing.JFrame {
         lblDashboard = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnDeletarLancamento = new javax.swing.JButton();
+        btnALterarLancamento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
+        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -105,6 +108,12 @@ public class FormLancamento extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
+        btnDeletarLancamento.setText("Deletar");
+        getContentPane().add(btnDeletarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 40));
+
+        btnALterarLancamento.setText("Alterar");
+        getContentPane().add(btnALterarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -117,7 +126,7 @@ public class FormLancamento extends javax.swing.JFrame {
 
     private void btnNovoLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoLancamentoActionPerformed
         // CHAMANDO O FORMULARIO NOVO LANÇAMENTO
-        FormNovoLancamento fnl = new FormNovoLancamento();
+        FormSalvarLancamento fnl = new FormSalvarLancamento();
         this.dispose();
         fnl.setVisible(true);
     }//GEN-LAST:event_btnNovoLancamentoActionPerformed
@@ -166,25 +175,28 @@ public class FormLancamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarLancamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormLancamento().setVisible(true);
+                new FormListarLancamento().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALterarLancamento;
+    private javax.swing.JButton btnDeletarLancamento;
     private javax.swing.JButton btnNovoLancamento;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
