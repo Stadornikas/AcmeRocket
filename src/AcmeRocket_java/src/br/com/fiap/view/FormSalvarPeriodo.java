@@ -22,7 +22,7 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
     public void setCodPeriodo(int codPeriodo) {
         this.codPeriodo = codPeriodo;
     }
-   
+
     /**
      * Creates new form FormNovoPeriodo2
      */
@@ -49,17 +49,14 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblStatus = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblPeriodo = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btnDeletarPeriodo = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -113,10 +110,6 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-01 51x51.png"))); // NOI18N
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        lblStatus.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
-        lblStatus.setText("Inserir");
-        getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
-
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
@@ -132,17 +125,9 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
-        btnDeletarPeriodo.setText("Deletar");
-        btnDeletarPeriodo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletarPeriodoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 100, -1));
-
         jLabel8.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel8.setText("Período");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -160,7 +145,7 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_lblPeriodoMouseClicked
 
     private void btnCancelarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarPeriodoActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0){
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.voltarParaLista();
         }
     }//GEN-LAST:event_btnCancelarPeriodoActionPerformed
@@ -171,12 +156,12 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         if (this.codPeriodo == -1) {
             ctrlPeriodo.inserirPeriodo(nomePeriodo);
             this.voltarParaLista();
-        }else{
+        } else {
             ctrlPeriodo.alterarPeriodo(codPeriodo, nomePeriodo);
             this.voltarParaLista();
         }
         ctrlPeriodo = null;
-        
+
     }//GEN-LAST:event_btnSalvarPeriodoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -185,30 +170,16 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
             Periodo p = ctrlPeriodo.carregarPeriodo(codPeriodo);
             txtPeriodo.setText(p.getNomPeriodo());
             ctrlPeriodo = null;
-            lblStatus.setText("Editar");
-        }else{
-            lblStatus.setText("Inserir");
+
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnDeletarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarPeriodoActionPerformed
-        if (this.codPeriodo != -1) {
-            CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
-            if (ctrlPeriodo.confirmaExclusao()) {
-                ctrlPeriodo.excluirPeriodo(codPeriodo);
-                this.voltarParaLista();
-            }
-        }else{
-            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar","Selecione uma opção", JOptionPane.YES_NO_OPTION);
-        }
-    }//GEN-LAST:event_btnDeletarPeriodoActionPerformed
-
-    private void voltarParaLista(){
+    private void voltarParaLista() {
         this.dispose();
         FormListarPeriodo lf = new FormListarPeriodo(); //lf -> Last Form
         lf.setVisible(true);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -249,7 +220,6 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarPeriodo;
-    private javax.swing.JButton btnDeletarPeriodo;
     private javax.swing.JButton btnSalvarPeriodo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -259,7 +229,6 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblPeriodo;
-    private javax.swing.JLabel lblStatus;
     private javax.swing.JTextField txtPeriodo;
     // End of variables declaration//GEN-END:variables
 }

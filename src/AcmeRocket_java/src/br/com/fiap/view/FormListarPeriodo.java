@@ -29,7 +29,6 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
-
     }
 
     /**
@@ -54,7 +53,6 @@ public class FormListarPeriodo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -138,6 +136,11 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         getContentPane().add(btnDeletarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 100, 40));
 
         btnALterarPeriodo.setText("Alterar");
+        btnALterarPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALterarPeriodoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnALterarPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, 40));
 
         pack();
@@ -157,21 +160,12 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         fnp.setVisible(true);
     }//GEN-LAST:event_btnNovoPeriodoActionPerformed
 
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
     private void tabPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPeriodosMouseClicked
 
-//        int linha = tabPeriodos.getSelectedRow();
-//        if (linha != -1) {
-//            FormSalvarPeriodo fnp = new FormSalvarPeriodo();
-//            int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
-//            fnp.setCodPeriodo(obj);
-//            this.dispose();
-//            fnp.setVisible(true);
-//        }
     }//GEN-LAST:event_tabPeriodosMouseClicked
 
     private void btnDeletarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarPeriodoActionPerformed
@@ -180,9 +174,10 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         if (linha != -1) {
 
             if (this.codPeriodo != -1) {
+                int codigoPeriodo = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
                 CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
                 if (ctrlPeriodo.confirmaExclusao()) {
-                    ctrlPeriodo.excluirPeriodo(codPeriodo);
+                    ctrlPeriodo.excluirPeriodo(codigoPeriodo);
                     atualizarTabela();
                 }
             } else {
@@ -193,6 +188,17 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnDeletarPeriodoActionPerformed
+
+    private void btnALterarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarPeriodoActionPerformed
+        int linha = tabPeriodos.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarPeriodo fng = new FormSalvarPeriodo();
+            int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
+            fng.setCodPeriodo(obj);
+            this.dispose();
+            fng.setVisible(true);
+        }
+    }//GEN-LAST:event_btnALterarPeriodoActionPerformed
 
     /**
      * Atualiza a tabela de registros

@@ -187,7 +187,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
     private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
 
-              String nomeEvento = txtEvento.getText();
+        String nomeEvento = txtEvento.getText();
         String locEvento = txtLocalEvento.getText();
         String datEventoFormated = txtDataEvento.getText();
 //
@@ -210,7 +210,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
         if (this.codEvento == -1) {
 
-            controle.inserirEvento(nomeEvento, locEvento, locEvento);
+            controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
             
         } else {
             controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
