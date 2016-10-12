@@ -18,11 +18,11 @@ import javax.swing.table.TableModel;
  *
  * @author Thiago
  */
-public class FormAluno extends javax.swing.JFrame {
+public class FormListarAluno extends javax.swing.JFrame {
 
     private String[][] matrizAluno;
 
-    public FormAluno() {
+    public FormListarAluno() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -37,6 +37,7 @@ public class FormAluno extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -45,6 +46,10 @@ public class FormAluno extends javax.swing.JFrame {
         lblDashboard = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnALterarAluno = new javax.swing.JButton();
+        btnDeletarAluno = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
@@ -116,6 +121,12 @@ public class FormAluno extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
+        btnALterarAluno.setText("Alterar");
+        getContentPane().add(btnALterarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 100, 40));
+
+        btnDeletarAluno.setText("Remover");
+        getContentPane().add(btnDeletarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,7 +139,7 @@ public class FormAluno extends javax.swing.JFrame {
 
     private void btnNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAlunoActionPerformed
         //CHAMANDO FORMULARIO PARA O NOVO ALUNO 
-        FormNovoAluno fna = new FormNovoAluno();
+        FormSalvarAluno fna = new FormSalvarAluno();
         this.dispose();
         fna.setVisible(true);
     }//GEN-LAST:event_btnNovoAlunoActionPerformed
@@ -176,26 +187,30 @@ public class FormAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormAluno().setVisible(true);
+                new FormListarAluno().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALterarAluno;
+    private javax.swing.JButton btnDeletarAluno;
     private javax.swing.JButton btnNovoAluno;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

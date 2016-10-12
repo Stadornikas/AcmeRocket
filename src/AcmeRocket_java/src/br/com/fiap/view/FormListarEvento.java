@@ -5,12 +5,14 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarEvento;
 import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -18,11 +20,12 @@ import javax.swing.table.TableModel;
  *
  * @author Thiago
  */
-public class FormEvento extends javax.swing.JFrame {
+public class FormListarEvento extends javax.swing.JFrame {
 
     private String matrizLista[][];
+    private int codEvento;
 
-    public FormEvento() {
+    public FormListarEvento() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -45,8 +48,12 @@ public class FormEvento extends javax.swing.JFrame {
         lblDashboard = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnDeletarEvento = new javax.swing.JButton();
+        btnALterarEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -118,6 +125,22 @@ public class FormEvento extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
+        btnDeletarEvento.setText("Deletar");
+        btnDeletarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarEventoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnDeletarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 100, 40));
+
+        btnALterarEvento.setText("Alterar");
+        btnALterarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALterarEventoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnALterarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -130,7 +153,7 @@ public class FormEvento extends javax.swing.JFrame {
 
     private void btnNovoEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoEventoActionPerformed
         //CHAMANDO FORMULARIO PARA NOVO EVENTO
-        FormNovoEvento fne = new FormNovoEvento();
+        FormSalvarEvento fne = new FormSalvarEvento();
         this.dispose();
         fne.setVisible(true);
     }//GEN-LAST:event_btnNovoEventoActionPerformed
@@ -141,21 +164,55 @@ public class FormEvento extends javax.swing.JFrame {
 
     private void tabEventosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabEventosMouseClicked
         // TODO add your handling code here:
+//        int linha = tabEventos.getSelectedRow();
+//        if (linha != -1) {
+//            FormSalvarEvento fne = new FormSalvarEvento();
+//            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+//            fne.setCodEvento(obj);
+//            this.dispose();
+//            fne.setVisible(true);
+//        }
+    }//GEN-LAST:event_tabEventosMouseClicked
+
+    private void btnDeletarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarEventoActionPerformed
+
         int linha = tabEventos.getSelectedRow();
         if (linha != -1) {
-            FormNovoEvento fne = new FormNovoEvento();
-            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
-            fne.setCodEvento(obj);
-            this.dispose();
-            fne.setVisible(true);
+            if (this.codEvento != -1) {
+                int codigoEvento = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+                CtrlDeletarEvento ctrlEvento = new CtrlDeletarEvento();
+                if (ctrlEvento.confirmaExclusao()) {
+                    ctrlEvento.excluirEvento(codigoEvento);
+                    //this.voltarParaLista();
+                    atualizarTabela();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um evento da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um evento da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
-    }//GEN-LAST:event_tabEventosMouseClicked
+
+    }//GEN-LAST:event_btnDeletarEventoActionPerformed
+
+    private void btnALterarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarEventoActionPerformed
+
+        int linha = tabEventos.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarEvento fng = new FormSalvarEvento();
+            int obj = Integer.parseInt(String.valueOf(tabEventos.getValueAt(linha, 0)));
+            fng.setCodEvento(obj);
+            this.dispose();
+            fng.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnALterarEventoActionPerformed
 
     //ATUALIZANDO A TABELA
     public void atualizarTabela() {
         CtrlListarEvento ctrl = new CtrlListarEvento();
         List<Evento> lista = ctrl.carregarRegistros();
-        
+
         matrizLista = new String[lista.size()][4];
         Evento evento;
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
@@ -194,25 +251,28 @@ public class FormEvento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarEvento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormEvento().setVisible(true);
+                new FormListarEvento().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALterarEvento;
+    private javax.swing.JButton btnDeletarEvento;
     private javax.swing.JButton btnNovoEvento;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;

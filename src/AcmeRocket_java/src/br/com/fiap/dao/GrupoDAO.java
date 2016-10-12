@@ -1,6 +1,6 @@
 package br.com.fiap.dao;
 
-import br.com.fiap.connection.Conexao;
+import br.com.fiap.conexao.Conexao;
 import br.com.fiap.entity.Grupo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -210,6 +210,52 @@ public class GrupoDAO {
         }
 
         return idGrupo;
+    }
+
+    public boolean existeGrupo(String nomeGrupo) {
+        boolean aux = false;
+
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM GRUPO WHERE NOM_GRUPO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nomeGrupo);
+            rs = ps.executeQuery();
+
+          
+
+            while (rs.next()) {
+                rs.getString("NOM_GRUPO");
+                  aux = true;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao verificar se existe grupo! \n ERRO: " + ex);
+        }
+
+        return aux;
+
+    }
+    
+    public int verificarQuantidadeDependencia(int codGrupo){
+        int qtdAluno = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT COUNT(*) qtd_alunos FROM ALUNOS WHERE GRUPO_COD_GRUPO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codGrupo);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                qtdAluno = rs.getInt("qtd_alunos");
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de alunos dependentes: " + ex);
+        }
+        
+        return qtdAluno;
     }
 
 }

@@ -31,11 +31,15 @@ public class CtrlListarEvento {
         int e = 0;
 
         EventoDAO dao = new EventoDAO();
-        e = dao.buscarIdComboEvento(codEvento);
-        if (e == 0) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo evento");
-        }
+        if (dao.buscarIdComboEvento(codEvento) > 0) {
+            e = dao.buscarIdComboEvento(codEvento);
 
+            if (e == 0) {
+                JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo evento");
+            }
+        } /*else {
+            JOptionPane.showMessageDialog(null, "Informe um evento!");
+        }*/
         return e;
     }
 

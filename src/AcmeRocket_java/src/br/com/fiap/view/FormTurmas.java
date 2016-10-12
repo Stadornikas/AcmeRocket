@@ -46,9 +46,12 @@ public class FormTurmas extends javax.swing.JFrame {
         lblDashboard = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnDeletarTurma = new javax.swing.JButton();
+        btnALterarTurma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
+        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -117,6 +120,12 @@ public class FormTurmas extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
+        btnDeletarTurma.setText("Deletar");
+        getContentPane().add(btnDeletarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 40));
+
+        btnALterarTurma.setText("Alterar");
+        getContentPane().add(btnALterarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, 40));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -129,7 +138,7 @@ public class FormTurmas extends javax.swing.JFrame {
 
     private void btnNovaTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaTurmaActionPerformed
         //CHAMANDO FORMULARIO NOVA TURMA
-        FormNovaTurma fnt = new FormNovaTurma();
+        FormSalvarTurma fnt = new FormSalvarTurma();
         this.dispose();
         fnt.setVisible(true);
     }//GEN-LAST:event_btnNovaTurmaActionPerformed
@@ -141,7 +150,7 @@ public class FormTurmas extends javax.swing.JFrame {
     private void tabTurmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTurmasMouseClicked
         int linha = tabTurmas.getSelectedRow();
         if (linha != -1) {
-            FormNovaTurma fnt = new FormNovaTurma();
+            FormSalvarTurma fnt = new FormSalvarTurma();
             int obj = Integer.parseInt(String.valueOf(tabTurmas.getValueAt(linha, 0)));
             fnt.setCodTurma(obj);
             this.dispose();
@@ -210,6 +219,8 @@ public class FormTurmas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnALterarTurma;
+    private javax.swing.JButton btnDeletarTurma;
     private javax.swing.JButton btnNovaTurma;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

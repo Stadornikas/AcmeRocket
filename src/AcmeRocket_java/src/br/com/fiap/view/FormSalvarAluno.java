@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  *
  * @author Thiago
  */
-public class FormNovoAluno extends javax.swing.JFrame {
+public class FormSalvarAluno extends javax.swing.JFrame {
 
     /**
      * Creates new form FormNovoAluno
      */
-    public FormNovoAluno() {
+    public FormSalvarAluno() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -54,7 +54,6 @@ public class FormNovoAluno extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblAlunos = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtDeletarAluno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -144,9 +143,6 @@ public class FormNovoAluno extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
-        txtDeletarAluno.setText("Deletar");
-        getContentPane().add(txtDeletarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,7 +171,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
 
     private void lblAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAlunosMouseClicked
         //CHAMANDO FORMULARIO ALUNOS(LISTA)
-        FormAluno fa = new FormAluno();
+        FormListarAluno fa = new FormListarAluno();
         this.dispose();
         fa.setVisible(true);
     }//GEN-LAST:event_lblAlunosMouseClicked
@@ -183,7 +179,7 @@ public class FormNovoAluno extends javax.swing.JFrame {
     private void btnCancelarAlunoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAlunoMouseClicked
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
-            FormAluno lf = new FormAluno();
+            FormListarAluno lf = new FormListarAluno();
             lf.setVisible(true);
         }
     }//GEN-LAST:event_btnCancelarAlunoMouseClicked
@@ -217,20 +213,21 @@ public class FormNovoAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormNovoAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormNovoAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormNovoAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormNovoAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormSalvarAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormNovoAluno().setVisible(true);
+                new FormSalvarAluno().setVisible(true);
             }
         });
     }
@@ -249,7 +246,6 @@ public class FormNovoAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblAlunos;
     private javax.swing.JLabel lblDashboard;
-    private javax.swing.JButton txtDeletarAluno;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRm;
     // End of variables declaration//GEN-END:variables
