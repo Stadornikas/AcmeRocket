@@ -46,7 +46,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtRm = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
-        cmbGrupo = new javax.swing.JComboBox<>();
+        cmbGrupo = new javax.swing.JComboBox<String>();
         btnCancelarAluno = new javax.swing.JButton();
         btnSalvarAluno = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -57,7 +57,6 @@ public class FormSalvarAluno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -93,7 +92,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Grupo" }));
+        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione um Grupo" }));
         cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
         cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
         getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, 20));

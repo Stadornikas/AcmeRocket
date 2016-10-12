@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
 
     private static Connection connection;
-    private static String url = "jdbc:mysql://localhost:3306/spacecup";
+    private static String url = "jdbc:mysql://localhost:3306/spacecup00";
     private static String usuario = "root";
     private static String senha = "";
     //private static String url = "jdbc:mysql://acmerocket.mysql.dbaas.com.br:3306/acmerocket";

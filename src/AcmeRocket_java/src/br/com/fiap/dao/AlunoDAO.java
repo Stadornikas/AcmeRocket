@@ -137,4 +137,47 @@ public class AlunoDAO {
         
     }
     
+    public int verificaQauntidadeDependencia(int codAluno){
+        int qtdGrupos = 0;
+        try {
+            connection = Conexao.getConnection();
+            sql = "SELECT COUNT(*) qtd_grupo FROM GRUPO WHERE GRUPO_COD_GRUPO = ?";
+            p = connection.prepareStatement(sql);
+            p.setInt(1, codAluno);
+            rs = p.executeQuery();
+            
+            while(rs.next()){
+                qtdGrupos = rs.getInt("qtd_grupo");
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de grupos dependentes: " + ex);
+        } 
+        
+        return qtdGrupos;
+    }
+    
+    
+    
+    public boolean existeAluno(int codAluno) {
+        Aluno a = null;
+        try {
+            connection = Conexao.getConnection();
+            sql = "SELECT * FROM ALUNO WHERE COD_ALUNO = ?";
+            p = connection.prepareStatement(sql);
+            p.setInt(1, codAluno);
+            rs = p.executeQuery();
+
+            while (rs.next()) {
+                a = new Aluno(rs.getInt("COD_ALUNO"),rs.getString("NOM_ALUNO"), rs.getInt("GRUPO_COD_GRUPO"));
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar maior cod aluno: " + ex);
+        }
+
+        return (p != null);
+
+    }
+    
 }

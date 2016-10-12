@@ -5,16 +5,10 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.controller.CtrlDeletarEvento;
-import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.controller.CtrlSalvarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -85,7 +79,6 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
-        setMinimumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
