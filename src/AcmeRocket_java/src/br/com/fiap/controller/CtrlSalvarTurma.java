@@ -25,7 +25,7 @@ public class CtrlSalvarTurma {
      */
     private boolean validarNomeDuplicidade(String nomeTurma){
         TurmaDAO dao = new TurmaDAO();
-        //retorna false caso o periodo exista no banco dados
+        //retorna false caso a turma exista no banco dados
 //        return !dao.existeTurma(nomeTurma); 
 return true;
 //TODO : CONTINUAR

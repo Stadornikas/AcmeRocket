@@ -1,19 +1,25 @@
 package br.com.fiap.conexao;
 
+import config.Propriedades;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 import javax.swing.JOptionPane;
 
 public class Conexao {
 
+    private static Properties prop =  Propriedades.getProp();
+    
     private static Connection connection;
-    private static String url = "jdbc:mysql://localhost:3306/spacecup";
-    private static String usuario = "root";
-    private static String senha = "";
-    //private static String url = "jdbc:mysql://acmerocket.mysql.dbaas.com.br:3306/acmerocket";
-    //private static String usuario = "acmerocket";
-    //private static String senha = "Acme@2016";
+    private static String url = prop.getProperty("prop.database.Driver");
+    private static String usuario = prop.getProperty("prop.database.User");
+    private static String senha = prop.getProperty("prop.database.Pass");
+//    private static String url = "jdbc:mysql://acmerocket.mysql.dbaas.com.br:3306/acmerocket";;
+//    private static String usuario = "acmerocket";
+//    private static String senha = "Acme@2016";
+    
+   
 
     public static Connection getConnection() {
         if (connection == null) {
