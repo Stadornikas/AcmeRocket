@@ -5,17 +5,11 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.controller.CtrlDeletarEvento;
-import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.controller.CtrlSalvarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.input.DataFormat;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -187,7 +181,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
     private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
 
-              String nomeEvento = txtEvento.getText();
+        String nomeEvento = txtEvento.getText();
         String locEvento = txtLocalEvento.getText();
         String datEventoFormated = txtDataEvento.getText();
 //
@@ -210,7 +204,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
         if (this.codEvento == -1) {
 
-            controle.inserirEvento(nomeEvento, locEvento, locEvento);
+            controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
             
         } else {
             controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);

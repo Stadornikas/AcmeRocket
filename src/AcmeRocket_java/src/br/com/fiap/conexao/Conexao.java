@@ -12,13 +12,13 @@ public class Conexao {
     private static Properties prop =  Propriedades.getProp();
     
     private static Connection connection;
+
     private static String url = prop.getProperty("prop.database.Driver");
     private static String usuario = prop.getProperty("prop.database.User");
     private static String senha = prop.getProperty("prop.database.Pass");
 //    private static String url = "jdbc:mysql://acmerocket.mysql.dbaas.com.br:3306/acmerocket";;
 //    private static String usuario = "acmerocket";
 //    private static String senha = "Acme@2016";
-    
    
 
     public static Connection getConnection() {

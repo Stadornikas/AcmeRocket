@@ -64,7 +64,7 @@ public class CtrlSalvarGrupo {
     public void inserirGrupo(String nomeGrupo, int codTurma, int codEvento) {
         //int codTurma = this.buscarIdComboTurma(nomeTurma);
         //int codEvento = this.buscarIdComboEvento(nomeEvento);
-        String msg = "Falha ao inserir período";
+        String msg = "Falha ao inserir grupo";
         boolean validacao = true;
 
         if (this.validarCamposObrigatorios(nomeGrupo, codTurma, codEvento)) {
@@ -95,7 +95,7 @@ public class CtrlSalvarGrupo {
     }
 
     public void alterarGrupo(int codGrupo, String nomeGrupo, int codTurma, int codEvento) {//alterar para salvarGrupo
-        String msg = "Falha ao alterar período";
+        String msg = "Falha ao alterar grupo";
         boolean validacao = true;
 
         if (this.validarCamposObrigatorios(nomeGrupo, codTurma, codEvento)) {

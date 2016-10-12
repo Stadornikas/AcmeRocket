@@ -175,7 +175,6 @@ public class FormListarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_tabEventosMouseClicked
 
     private void btnDeletarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarEventoActionPerformed
-
         int linha = tabEventos.getSelectedRow();
         if (linha != -1) {
             if (this.codEvento != -1) {

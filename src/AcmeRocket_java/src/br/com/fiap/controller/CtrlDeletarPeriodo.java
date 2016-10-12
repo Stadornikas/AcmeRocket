@@ -58,6 +58,7 @@ public class CtrlDeletarPeriodo {
         if (validacao) {
             PeriodoDAO dao = new PeriodoDAO();
             if(dao.deletar(codPeriodo)) msg = "Período deletado com sucesso";
+            
         }
         
         JOptionPane.showMessageDialog(null, msg); 
