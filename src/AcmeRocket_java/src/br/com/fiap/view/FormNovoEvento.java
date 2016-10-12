@@ -85,6 +85,9 @@ public class FormNovoEvento extends javax.swing.JFrame {
         txtDeletarEvento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(null);
+        setMinimumSize(null);
+        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -246,6 +249,8 @@ public class FormNovoEvento extends javax.swing.JFrame {
             CtrlSalvarEvento ctrlEvento = new CtrlSalvarEvento();
             Evento e = ctrlEvento.carregarEvento(codEvento);
             txtEvento.setText(e.getNomEvento());
+            //txtDeletarEvento.setText(e.getDatEvento());
+            txtLocalEvento.setText(e.getLocEvento());
             ctrlEvento = null;
         }
     }//GEN-LAST:event_formWindowOpened

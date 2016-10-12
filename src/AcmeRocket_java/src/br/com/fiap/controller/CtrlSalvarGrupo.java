@@ -44,7 +44,7 @@ public class CtrlSalvarGrupo {
         TurmaDAO dao = new TurmaDAO();
         t = dao.buscarNomeTurma(codTurma);
         if (t == null) {
-            JOptionPane.showMessageDialog(null, "Nenhum turma encontrada");
+            JOptionPane.showMessageDialog(null, "Erro ao listar combo turma");
         }
         return t;
     }
@@ -55,25 +55,32 @@ public class CtrlSalvarGrupo {
         EventoDAO dao = new EventoDAO();
         e = dao.buscarNomeEvento(codEvento);
         if (e == null) {
-            JOptionPane.showMessageDialog(null, "Nenhum evento encontrada");
+            JOptionPane.showMessageDialog(null, "Erro ao listar combo evento");
         }
 
         return e;
     }
+
     public void inserirGrupo(String nomeGrupo, int codTurma, int codEvento) {
         //int codTurma = this.buscarIdComboTurma(nomeTurma);
         //int codEvento = this.buscarIdComboEvento(nomeEvento);
         String msg = "Falha ao inserir período";
         boolean validacao = true;
 
-//        if (!this.validarCamposObrigatorios(nomePeriodo)) {
-//            msg =  "Preencha os campos Obrigatórios";
-//            validacao = false;
-//        }
-//        if(!this.validarNomeDuplicidade(nomeGrupo)) {
-//            msg =  "Já existe um período com este nome";
-//            validacao = false;
-//        }
+        if (this.validarCamposObrigatorios(nomeGrupo, codTurma, codEvento)) {
+            msg = "Informe os campos obrigatorios";
+            validacao = false;
+        }
+        if (this.validarNomeDuplicidade(nomeGrupo)) {
+            msg = "Já existe um grupo com este nome";
+            validacao = false;
+        }
+
+        if (this.validarTamanhoNomeGrupo(nomeGrupo)) {
+            msg = "Informe um grupo com um nome maior que 4 caracteres";
+            validacao = false;
+        }
+
         if (validacao) {
             Grupo g = new Grupo(nomeGrupo, codTurma, codEvento);
             GrupoDAO dao = new GrupoDAO();
@@ -91,10 +98,10 @@ public class CtrlSalvarGrupo {
         String msg = "Falha ao alterar período";
         boolean validacao = true;
 
-//        if (!this.validarCamposObrigatorios(nomePeriodo)) {
-//            msg =  "Preencha os campos Obrigatórios";
-//            validacao = false;
-//        }
+        if (this.validarCamposObrigatorios(nomeGrupo, codTurma, codEvento)) {
+            msg = "Preencha os campos Obrigatórios";
+            validacao = false;
+        }
         if (validacao) {
             Grupo g = new Grupo(codGrupo, nomeGrupo, codTurma, codEvento);
             GrupoDAO dao = new GrupoDAO();
@@ -105,6 +112,37 @@ public class CtrlSalvarGrupo {
         }
 
         JOptionPane.showMessageDialog(null, msg);
+    }
+
+    public boolean validarNomeDuplicidade(String nomeGrupo) {
+        boolean aux = false;
+
+        GrupoDAO dao = new GrupoDAO();
+
+        if (dao.existeGrupo(nomeGrupo)) {
+            aux = true;
+        }
+
+        return aux;
+    }
+
+    public boolean validarCamposObrigatorios(String nomeGrupo, int codTurma, int codEvento) {
+        boolean aux = false;
+
+        if ((nomeGrupo.equalsIgnoreCase("")) || (codTurma == 0) || (codEvento == 0)) {
+            aux = true;
+        }
+
+        return aux;
+    }
+
+    public boolean validarTamanhoNomeGrupo(String nomeGrupo) {
+        boolean aux = false;
+
+        if (nomeGrupo.length() < 4) {
+            aux = true;
+        }
+        return aux;
     }
 
 }

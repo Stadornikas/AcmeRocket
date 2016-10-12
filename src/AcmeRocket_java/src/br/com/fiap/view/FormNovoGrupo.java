@@ -245,10 +245,10 @@ public class FormNovoGrupo extends javax.swing.JFrame {
         if (this.codigoGrupo == -1) {
 
             ctrlGrupo.inserirGrupo(nomePeriodo, ctrlTurma.buscarIdComboTurma(turma), ctrlEvento.buscarIdComboEvento(evento));
-            this.voltarParaLista();
+       
         } else {
             ctrlGrupo.alterarGrupo(codigoGrupo, nomePeriodo, ctrlTurma.buscarIdComboTurma(turma), ctrlEvento.buscarIdComboEvento(evento));
-            this.voltarParaLista();
+       
         }
         ctrlGrupo = null;
 
