@@ -370,7 +370,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void lblGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGruposMouseClicked
         //CHAMANDO FORMULARIO GRUPO
-        FormGrupos fg = new FormGrupos();
+        FormListarGrupos fg = new FormListarGrupos();
         this.dispose();
         fg.setVisible(true);
     }//GEN-LAST:event_lblGruposMouseClicked
