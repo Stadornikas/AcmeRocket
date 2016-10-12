@@ -94,7 +94,7 @@ public class CtrlSalvarGrupo {
 
     }
 
-    public void alterarGrupo(int codGrupo, String nomeGrupo, int codTurma, int codEvento) {
+    public void alterarGrupo(int codGrupo, String nomeGrupo, int codTurma, int codEvento) {//alterar para salvarGrupo
         String msg = "Falha ao alterar período";
         boolean validacao = true;
 
@@ -114,7 +114,7 @@ public class CtrlSalvarGrupo {
         JOptionPane.showMessageDialog(null, msg);
     }
 
-    public boolean validarNomeDuplicidade(String nomeGrupo) {
+    public boolean validarNomeDuplicidade(String nomeGrupo) {//alterar para verificaExistencia
         boolean aux = false;
 
         GrupoDAO dao = new GrupoDAO();
@@ -136,7 +136,7 @@ public class CtrlSalvarGrupo {
         return aux;
     }
 
-    public boolean validarTamanhoNomeGrupo(String nomeGrupo) {
+    public boolean validarTamanhoNomeGrupo(String nomeGrupo) {//alterar para validarNumCaracteres
         boolean aux = false;
 
         if (nomeGrupo.length() < 4) {
