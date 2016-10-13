@@ -288,7 +288,7 @@ public class FormSalvarTurma extends javax.swing.JFrame {
                 new FormSalvarTurma().setVisible(true);
             }
         });
-    }
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarTurma;
