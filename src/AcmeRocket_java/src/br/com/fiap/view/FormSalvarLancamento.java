@@ -195,6 +195,11 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         btnCancelarLancamento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnCancelarLancamento.setText("Cancelar");
+        btnCancelarLancamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarLancamentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 345, 110, -1));
 
         btnSalvarLancamento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -480,7 +485,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
         String grupo = "";
-        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex()== 0) {
+        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex() == 0) {
             grupo = String.valueOf(cmbGrupo.getSelectedItem());
         } else {
             //grupo = 0;
@@ -615,6 +620,14 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     private void chkLancamentoFalhouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLancamentoFalhouActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkLancamentoFalhouActionPerformed
+
+    private void btnCancelarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLancamentoActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
+            this.dispose();
+            FormListarLancamento fll = new FormListarLancamento();
+            fll.setVisible(true);
+        }
+    }//GEN-LAST:event_btnCancelarLancamentoActionPerformed
 
     private void voltarParaLista() {//
         this.dispose();

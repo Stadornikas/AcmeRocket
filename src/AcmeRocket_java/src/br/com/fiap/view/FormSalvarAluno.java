@@ -93,7 +93,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
         cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione um Grupo" }));
+        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Selecione um Grupo"}));
         cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
         cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
         cmbGrupo.addActionListener(new java.awt.event.ActionListener() {
@@ -156,54 +156,60 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {
         int rm = 0;
-        
-        if (txtRm.getText().equals("")) {
 
-             rm = Integer.parseInt(lbRm.getText());
-        }else{
-             rm = Integer.parseInt(txtRm.getText());
-        }
+//        if (txtRm.getText().equals("")) {
+//            rm = Integer.parseInt(lbRm.getText());
+//        } else {
+//            rm = Integer.parseInt(txtRm.getText());
+//        }
         String nomeAluno = txtNome.getText();
         String codGrupo = String.valueOf(cmbGrupo.getSelectedItem());
-
+        String rmT = txtRm.getText();
         CtrlSalvarAluno controle = new CtrlSalvarAluno();
         CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
 
         if (codAluno == -1) {
 
+            if (rmT.equalsIgnoreCase("")) {
+
+                rm = 0;
+            } else {
+                rm = Integer.parseInt(rmT);
+            }
+
             controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
 
         } else {
-            controle.editarAluno(rm, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+            controle.editarAluno(codAluno, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
         }
 
-    }                                              
+    }
 
-    private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {
         //CHAMANDO FORMULARIO PRINCIPAL
         FormPrincipal fp = new FormPrincipal();
         this.dispose();
         fp.setVisible(true);
-    }                                         
+    }
 
-    private void lblAlunosMouseClicked(java.awt.event.MouseEvent evt) {                                       
+    private void lblAlunosMouseClicked(java.awt.event.MouseEvent evt) {
         //CHAMANDO FORMULARIO ALUNOS(LISTA)
         FormListarAluno fa = new FormListarAluno();
         this.dispose();
         fa.setVisible(true);
-    }                                      
+    }
 
-    private void btnCancelarAlunoMouseClicked(java.awt.event.MouseEvent evt) {                                              
+    private void btnCancelarAlunoMouseClicked(java.awt.event.MouseEvent evt) {
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
             this.dispose();
             FormListarAluno lf = new FormListarAluno();
             //lf.setVisible(true);
         }
-    }                                             
+    }
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {                                  
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {
 
         if (codAluno == -1) {
             CtrlSalvarAluno ctrlAluno = new CtrlSalvarAluno();
@@ -215,7 +221,6 @@ public class FormSalvarAluno extends javax.swing.JFrame {
 
         } else {
 
-//Em caso de edicao os campos vem carregados com os dados da turma
             CtrlSalvarAluno ctrlAluno = new CtrlSalvarAluno();
             Aluno a = ctrlAluno.carregarAluno(codAluno);
             ArrayList<Grupo> lista = ctrlAluno.carregarRegistrosGrupo();
@@ -224,8 +229,10 @@ public class FormSalvarAluno extends javax.swing.JFrame {
                 this.voltarParaLista();
             }
 
-            txtRm.setVisible(false);
-            lbRm.setText(String.valueOf(a.getCodAluno()).toString());
+            txtRm.setText(String.valueOf(a.getCodAluno()).toString());
+
+            txtRm.setEditable(false);
+            //lbRm.setText(String.valueOf(a.getCodAluno()).toString());
 
             for (Grupo t : lista) {
                 cmbGrupo.addItem(t.getNomGrupo());
@@ -243,7 +250,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
          * GrupoDAO(); listaEvento = daoEvento.listar(); for (Grupo g :
          * listaEvento) { cmbGrupo.addItem(g.getNomGrupo()); }
          */
-    }                                 
+    }
 
     private void cmbGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGrupoActionPerformed
         // TODO add your handling code here:
@@ -252,7 +259,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
     private void voltarParaLista() {//
         this.dispose();
         FormListarAluno a = new FormListarAluno();
-       // a.setVisible(true);
+        // a.setVisible(true);
     }
 
     /**

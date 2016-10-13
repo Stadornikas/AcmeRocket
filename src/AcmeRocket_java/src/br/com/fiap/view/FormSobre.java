@@ -71,8 +71,6 @@ public class FormSobre extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -184,41 +182,41 @@ public class FormSobre extends javax.swing.JFrame {
         jLabel20.setText("desenvolvimento da AM");
         jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        jLabel21.setText("Apperar.in");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
+        jLabel21.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel21.setText("Appear.in");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
-        jLabel22.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel22.setText("NetBeans");
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel23.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel23.setText("Astah");
         jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel24.setText("Dev C ++");
         jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        jLabel25.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel25.setText("Eclipse");
         jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        jLabel26.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel26.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel26.setText("MySql");
         jPanel2.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
-        jLabel27.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel27.setText("Bitbucket");
         jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        jLabel28.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel28.setText("Trello");
         jPanel2.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
-        jLabel29.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        jLabel29.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel29.setText("Skype");
-        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+        jPanel2.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 280, 220));
 

@@ -79,6 +79,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         lblEventos = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(723, 420));
@@ -165,6 +166,10 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel5.setText("* Campos obrigatórios");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel10.setText("* Campos obrigatórios");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -283,6 +288,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarEvento;
     private javax.swing.JButton btnSalvarEvento;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

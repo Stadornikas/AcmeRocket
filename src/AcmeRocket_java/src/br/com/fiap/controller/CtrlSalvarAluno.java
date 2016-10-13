@@ -47,7 +47,7 @@ public class CtrlSalvarAluno {
             validacao = false;
         }
         if (!this.verificarExistencia(codAluno)) {
-            msg = "Já existe um aluno com este RM";
+            msg += " Já existe um aluno com este RM";
             validacao = false;
         }
 
