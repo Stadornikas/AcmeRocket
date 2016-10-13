@@ -10,6 +10,7 @@ import br.com.fiap.entity.Ranking;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -20,6 +21,7 @@ import javax.swing.table.TableModel;
 public class FormListarRanking extends javax.swing.JFrame {
 
     private String[][] matrizRanking;
+    ArrayList<Ranking> lista;
 
     /**
      * Creates new form FormRanking
@@ -97,6 +99,11 @@ public class FormListarRanking extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tabRanking.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabRankingMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabRanking);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 700, 250));
@@ -113,7 +120,7 @@ public class FormListarRanking extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         CtrlListarRanking ctrlListarRanking = new CtrlListarRanking();
-        ArrayList<Ranking> lista = ctrlListarRanking.listarRanking();
+        lista = ctrlListarRanking.listarRanking();
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         matrizRanking = new String[lista.size()][6];
         Ranking ranking;
@@ -135,6 +142,27 @@ public class FormListarRanking extends javax.swing.JFrame {
         TableModel modeloTabela = new DefaultTableModel(matrizRanking, colunas);
         tabRanking.setModel(modeloTabela);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tabRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabRankingMouseClicked
+          int linha = tabRanking.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarLancamento fng = new FormSalvarLancamento();
+            String horaLanc = String.valueOf(tabRanking.getValueAt(linha, 2));
+            int idLanc = -1;
+            for (Ranking ranking : lista) {
+                if (horaLanc.equalsIgnoreCase(ranking.getHorLancamento())) {
+                    CtrlListarRanking clr = new CtrlListarRanking();
+                    idLanc = clr.obterIdLancamento(horaLanc);
+                    break;
+                }
+            }
+            if (idLanc  != -1) {
+                fng.setCodLancamento(idLanc);
+                this.dispose();
+                fng.setVisible(true);
+            }
+        } 
+    }//GEN-LAST:event_tabRankingMouseClicked
 
     /**
      * @param args the command line arguments

@@ -52,8 +52,6 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         btnALterarPeriodo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -79,11 +77,6 @@ public class FormListarPeriodo extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        tabPeriodos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabPeriodosMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabPeriodos);
@@ -164,10 +157,6 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
-    private void tabPeriodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPeriodosMouseClicked
-
-    }//GEN-LAST:event_tabPeriodosMouseClicked
-
     private void btnDeletarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarPeriodoActionPerformed
         int linha = tabPeriodos.getSelectedRow();
 
@@ -189,9 +178,9 @@ public class FormListarPeriodo extends javax.swing.JFrame {
     private void btnALterarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarPeriodoActionPerformed
         int linha = tabPeriodos.getSelectedRow();
         if (linha != -1) {
-            FormSalvarPeriodo fng = new FormSalvarPeriodo();
+            FormSalvarLancamento fng = new FormSalvarLancamento();
             int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
-            fng.setCodPeriodo(obj);
+            fng.setCodLancamento(obj);
             this.dispose();
             fng.setVisible(true);
         } else {
