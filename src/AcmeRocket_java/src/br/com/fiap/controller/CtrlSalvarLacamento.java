@@ -39,16 +39,7 @@ public class CtrlSalvarLacamento {
         JOptionPane.showMessageDialog(null, msg);
 
     }
-
-    public Lancamento carregarLancamento(int codLancamento) {
-        LancamentoDAO dao = new LancamentoDAO();
-        Lancamento l = dao.buscar(codLancamento);
-        if (l == null) {
-            JOptionPane.showMessageDialog(null, "Nenhum lançamento encontrado");
-        }
-        return l;
-    }
-
+    
     public ArrayList<Grupo> carregarRegistrosGrupo() {
         GrupoDAO dao = new GrupoDAO();
         return dao.listar();

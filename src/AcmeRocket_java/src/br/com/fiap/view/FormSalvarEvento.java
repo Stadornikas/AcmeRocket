@@ -206,8 +206,10 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
             controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
             
+            JOptionPane.showMessageDialog(this, "Evento criado com sucesso!");
         } else {
             controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
+            JOptionPane.showMessageDialog(this, "Evento alterado com sucesso!");
         }
 
 //        this.voltarParaLista();

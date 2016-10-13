@@ -6,6 +6,7 @@
 package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlListarGrupo;
+import br.com.fiap.controller.CtrlListarLancamento;
 import br.com.fiap.controller.CtrlSalvarLacamento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Lancamento;
@@ -516,7 +517,8 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         } else {
 
             CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
-            Lancamento l = ctrlLancamento.carregarLancamento(codigoLancamento);
+            CtrlListarLancamento ctrlListarLancamento = new CtrlListarLancamento();
+            Lancamento l = ctrlListarLancamento.carregarLancamento(codigoLancamento);
             ArrayList<Grupo> lista = ctrlLancamento.carregarRegistrosGrupo();
 
             if (l == null) {
@@ -543,10 +545,10 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             txtAltitudeDeEjecao.setText(String.valueOf(l.getAltEje()));
             txtTaxaDeDescida.setText(String.valueOf(l.getTaxDes()));
             txtDuracaoVoo.setText(String.valueOf(l.getDurVoo()));
-            txtDistanciaAlvo.setText(String.valueOf(l.getDisAlvo()));
+            txtQuedaAteAlvo.setText(String.valueOf(l.getDisQueda()));
             if (l.getStatus() == 1) {
                 cmbStatusLancamento.setSelectedIndex(0);
-            }else{
+            } else {
                 cmbStatusLancamento.setSelectedIndex(1);
             }
 
