@@ -7,7 +7,7 @@ package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlListarGrupo;
 import br.com.fiap.controller.CtrlListarLancamento;
-import br.com.fiap.controller.CtrlSalvarLacamento;
+import br.com.fiap.controller.CtrlSalvarLancamento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
@@ -503,7 +503,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         float duracaoVoo = 0;
         float distanciaQuedaAlvo = 0;
 
-        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
+        CtrlSalvarLancamento ctrlLacamentoo = new CtrlSalvarLancamento();
         CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
         Lancamento l = null;
 
@@ -562,7 +562,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         if (this.codigoLancamento == -1) {
 
-            CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
+            CtrlSalvarLancamento ctrlLancamento = new CtrlSalvarLancamento();
 
             ArrayList<Grupo> listaGrupo = ctrlLancamento.carregarRegistrosGrupo();
 
@@ -572,7 +572,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         } else {
 
-            CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
+            CtrlSalvarLancamento ctrlLancamento = new CtrlSalvarLancamento();
             CtrlListarLancamento ctrlListarLancamento = new CtrlListarLancamento();
             Lancamento l = ctrlListarLancamento.carregarLancamento(codigoLancamento);
             ArrayList<Grupo> lista = ctrlLancamento.carregarRegistrosGrupo();
