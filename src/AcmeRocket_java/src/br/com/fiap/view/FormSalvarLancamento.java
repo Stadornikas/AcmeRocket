@@ -485,6 +485,10 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
         String grupo = "";
+        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
+        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
+        Lancamento l = null;
+
         if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex()== 0) {
             grupo = String.valueOf(cmbGrupo.getSelectedItem());
         } else {
@@ -508,10 +512,8 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         float duracaoVoo = 0;
         float distanciaQuedaAlvo = 0;
 
-        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
-        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
-        Lancamento l = null;
-
+        
+        
         if (chkLancamentoFalhou.isSelected()) {
             status = 3;
             //PARA SER LANÇAMENTO OK OS DOIS PRECISA SER VADEIRO
