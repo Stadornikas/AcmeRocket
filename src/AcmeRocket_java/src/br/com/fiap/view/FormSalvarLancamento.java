@@ -489,17 +489,18 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
         Lancamento l = null;
 
-        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex()== 0) {
+        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex() == 0) {
 
             grupo = String.valueOf(cmbGrupo.getSelectedItem());
+
         } else {
             //grupo = 0;
         }
         String hora = txtHora.getText();
-        float angulo = Float.parseFloat(txtAngulo.getText());
-        float distanciaDoALvo = Float.parseFloat(txtDistanciaAlvo.getText());
-        float velocidadeVento = Float.parseFloat(txtVelocidadeDoVento.getText());
-        float pesoFoguete = Float.parseFloat(txtPesoFoguete.getText());
+        String angulo = String.valueOf(txtAngulo.getText());
+        String distanciaDoALvo = String.valueOf(txtDistanciaAlvo.getText());
+        String velocidadeVento = String.valueOf(txtVelocidadeDoVento.getText());
+        String pesoFoguete = String.valueOf(txtPesoFoguete.getText());
         int status = 0;
         float altitudeMaxima = 0;
         float velocidadeMaxima = 0;
@@ -512,6 +513,17 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         float taxaDecida = 0;
         float duracaoVoo = 0;
         float distanciaQuedaAlvo = 0;
+
+        if (hora.equalsIgnoreCase("") || angulo.equalsIgnoreCase("") || distanciaDoALvo.equalsIgnoreCase("")
+                || velocidadeVento.equalsIgnoreCase("") || pesoFoguete.equalsIgnoreCase("")) {
+
+            hora = String.valueOf(0);
+            angulo = String.valueOf(0);
+            distanciaDoALvo = String.valueOf(0);
+            velocidadeVento = String.valueOf(0);
+            pesoFoguete = String.valueOf(0);
+
+        }
 
         if (chkLancamentoFalhou.isSelected()) {
             status = 3;
@@ -540,20 +552,28 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         if (status != 0) {
             if (this.codigoLancamento == -1) {
 
-                l = new Lancamento(ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
-                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
+                l = new Lancamento(ctrlGrupo.buscarIdComboGrupo(grupo), hora,
+                        status, Float.parseFloat(angulo), Float.parseFloat(velocidadeVento),
+                        Float.parseFloat(distanciaDoALvo), Float.parseFloat(pesoFoguete), altitudeMaxima,
+                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida,
+                        tempoEjecao, altiduteEjecao,
                         taxaDecida, duracaoVoo, distanciaQuedaAlvo);
 
-                ctrlLacamentoo.inserirLancamento(l);
+                if (ctrlLacamentoo.inserirLancamento(l)) {
+                    this.voltarParaLista();
+                }
 
-                this.voltarParaLista();
             } else {
-                l = new Lancamento(codigoLancamento, ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
-                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
+                l = new Lancamento(codigoLancamento, ctrlGrupo.buscarIdComboGrupo(grupo),
+                        hora, status, Float.parseFloat(angulo), Float.parseFloat(velocidadeVento),
+                        Float.parseFloat(distanciaDoALvo), Float.parseFloat(pesoFoguete), altitudeMaxima,
+                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia,
+                        tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
                         taxaDecida, duracaoVoo, distanciaQuedaAlvo);
 
-                ctrlLacamentoo.editarLancamento(l);
-                this.voltarParaLista();
+                if (ctrlLacamentoo.editarLancamento(l)) {
+                    this.voltarParaLista();
+                }
             }
         }
 
@@ -561,7 +581,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarLancamentoActionPerformed
 
     private void txtAnguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnguloActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtAnguloActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -608,11 +628,9 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             txtTaxaDeDescida.setText(String.valueOf(l.getTaxDes()));
             txtDuracaoVoo.setText(String.valueOf(l.getDurVoo()));
             txtQuedaAteAlvo.setText(String.valueOf(l.getDisQueda()));
-//            if (l.getStatus() == 1) {
-//                cmbStatusLancamento.setSelectedIndex(0);
-//            } else {
-//                cmbStatusLancamento.setSelectedIndex(1);
-//            }
+            if (l.getStatus() == 3) {
+                chkLancamentoFalhou.setSelected(true);
+            }
 
         }
 
@@ -667,7 +685,6 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         return aux;
     }
-    
 
     /**
      * @param args the command line arguments

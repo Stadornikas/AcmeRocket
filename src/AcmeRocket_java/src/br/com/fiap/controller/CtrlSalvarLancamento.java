@@ -28,36 +28,40 @@ public class CtrlSalvarLancamento {
         return aux;
     }
 
-    public void inserirLancamento(Lancamento lancamento) {
-
+    public boolean inserirLancamento(Lancamento lancamento) {
+        boolean aux = false;
         String msg = "Falha ao inserir lançamento";
         boolean validacao = true;
-        if (validar(lancamento.getCodGrupo())) {
+        if (validar(lancamento.getCodGrupo(), lancamento.getHorLancamento(),
+                lancamento.getAngLancamento(), lancamento.getDisAlvo(), lancamento.getVelVento(),
+                lancamento.getPesFoguete())) {
             validacao = false;
-            msg = "Informe um grupo";
+            msg = "Informe os campos obrigatorios";
         }
 
         LancamentoDAO dao = new LancamentoDAO();
         if (validacao) {
             if (dao.inserir(lancamento)) {
                 msg = "Laçamento Criado com sucesso";
+                aux = true;
             }
         }
         JOptionPane.showMessageDialog(null, msg);
-
+        return aux;
     }
 
-    public void editarLancamento(Lancamento lancamento) {
-
+    public boolean editarLancamento(Lancamento lancamento) {
+        boolean aux = false;
         String msg = "Falha ao alterar lançamento";
 
         LancamentoDAO dao = new LancamentoDAO();
         if (dao.alterar(lancamento)) {
             msg = "lançamento Alteardo com sucesso";
+            aux = true;
         }
 
         JOptionPane.showMessageDialog(null, msg);
-
+        return aux;
     }
 
     public ArrayList<Grupo> carregarRegistrosGrupo() {
@@ -75,17 +79,18 @@ public class CtrlSalvarLancamento {
         return t;
     }
 
-    public boolean validar(int codGrupo) {
+    public boolean validar(int codGrupo, String hora, float angulo, float distanciaDoALvo,
+            float velocidadeVento, float pesoFoguete) {
         boolean aux = false;
 
-        if (codGrupo == 0) {
+        if (codGrupo == 0 || hora.equalsIgnoreCase("0") || angulo == 0 || distanciaDoALvo == 0
+                || velocidadeVento == 0 || pesoFoguete == 0) {
             aux = true;
 
         }
         return aux;
     }
-//
-//    public int calcularStatus() {
-//
+
+    //public int calcularStatus() {
 //    }
 }
