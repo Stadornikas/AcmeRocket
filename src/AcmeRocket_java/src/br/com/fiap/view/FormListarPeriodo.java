@@ -207,7 +207,7 @@ public class FormListarPeriodo extends javax.swing.JFrame {
         List<Periodo> lista = controle.CarregarRegistros();
         Periodo periodo;
 
-        if (lista.size() > 0) {
+        if (lista.size() >= 0) {
 
             matrizLista = new String[lista.size()][3];
             String[] colunas = {"ID", "PERÍODOS"};
