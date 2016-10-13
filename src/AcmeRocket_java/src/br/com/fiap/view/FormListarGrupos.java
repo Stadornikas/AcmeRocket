@@ -165,14 +165,7 @@ public class FormListarGrupos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void tabGruposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabGruposMouseClicked
-        /*int linha = tabGrupos.getSelectedRow();
-        if (linha != -1) {
-            FormSalvarGrupo fng = new FormSalvarGrupo();
-            int obj = Integer.parseInt(String.valueOf(tabGrupos.getValueAt(linha, 0)));
-            fng.setCodGrupo(obj);
-            this.dispose();
-            fng.setVisible(true);
-        }*/
+        
     }//GEN-LAST:event_tabGruposMouseClicked
 
     private void btnEditarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarGrupoActionPerformed
