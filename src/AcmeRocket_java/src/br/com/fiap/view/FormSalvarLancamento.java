@@ -485,15 +485,12 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
         String grupo = "";
-<<<<<<< HEAD
-        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex() == 0) {
-=======
         CtrlSalvarLancamento ctrlLacamentoo = new CtrlSalvarLancamento();
         CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
         Lancamento l = null;
 
         if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex()== 0) {
->>>>>>> e132ed05629c39ed17aaa0db416c2543185e4d62
+
             grupo = String.valueOf(cmbGrupo.getSelectedItem());
         } else {
             //grupo = 0;
@@ -627,13 +624,13 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void btnCancelarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLancamentoActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
-<<<<<<< HEAD
+
             this.dispose();
             FormListarLancamento fll = new FormListarLancamento();
             fll.setVisible(true);
-=======
+
             this.voltarParaLista();
->>>>>>> e132ed05629c39ed17aaa0db416c2543185e4d62
+
         }
     }//GEN-LAST:event_btnCancelarLancamentoActionPerformed
 

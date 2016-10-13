@@ -156,63 +156,47 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-<<<<<<< HEAD
+
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {
         int rm = 0;
 
-//        if (txtRm.getText().equals("")) {
-//            rm = Integer.parseInt(lbRm.getText());
-//        } else {
-//            rm = Integer.parseInt(txtRm.getText());
-//        }
         String nomeAluno = txtNome.getText();
         String codGrupo = String.valueOf(cmbGrupo.getSelectedItem());
         String rmT = txtRm.getText();
         CtrlSalvarAluno controle = new CtrlSalvarAluno();
-        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
-=======
-    private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {  
+         CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
+         
         try{
-           
-            int rm = 0;
+           if (codAluno == -1) {
 
-            if (txtRm.getText().equals("")) {
->>>>>>> e132ed05629c39ed17aaa0db416c2543185e4d62
+                if (txtRm.getText().equals("")) {
+                     rm = Integer.parseInt(lbRm.getText());
+                }else{
+                     rm = Integer.parseInt(txtRm.getText());
+                }
 
-                 rm = Integer.parseInt(lbRm.getText());
-            }else{
-                 rm = Integer.parseInt(txtRm.getText());
-            }
-            String nomeAluno = txtNome.getText();
-            String codGrupo = String.valueOf(cmbGrupo.getSelectedItem());
-
-<<<<<<< HEAD
-            if (rmT.equalsIgnoreCase("")) {
-
-                rm = 0;
-            } else {
-                rm = Integer.parseInt(rmT);
-            }
-
-            controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
-
-        } else {
-            controle.editarAluno(codAluno, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
-=======
-            CtrlSalvarAluno controle = new CtrlSalvarAluno();
-            CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
-
-            if (codAluno == -1) {
+                if (rmT.equalsIgnoreCase("")) {
+                    rm = 0;
+                } else {
+                    rm = Integer.parseInt(rmT);
+                }
 
                 controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
 
-            } else {
-                controle.editarAluno(rm, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
-            }
+             } else {
+                controle.editarAluno(codAluno, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+
+                if (codAluno == -1) {
+
+                    controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+
+                } else {
+                    controle.editarAluno(rm, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+                }
+             }
           }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(this, "O campo *RM deve conter um numero interio");
->>>>>>> e132ed05629c39ed17aaa0db416c2543185e4d62
-        }
+         }
 
     }
 
