@@ -24,6 +24,11 @@ public class FormListarLancamento extends javax.swing.JFrame {
     String[][] matrizLancamento;
     int codigoLancamento;
 
+    public void setCodigoLancamento(int codigoLancamento) {
+        this.codigoLancamento = codigoLancamento;
+    }
+    
+
     public FormListarLancamento() {
         initComponents();
         setLocationRelativeTo(this);

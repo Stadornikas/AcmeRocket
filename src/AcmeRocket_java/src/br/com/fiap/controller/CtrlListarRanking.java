@@ -22,4 +22,9 @@ public class CtrlListarRanking {
         LancamentoDAO dao = new LancamentoDAO();
         return dao.buscarRanking();
     }
+    
+    public int obterIdLancamento(String horaLanc){
+        LancamentoDAO dao = new LancamentoDAO();
+        return dao.buscarIdLanc(horaLanc);
+    }
 }

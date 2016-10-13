@@ -286,5 +286,29 @@ public class LancamentoDAO {
 
         return nomeGrupo;
     }
+    
+    public int buscarIdLanc(String horaLanc){
+        int idLanc = -1;
+
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT COD_LANCAMENTO FROM LANCAMENTO WHERE HOR_LANCAMENTO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, horaLanc);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                idLanc = rs.getInt("COD_LANCAMENTO");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome do grupo! \n ERROR: " + ex);
+
+        }
+
+        return idLanc;
+    }
 
 }
