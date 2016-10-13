@@ -524,11 +524,18 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             pesoFoguete = String.valueOf(0);
 
         }
-
+        
+        
+        CtrlSalvarLancamento salvar = new CtrlSalvarLancamento(); 
+        int validar = salvar.calcularStatus(txtAltitudeMaxima.getText(), txtVelocidadeMaxima.getText(), txtTempoDePropulsao.getText(),
+                txtPicoDeAceleracao.getText(),txtAceleracaoMedia.getText(), txtTempoApogeuDescida.getText(),
+                txtTempoDeEjecao.getText(), txtAltitudeDeEjecao.getText(), txtTaxaDeDescida.getText(),txtDuracaoVoo.getText(),
+                txtQuedaAteAlvo.getText());
+        
         if (chkLancamentoFalhou.isSelected()) {
             status = 3;
             //PARA SER LANÇAMENTO OK OS DOIS PRECISA SER VADEIRO
-        } else if (validarDispositivo() == 2) {
+        } else if (validar == 2) {
             status = 2;
             altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
             velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
@@ -542,10 +549,10 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
             distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
 
-        } else if (validarDispositivo() == 1) {
+        } else if (validar == 1) {
             //PRE LANCAMENTO
             status = 1;
-        } else if (validarDispositivo() == 0) {
+        } else if (validar == 0) {
             status = 0;
         }
 
@@ -658,33 +665,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         fg.setVisible(true);
     }
 
-    public int validarDispositivo() {
-        int aux = 1;
-        float altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
-        float velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
-        float tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao.getText());
-        float picoAceleracao = Float.parseFloat(txtPicoDeAceleracao.getText());
-        float aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia.getText());
-        float tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida.getText());
-        float tempoEjecao = Float.parseFloat(txtTempoDeEjecao.getText());
-        float altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao.getText());
-        float taxaDecida = Float.parseFloat(txtTaxaDeDescida.getText());
-        float duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
-        float distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
-
-        if (altitudeMaxima != 0 || velocidadeMaxima != 0 || tempoDePropulsao != 0 || picoAceleracao != 0 || aceleracaoMedia != 0 || tempoApogeuEDescida != 0
-                || tempoEjecao != 0 || altiduteEjecao != 0 || taxaDecida != 0 || duracaoVoo != 0 || distanciaQuedaAlvo != 0) {
-            if (altitudeMaxima != 0 && velocidadeMaxima != 0 && tempoDePropulsao != 0 && picoAceleracao != 0 && aceleracaoMedia != 0 && tempoApogeuEDescida != 0
-                    && tempoEjecao != 0 && altiduteEjecao != 0 && taxaDecida != 0 && duracaoVoo != 0 && distanciaQuedaAlvo != 0) {
-                aux = 2;
-            } else {
-                JOptionPane.showMessageDialog(this, "Todos os campos do pós-lançamento devem ser preenchidos");
-                aux = 0;
-            }
-        }
-
-        return aux;
-    }
+    
 
     /**
      * @param args the command line arguments
