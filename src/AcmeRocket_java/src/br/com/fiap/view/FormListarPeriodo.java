@@ -475,7 +475,7 @@ public class FormListarPeriodo extends javax.swing.JFrame {
             this.dispose();
             fng.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            JOptionPane.showMessageDialog(this, "Selecione um período da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_btnALterarPeriodoActionPerformed
 

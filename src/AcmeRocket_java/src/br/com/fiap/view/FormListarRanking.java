@@ -5,7 +5,12 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarRanking;
+import br.com.fiap.entity.Ranking;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -13,6 +18,7 @@ import java.awt.Color;
  */
 public class FormListarRanking extends javax.swing.JFrame {
 
+    private String[][] matrizRanking;
     /**
      * Creates new form FormRanking
      */
@@ -37,12 +43,17 @@ public class FormListarRanking extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabRanking = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -52,14 +63,14 @@ public class FormListarRanking extends javax.swing.JFrame {
                 lblDashboardMouseClicked(evt);
             }
         });
-        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel8.setText("Ranking");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 11, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
         jLabel3.setText("Ranking");
@@ -68,7 +79,7 @@ public class FormListarRanking extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-07 51x51.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabRanking.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
             },
@@ -84,7 +95,7 @@ public class FormListarRanking extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabRanking);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 700, 250));
 
@@ -97,6 +108,30 @@ public class FormListarRanking extends javax.swing.JFrame {
         this.dispose();
         fp.setVisible(true);
     }//GEN-LAST:event_lblDashboardMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        CtrlListarRanking ctrlListarRanking = new CtrlListarRanking();
+        ArrayList<Ranking> lista = ctrlListarRanking.listarRanking();
+        
+        matrizRanking = new String[lista.size()][3];
+        Ranking ranking;
+
+        String[] colunas = {"Nome Grupo", "Data Evento", "Hora Lançamento", "Dist Queda", "Alt. max.", "Vel. max."};
+        for (int i = 0; i < lista.size(); i++) {
+
+            ranking = lista.get(i);
+            matrizRanking[i][0] = String.valueOf(ranking.getNomGrupo());
+            matrizRanking[i][1] = String.valueOf(ranking.getDatEvento());
+            matrizRanking[i][2] = String.valueOf(ranking.getHorLancamento());
+            matrizRanking[i][3] = String.valueOf(ranking.getDisQueda());
+            matrizRanking[i][4] = String.valueOf(ranking.getAltMax());
+            matrizRanking[i][5] = String.valueOf(ranking.getVelMax());
+            //TODO  Continuar a listagem de rankign e formatar data para exibicao
+        }
+
+        TableModel modeloTabela = new DefaultTableModel(matrizRanking, colunas);
+        tabRanking.setModel(modeloTabela);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -140,7 +175,7 @@ public class FormListarRanking extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDashboard;
+    private javax.swing.JTable tabRanking;
     // End of variables declaration//GEN-END:variables
 }

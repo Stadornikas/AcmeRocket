@@ -134,7 +134,7 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 8, -1, -1));
 
         lblTurma.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblTurma.setText("Turmas");
@@ -143,10 +143,10 @@ public class FormSalvarTurma extends javax.swing.JFrame {
                 lblTurmaMouseClicked(evt);
             }
         });
-        getContentPane().add(lblTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        getContentPane().add(lblTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 20, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 8, 20, -1));
 
         cmbPeriodo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o periodo" }));
@@ -158,7 +158,7 @@ public class FormSalvarTurma extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel4.setText("Novo");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

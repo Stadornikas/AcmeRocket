@@ -78,10 +78,9 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblEventos = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -97,22 +96,22 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-06 51x51.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Evento:");
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel6.setText("*Evento");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
         txtEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Local:");
+        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel7.setText("*Local");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
         txtLocalEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtLocalEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Data:");
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel8.setText("*Data");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         txtDataEvento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -162,6 +161,10 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel5.setText("* Campos obrigatórios");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,16 +189,18 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         String datEventoFormated = txtDataEvento.getText();
 //
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
-        
+
         if (this.codEvento == -1) {
             controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
-                limparCampos();
-            }
-            else
-                this.voltarParaLista();
-        } 
-        else {
+//            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
+//                limparCampos();
+//            }
+//            else
+
+            JOptionPane.showConfirmDialog(this, "Evento criado com sucesso!");
+
+            this.voltarParaLista();
+        } else {
             controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
             limparCampos();
             voltarParaLista();
@@ -231,7 +236,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         FormListarEvento lf = new FormListarEvento(); //lf -> Last Form
         lf.setVisible(true);
     }
-    
+
     private void limparCampos() {
         txtEvento.setText("");
         txtLocalEvento.setText("");
@@ -281,6 +286,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -182,6 +182,8 @@ public class FormListarLancamento extends javax.swing.JFrame {
             fnl.setCodLancamento(obj);
             this.dispose();
             fnl.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(this, "Selecione um lançamento da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
 
     }//GEN-LAST:event_btnALterarLancamentoActionPerformed
@@ -195,14 +197,24 @@ public class FormListarLancamento extends javax.swing.JFrame {
         Lancamento lancamento;
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         String[] colunas = {"ID", "GRUPO", "HORA LANÇAMENTO", "STATUS"};
-
+        String status = "";
         for (int i = 0; i < lista.size(); i++) {
 
             lancamento = lista.get(i);
+            if (lancamento.getStatus() == 1) {
+                status = "Pré-Lançamento";
+            } else if (lancamento.getStatus() == 2) {
+                status = "Lançamento Sucesso";
+            } else if (lancamento.getStatus() == 3) {
+                status = "Falhou";
+            }
+
+          
+            
             matrizLancamento[i][0] = String.valueOf(lancamento.getCodLancamento());
             matrizLancamento[i][1] = String.valueOf(lancamento.getCodGrupo());
             matrizLancamento[i][2] = lancamento.getHorLancamento();
-            matrizLancamento[i][3] = String.valueOf(lancamento.getStatus());
+            matrizLancamento[i][3] = String.valueOf(status);
 
         }
 

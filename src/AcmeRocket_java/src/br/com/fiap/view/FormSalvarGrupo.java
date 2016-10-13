@@ -58,6 +58,7 @@ public class FormSalvarGrupo extends javax.swing.JFrame {
         btnSalvarGrupo = new javax.swing.JButton();
         cmbEvento = new javax.swing.JComboBox();
         cmbTurma = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(null);
@@ -78,15 +79,15 @@ public class FormSalvarGrupo extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel6.setText("Grupo:");
+        jLabel6.setText("*Grupo");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel7.setText("Evento:");
+        jLabel7.setText("*Evento");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel8.setText("Turma:");
+        jLabel8.setText("*Turma");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         txtGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -148,6 +149,10 @@ public class FormSalvarGrupo extends javax.swing.JFrame {
 
         cmbTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione a turma" }));
         getContentPane().add(cmbTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, -1));
+
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel4.setText("* Campos obrigatórios");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -291,6 +296,7 @@ public class FormSalvarGrupo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

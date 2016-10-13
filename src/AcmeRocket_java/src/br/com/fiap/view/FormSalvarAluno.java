@@ -430,7 +430,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 11, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 11, -1, -1));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");
