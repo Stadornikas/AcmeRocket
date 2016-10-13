@@ -4,11 +4,11 @@ public class Turma {
 
     private int codTurma;
     private String nomTurma;
-    private String anoTurma;
+    private int anoTurma;
     private int codPeriodo;
 
     //CONSTRUTOR
-    public Turma(int codTurma, String nomTurma, String anoTurma, int codPeriodo) {
+    public Turma(int codTurma, String nomTurma, int anoTurma, int codPeriodo) {
         this.codTurma = codTurma;
         this.nomTurma = nomTurma;
         this.anoTurma = anoTurma;
@@ -16,7 +16,7 @@ public class Turma {
     }
 
     //CONSTRUTOR
-    public Turma(String nomTurma, String anoTurma, int codPeriodo) {
+    public Turma(String nomTurma, int anoTurma, int codPeriodo) {
         this.nomTurma = nomTurma;
         this.anoTurma = anoTurma;
         this.codPeriodo = codPeriodo;
@@ -38,11 +38,11 @@ public class Turma {
         this.nomTurma = nomTurma;
     }
 
-    public String getAnoTurma() {
+    public int getAnoTurma() {
         return anoTurma;
     }
 
-    public void setAnoTurma(String anoTurma) {
+    public void setAnoTurma(int anoTurma) {
         this.anoTurma = anoTurma;
     }
 

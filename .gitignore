@@ -1,4 +1,6 @@
-/src/acme_rocket/nbproject/private/
-/src/AcmeRocket_java/nbproject/private/
-/src/AcmeRocket_java/build/
-/src/AcmeRocket_java/dist/
+src/AcmeRocket_java/src/config/database.properties
+src/AcmeRocket_java/build
+src/AcmeRocket_java/dist
+src/AcmeRocket_java/nbproject/private/private.xml
+src/AcmeRocket_java/nbproject/private/private.properties 
+src/AcmeRocket_java/database.properties

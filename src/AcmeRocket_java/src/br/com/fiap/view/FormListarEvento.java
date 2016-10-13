@@ -195,7 +195,6 @@ public class FormListarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarEventoActionPerformed
 
     private void btnALterarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarEventoActionPerformed
-
         int linha = tabEventos.getSelectedRow();
         if (linha != -1) {
             FormSalvarEvento fng = new FormSalvarEvento();
@@ -204,7 +203,8 @@ public class FormListarEvento extends javax.swing.JFrame {
             this.dispose();
             fng.setVisible(true);
         }
-
+        else
+            JOptionPane.showMessageDialog(this, "Selecione um evento da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
     }//GEN-LAST:event_btnALterarEventoActionPerformed
 
     //ATUALIZANDO A TABELA

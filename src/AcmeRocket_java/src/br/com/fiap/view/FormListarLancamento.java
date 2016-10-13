@@ -5,11 +5,13 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarLancamento;
 import br.com.fiap.dao.LancamentoDAO;
 import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -20,6 +22,7 @@ import javax.swing.table.TableModel;
 public class FormListarLancamento extends javax.swing.JFrame {
 
     String[][] matrizLancamento;
+    int codigoLancamento;
 
     public FormListarLancamento() {
         initComponents();
@@ -78,15 +81,23 @@ public class FormListarLancamento extends javax.swing.JFrame {
         tabLancamentos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         tabLancamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "GRUPO", "HORA LANÇAMENTO", "STATUS", "ALTERAR", "ALTERAR"
+                "ID", "GRUPO", "HORA LANÇAMENTO", "STATUS"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabLancamentos);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 690, 230));
@@ -108,9 +119,19 @@ public class FormListarLancamento extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         btnDeletarLancamento.setText("Deletar");
+        btnDeletarLancamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarLancamentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDeletarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 40));
 
         btnALterarLancamento.setText("Alterar");
+        btnALterarLancamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALterarLancamentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnALterarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, 40));
 
         pack();
@@ -134,6 +155,37 @@ public class FormListarLancamento extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnDeletarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarLancamentoActionPerformed
+        int linha = tabLancamentos.getSelectedRow();
+        if (linha != -1) {
+            if (this.codigoLancamento != -1) {
+                int codLancamento = Integer.parseInt(String.valueOf(tabLancamentos.getValueAt(linha, 0)));
+                CtrlDeletarLancamento ctrlLancamento = new CtrlDeletarLancamento();
+                if (ctrlLancamento.confirmaExclusao()) {
+                    ctrlLancamento.excluirLancamento(codLancamento);
+                    atualizarTabela();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um lançamento da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um lançamento da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+        }
+    }//GEN-LAST:event_btnDeletarLancamentoActionPerformed
+
+    private void btnALterarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarLancamentoActionPerformed
+
+        int linha = tabLancamentos.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarLancamento fnl = new FormSalvarLancamento();
+            int obj = Integer.parseInt(String.valueOf(tabLancamentos.getValueAt(linha, 0)));
+            fnl.setCodLancamento(obj);
+            this.dispose();
+            fnl.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnALterarLancamentoActionPerformed
+
     public void atualizarTabela() {
 
         LancamentoDAO dao = new LancamentoDAO();
@@ -142,13 +194,15 @@ public class FormListarLancamento extends javax.swing.JFrame {
         matrizLancamento = new String[lista.size()][4];
         Lancamento lancamento;
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-        String[] colunas = {"GRUPO", "HORA LANÇAMENTO", "STATUS", "ALTERAR", "EXCLUIR"};
+        String[] colunas = {"ID", "GRUPO", "HORA LANÇAMENTO", "STATUS"};
+
         for (int i = 0; i < lista.size(); i++) {
 
             lancamento = lista.get(i);
-            matrizLancamento[i][0] = String.valueOf(lancamento.getCodGrupo());
-            matrizLancamento[i][1] = lancamento.getHorLancamento();
-            matrizLancamento[i][2] = String.valueOf(lancamento.getStatus());
+            matrizLancamento[i][0] = String.valueOf(lancamento.getCodLancamento());
+            matrizLancamento[i][1] = String.valueOf(lancamento.getCodGrupo());
+            matrizLancamento[i][2] = lancamento.getHorLancamento();
+            matrizLancamento[i][3] = String.valueOf(lancamento.getStatus());
 
         }
 

@@ -9,14 +9,11 @@ import br.com.fiap.controller.CtrlListarTurma;
 import br.com.fiap.controller.CtrlSalvarTurma;
 import java.awt.Color;
 
-import br.com.fiap.dao.EventoDAO;
 import br.com.fiap.dao.PeriodoDAO;
 import br.com.fiap.dao.TurmaDAO;
-import br.com.fiap.entity.Evento;
 import br.com.fiap.entity.Periodo;
 import br.com.fiap.entity.Turma;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +49,7 @@ public class FormSalvarTurma extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtTurma = new javax.swing.JTextField();
         txtAno = new javax.swing.JTextField();
@@ -66,11 +63,11 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         lblTurma = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cmbPeriodo = new javax.swing.JComboBox();
-        btnDeletar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
+        setMinimumSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -83,13 +80,13 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-02 51x51.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
-        jLabel4.setText("Turma");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
+        lblStatus.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        lblStatus.setText("Inserir");
+        getContentPane().add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel6.setText("Turma:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        jLabel6.setText("*Turma:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, -1, -1));
 
         txtTurma.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 320, -1));
@@ -98,12 +95,12 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         getContentPane().add(txtAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 90, -1));
 
         jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel7.setText("Ano:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, -1, -1));
+        jLabel7.setText("*Ano:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel8.setText("Período:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, 30));
+        jLabel8.setText("*Período:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, 30));
 
         btnSalvar.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvar.setText("Salvar");
@@ -124,8 +121,8 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        jLabel2.setText("Novo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+        jLabel2.setText("* Campos obrigatórios");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
 
         lblDashboard.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         lblDashboard.setText("Dashboard");
@@ -155,13 +152,13 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione o periodo" }));
         getContentPane().add(cmbPeriodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, -1));
 
-        btnDeletar.setText("Deletar");
-        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 100, -1));
+        jLabel9.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        jLabel9.setText("Turma");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel4.setText("Novo");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,7 +173,7 @@ public class FormSalvarTurma extends javax.swing.JFrame {
     private void lblTurmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTurmaMouseClicked
         //CHAMANDO O FORMULARIO TURMAS(LISTA)
         this.dispose();
-        FormTurmas ft = new FormTurmas();
+        FormListarTurmas ft = new FormListarTurmas();
         ft.setVisible(true);
     }//GEN-LAST:event_lblTurmaMouseClicked
 
@@ -189,52 +186,71 @@ public class FormSalvarTurma extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        //Carrega os periodos cadastrados em caso de inserção de nova turma    
+        CtrlSalvarTurma ctrlTurma= new CtrlSalvarTurma();
+        ArrayList<Periodo> lista = ctrlTurma.carregarRegistrosPeriodo();
+        
+  
         if (codTurma == -1) {
-            CtrlSalvarTurma ctrlTurma= new CtrlSalvarTurma();
-            ArrayList<Periodo> lista = ctrlTurma.carregarRegistrosPeriodo();
-
             for (Periodo periodo : lista) {
                 cmbPeriodo.addItem(periodo.getNomPeriodo());
             }
         }else{
             //Em caso de edicao os campos vem carregados com os dados da turma
-            CtrlSalvarTurma ctrlTurma = new CtrlSalvarTurma();
             Turma turma = ctrlTurma.carregarTurma(codTurma);
             if (turma == null) {
                 this.voltarParaLista();
             }
             txtTurma.setText(turma.getNomTurma());
-            txtAno.setText(turma.getAnoTurma());
-            //TODO: CARREGAR COMBOBOX COM OS PERIODOS CADATRADOS E DEIXAR SELECIONADO O PERIODO REREENTE A TURMA ATUAL
+            txtAno.setText(String.valueOf(turma.getAnoTurma()));
+            
+            int index = 0, selected = 0;
+            for (Periodo periodo : lista) {
+                cmbPeriodo.addItem(periodo.getNomPeriodo());
+                index++;
+                if (periodo.getCodPeriodo() == turma.getCodPeriodo()) {
+                    selected = index;
+                }
+            }
+            cmbPeriodo.setSelectedIndex(selected);
+            lblStatus.setText("Editar");
         }
 
 
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        String nomeTurma = txtTurma.getText();
-        String ano = txtAno.getText();
-        String periodo = String.valueOf(cmbPeriodo.getSelectedItem());
-
-        TurmaDAO daoTurma = new TurmaDAO();
-        PeriodoDAO daoPeriodo = new PeriodoDAO();
-
-        Turma turma = new Turma(nomeTurma, ano, daoPeriodo.buscarIdComboPeriodo(String.valueOf(periodo)));
-
-        if (daoTurma.inserir(turma)) {
-            JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso!");
+        try{
+            String nomeTurma = String.valueOf(txtTurma.getText());
+            String ano = String.valueOf(txtAno.getText());
+            String periodo = String.valueOf(cmbPeriodo.getSelectedItem());
+            
+            
+            CtrlSalvarTurma ctrlTurma = new CtrlSalvarTurma();
+            int opt = cmbPeriodo.getSelectedIndex();
+            if (opt != 0 ) {
+                if (this.codTurma == -1) {
+                    if(ctrlTurma.inserirTurma(nomeTurma, ano, periodo)){
+                        this.voltarParaLista();
+                    }
+                } else {
+                    if(ctrlTurma.alterarTurma(this.codTurma, nomeTurma, ano, periodo)){
+                        this.voltarParaLista();
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Selecione um grupo!");
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "O campo *ano deve conter um ano válido");
         }
 
-    }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeletarActionPerformed
+    }//GEN-LAST:event_btnSalvarActionPerformed
     
     
     private void voltarParaLista(){
         this.dispose();
-        FormTurmas lf = new FormTurmas();
+        FormListarTurmas lf = new FormListarTurmas();
         lf.setVisible(true);
     }
     
@@ -272,11 +288,10 @@ public class FormSalvarTurma extends javax.swing.JFrame {
                 new FormSalvarTurma().setVisible(true);
             }
         });
-    }
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarTurma;
-    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cmbPeriodo;
     private javax.swing.JLabel jLabel10;
@@ -287,7 +302,9 @@ public class FormSalvarTurma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblDashboard;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTurma;
     private javax.swing.JTextField txtAno;
     private javax.swing.JTextField txtTurma;

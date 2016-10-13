@@ -5,7 +5,14 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarGrupo;
+import br.com.fiap.controller.CtrlListarLancamento;
+import br.com.fiap.controller.CtrlSalvarLacamento;
+import br.com.fiap.entity.Grupo;
+import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,9 +20,12 @@ import java.awt.Color;
  */
 public class FormSalvarLancamento extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormNovoLancamento
-     */
+    private int codigoLancamento = -1;
+
+    public void setCodLancamento(int codLancamento) {
+        this.codigoLancamento = codLancamento;
+    }
+
     public FormSalvarLancamento() {
         initComponents();
         setLocationRelativeTo(this);
@@ -40,57 +50,97 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblLancamento = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtRm = new javax.swing.JTextField();
-        txtNome = new javax.swing.JTextField();
         cmbGrupo = new javax.swing.JComboBox<>();
-        btnCancelarAluno = new javax.swing.JButton();
-        btnSalvarAluno2 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        btnCancelarLancamento = new javax.swing.JButton();
+        btnSalvarLancamento = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        txtRm1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtRm2 = new javax.swing.JTextField();
+        txtAngulo = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtRm3 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        txtRm4 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtRm5 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        txtRm6 = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        txtRm7 = new javax.swing.JTextField();
+        txtDistanciaAlvo = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtRm8 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        txtRm9 = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        txtRm10 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        txtRm11 = new javax.swing.JTextField();
+        txtHora = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        txtRm12 = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
-        txtRm13 = new javax.swing.JTextField();
+        txtPesoFoguete = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        txtRm14 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        txtRm15 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jLabel56 = new javax.swing.JLabel();
+        lblAltitudeMaxima = new javax.swing.JLabel();
+        txtAltitudeMaxima = new javax.swing.JTextField();
+        lblVelocidadeMaxima = new javax.swing.JLabel();
+        txtVelocidadeMaxima = new javax.swing.JTextField();
+        lblTempoPropulsao = new javax.swing.JLabel();
+        txtTempoDePropulsao = new javax.swing.JTextField();
+        lblPicoAceleracao = new javax.swing.JLabel();
+        txtPicoDeAceleracao = new javax.swing.JTextField();
+        txtTempoApogeuDescida = new javax.swing.JTextField();
+        lblTempoEjecao = new javax.swing.JLabel();
+        txtTempoDeEjecao = new javax.swing.JTextField();
+        lblAltitudeEjecao = new javax.swing.JLabel();
+        txtAltitudeDeEjecao = new javax.swing.JTextField();
+        lblTaxaDescida = new javax.swing.JLabel();
+        txtTaxaDeDescida = new javax.swing.JTextField();
+        lblAceleracaoMedia = new javax.swing.JLabel();
+        txtAceleracaoMedia = new javax.swing.JTextField();
+        lblQuedaAlvo = new javax.swing.JLabel();
+        txtDuracaoVoo = new javax.swing.JTextField();
+        txtQuedaAteAlvo = new javax.swing.JTextField();
+        jLabel62 = new javax.swing.JLabel();
+        txtVelocidadeDoVento = new javax.swing.JTextField();
+        jLabel63 = new javax.swing.JLabel();
+        lblDuracaoVoo = new javax.swing.JLabel();
+        lblTempoApogeu = new javax.swing.JLabel();
+        chkLancamentoFalhou = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(723, 420));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-05 51x51.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 35, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
-        jLabel4.setText("Lançamento");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Candara", 0, 24)); // NOI18N
+        jLabel4.setText("Pós - Lançamento");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 165, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel2.setText("Novo");
@@ -120,163 +170,279 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel6.setText("PIC ACL");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel7.setText("STATUS:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-
         jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jLabel8.setText("Grupo:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, -1, -1));
-
-        txtRm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 110, -1));
-
-        txtNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 210, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, 60, -1));
 
         cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Grupo", "Item 2", "Item 3", "Item 4" }));
+        cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Grupo" }));
         cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
         cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
-        getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 210, 20));
+        getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 85, 230, 20));
 
-        btnCancelarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        btnCancelarAluno.setText("Cancelar");
-        getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 110, -1));
+        btnCancelarLancamento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        btnCancelarLancamento.setText("Cancelar");
+        getContentPane().add(btnCancelarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 345, 110, -1));
 
-        btnSalvarAluno2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
-        btnSalvarAluno2.setText("Salvar");
-        btnSalvarAluno2.addActionListener(new java.awt.event.ActionListener() {
+        btnSalvarLancamento.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        btnSalvarLancamento.setText("Salvar");
+        btnSalvarLancamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarAluno2ActionPerformed(evt);
+                btnSalvarLancamentoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvarAluno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 350, 90, -1));
-
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("SUCESSO");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
-
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
-        jRadioButton2.setText("FALHA");
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
+        getContentPane().add(btnSalvarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 345, 90, -1));
 
         jLabel10.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel10.setText("ÂNGULO LANÇAMENTO:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        jLabel10.setText("ÂNGULO");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 85, -1, -1));
 
-        txtRm1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 110, -1));
-
-        jLabel12.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel12.setText("VELOCIDADE VENTO:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-
-        txtRm2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 110, -1));
+        txtAngulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAngulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnguloActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtAngulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 85, 140, -1));
 
         jLabel13.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel13.setText("DISTANCIA ALVO:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        jLabel13.setText("DISTANCIA ALVO");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
-        txtRm3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 110, -1));
-
-        jLabel14.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel14.setText("PESO FOGUETE:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
-
-        txtRm4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 110, -1));
-
-        jLabel15.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel15.setText("ALTURA MÁXIMA:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
-
-        txtRm5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, 110, -1));
-
-        jLabel16.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel16.setText("VELOCIDADE MÁXIMA:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
-
-        txtRm6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 110, -1));
-
-        jLabel17.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel17.setText("TEMPRP?");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
-
-        txtRm7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 110, -1));
+        txtDistanciaAlvo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtDistanciaAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, -1));
 
         jLabel18.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel18.setText("HORA LANÇAMENTO:");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jLabel18.setText("HORA:");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 85, -1, -1));
 
-        txtRm8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 110, -1));
-
-        jLabel19.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel19.setText("ALCANCE MÁXIMO");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
-
-        txtRm9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 110, -1));
-
-        jLabel20.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel20.setText("TEMPO APOGEU");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
-
-        txtRm10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 110, -1));
-
-        jLabel21.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel21.setText("TEMEJE");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
-
-        txtRm11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 110, -1));
+        txtHora.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 85, 90, -1));
 
         jLabel22.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel22.setText("ALTURA EJE");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, -1));
+        jLabel22.setText("Peso do foguete");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        txtRm12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 110, -1));
+        txtPesoFoguete.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtPesoFoguete, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 220, -1));
 
-        jLabel23.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel23.setText("TAX DES");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 145, -1, -1));
 
-        txtRm13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm13, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 110, -1));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 145, -1, -1));
 
-        jLabel24.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel24.setText("DUR VOO");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 145, -1, -1));
 
-        txtRm14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm14, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 110, -1));
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 145, -1, -1));
 
-        jLabel25.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel25.setText("DISTANCIA QUEDA");
-        getContentPane().add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 145, -1, -1));
 
-        txtRm15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 110, -1));
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 145, -1, -1));
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 145, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 145, -1, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 145, -1, -1));
+
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 145, -1, -1));
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 145, -1, -1));
+
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 145, -1, -1));
+
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 145, -1, -1));
+
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 145, -1, -1));
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 145, -1, -1));
+
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 145, -1, -1));
+
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 145, -1, -1));
+
+        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 145, -1, -1));
+
+        jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 145, -1, -1));
+
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 145, -1, -1));
+
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 145, -1, -1));
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 145, -1, -1));
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 145, -1, -1));
+
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 145, -1, -1));
+
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 145, -1, -1));
+
+        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 145, -1, -1));
+
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 145, -1, -1));
+
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 145, -1, -1));
+
+        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 145, -1, -1));
+
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 145, -1, -1));
+
+        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 145, -1, -1));
+
+        jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 145, -1, -1));
+
+        jLabel53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 145, -1, -1));
+
+        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 145, -1, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 145, -1, -1));
+
+        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 145, -1, -1));
+
+        jLabel56.setFont(new java.awt.Font("Candara", 0, 28)); // NOI18N
+        jLabel56.setText("Lançamento");
+        getContentPane().add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
+
+        lblAltitudeMaxima.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblAltitudeMaxima.setText("Altitude Maxima");
+        getContentPane().add(lblAltitudeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 185, 160, 30));
+
+        txtAltitudeMaxima.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAltitudeMaxima.setText("0");
+        getContentPane().add(txtAltitudeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, -1));
+
+        lblVelocidadeMaxima.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblVelocidadeMaxima.setText("Velocidade Máxima");
+        getContentPane().add(lblVelocidadeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 185, 160, 30));
+
+        txtVelocidadeMaxima.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtVelocidadeMaxima.setText("0");
+        getContentPane().add(txtVelocidadeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 160, -1));
+
+        lblTempoPropulsao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblTempoPropulsao.setText("Tempo de propulsão");
+        getContentPane().add(lblTempoPropulsao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 185, 160, 30));
+
+        txtTempoDePropulsao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTempoDePropulsao.setText("0");
+        getContentPane().add(txtTempoDePropulsao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 160, -1));
+
+        lblPicoAceleracao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblPicoAceleracao.setText("Pico de aceleração");
+        getContentPane().add(lblPicoAceleracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 185, 160, 30));
+
+        txtPicoDeAceleracao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtPicoDeAceleracao.setText("0");
+        getContentPane().add(txtPicoDeAceleracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 170, -1));
+
+        txtTempoApogeuDescida.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTempoApogeuDescida.setText("0");
+        getContentPane().add(txtTempoApogeuDescida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 312, 270, -1));
+
+        lblTempoEjecao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblTempoEjecao.setText("Tempo de ejeção");
+        getContentPane().add(lblTempoEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 235, 160, 30));
+
+        txtTempoDeEjecao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTempoDeEjecao.setText("0");
+        getContentPane().add(txtTempoDeEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 160, -1));
+
+        lblAltitudeEjecao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblAltitudeEjecao.setText("Altitude de ejeção");
+        getContentPane().add(lblAltitudeEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 235, 160, 30));
+
+        txtAltitudeDeEjecao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAltitudeDeEjecao.setText("0");
+        getContentPane().add(txtAltitudeDeEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 160, -1));
+
+        lblTaxaDescida.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblTaxaDescida.setText("Taxa de descida");
+        getContentPane().add(lblTaxaDescida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 235, 160, 30));
+
+        txtTaxaDeDescida.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTaxaDeDescida.setText("0");
+        getContentPane().add(txtTaxaDeDescida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 170, -1));
+
+        lblAceleracaoMedia.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblAceleracaoMedia.setText("Aceleração média");
+        getContentPane().add(lblAceleracaoMedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 235, 160, 30));
+
+        txtAceleracaoMedia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAceleracaoMedia.setText("0");
+        getContentPane().add(txtAceleracaoMedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 160, -1));
+
+        lblQuedaAlvo.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblQuedaAlvo.setText("Distância da queda até o alvo");
+        getContentPane().add(lblQuedaAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 230, -1));
+
+        txtDuracaoVoo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtDuracaoVoo.setText("0");
+        getContentPane().add(txtDuracaoVoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 312, 150, -1));
+
+        txtQuedaAteAlvo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtQuedaAteAlvo.setText("0");
+        getContentPane().add(txtQuedaAteAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 312, 230, -1));
+
+        jLabel62.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jLabel62.setText("Velocidade do vento");
+        getContentPane().add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
+
+        txtVelocidadeDoVento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtVelocidadeDoVento, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 210, -1));
+
+        jLabel63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/br.com.fiap.images.png"))); // NOI18N
+        getContentPane().add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 145, -1, -1));
+
+        lblDuracaoVoo.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblDuracaoVoo.setText("Duração do vôo");
+        getContentPane().add(lblDuracaoVoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 160, -1));
+
+        lblTempoApogeu.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        lblTempoApogeu.setText("Tempo entre o apogeu e a descida");
+        getContentPane().add(lblTempoApogeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 270, -1));
+
+        chkLancamentoFalhou.setText("Lançamento Falhou");
+        chkLancamentoFalhou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkLancamentoFalhouActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chkLancamentoFalhou, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -295,13 +461,197 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         fl.setVisible(true);
     }//GEN-LAST:event_lblLancamentoMouseClicked
 
-    private void btnSalvarAluno2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAluno2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalvarAluno2ActionPerformed
+    private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        String grupo = String.valueOf(cmbGrupo.getSelectedItem());
+        String hora = txtHora.getText();
+        float angulo = Float.parseFloat(txtAngulo.getText());
+        float distanciaDoALvo = Float.parseFloat(txtDistanciaAlvo.getText());
+        float velocidadeVento = Float.parseFloat(txtVelocidadeDoVento.getText());
+        float pesoFoguete = Float.parseFloat(txtPesoFoguete.getText());
+        int status = 0;
+        float altitudeMaxima = 0;
+        float velocidadeMaxima = 0;
+        float tempoDePropulsao = 0;
+        float picoAceleracao = 0;
+        float aceleracaoMedia = 0;
+        float tempoApogeuEDescida = 0;
+        float tempoEjecao = 0;
+        float altiduteEjecao = 0;
+        float taxaDecida = 0;
+        float duracaoVoo = 0;
+        float distanciaQuedaAlvo = 0;
+
+        if (chkLancamentoFalhou.isSelected()) {
+            status = 3;
+            //PARA SER LANÇAMENTO OK OS DOIS PRECISA SER VADEIRO
+        } else if (validarDispositivo() == 2) {
+            status = 2;
+            altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
+            velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
+            tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao.getText());
+            picoAceleracao = Float.parseFloat(txtPicoDeAceleracao.getText());
+            aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia.getText());
+            tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida.getText());
+            tempoEjecao = Float.parseFloat(txtTempoDeEjecao.getText());
+            altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao.getText());
+            taxaDecida = Float.parseFloat(txtTaxaDeDescida.getText());
+            duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
+            distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
+
+        } else if (validarDispositivo() == 1) {
+            //PRE LANCAMENTO
+            status = 1;
+        } else if (validarDispositivo() == 0) {
+            status = 0;
+        }
+
+        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
+        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
+        Lancamento l = null;
+
+        if (status != 0) {
+            if (this.codigoLancamento == -1) {
+
+                l = new Lancamento(ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
+                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
+                        taxaDecida, duracaoVoo, distanciaQuedaAlvo);
+
+                ctrlLacamentoo.inserirLancamento(l);
+            } else {
+                l = new Lancamento(codigoLancamento, ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
+                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
+                        taxaDecida, duracaoVoo, distanciaQuedaAlvo);
+
+                ctrlLacamentoo.editarLancamento(l);
+
+            }
+        } 
+        
+        ctrlLacamentoo = null;
+    }//GEN-LAST:event_btnSalvarLancamentoActionPerformed
+
+    private void txtAnguloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnguloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_txtAnguloActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+        if (this.codigoLancamento == -1) {
+
+            CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
+
+            ArrayList<Grupo> listaGrupo = ctrlLancamento.carregarRegistrosGrupo();
+
+            for (Grupo g : listaGrupo) {
+                cmbGrupo.addItem(g.getNomGrupo());
+            }
+
+//            if (cmbStatusLancamento.getSelectedIndex() == 0 || cmbStatusLancamento.getSelectedIndex() == 2) {
+//
+//                txtAltitudeMaxima.setVisible(false);
+//                lblAltitudeMaxima.setVisible(false);
+//                txtVelocidadeMaxima.setVisible(false);
+//                lblVelocidadeMaxima.setVisible(false);
+//                txtTempoDePropulsao.setVisible(false);
+//                lblTempoPropulsao.setVisible(false);
+//                txtPicoDeAceleracao.setVisible(false);
+//                lblPicoAceleracao.setVisible(false);
+//                txtAceleracaoMedia.setVisible(false);
+//                lblAceleracaoMedia.setVisible(false);
+//                txtTempoApogeuDescida.setVisible(false);
+//                lblTempoApogeu.setVisible(false);
+//                txtTempoDeEjecao.setVisible(false);
+//                lblTempoEjecao.setVisible(false);
+//                txtAltitudeDeEjecao.setVisible(false);
+//                lblAltitudeEjecao.setVisible(false);
+//                txtTaxaDeDescida.setVisible(false);
+//                lblTaxaDescida.setVisible(false);
+//                txtDuracaoVoo.setVisible(false);
+//                lblDuracaoVoo.setVisible(false);
+//                txtQuedaAteAlvo.setVisible(false);
+//                lblQuedaAlvo.setVisible(false);
+//
+//            }
+        } else {
+
+            CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
+            CtrlListarLancamento ctrlListarLancamento = new CtrlListarLancamento();
+            Lancamento l = ctrlListarLancamento.carregarLancamento(codigoLancamento);
+            ArrayList<Grupo> lista = ctrlLancamento.carregarRegistrosGrupo();
+
+            if (l == null) {
+                this.voltarParaLista();
+            }
+
+            for (Grupo g : lista) {
+                cmbGrupo.addItem(g.getNomGrupo());
+            }
+
+            cmbGrupo.setSelectedItem(ctrlLancamento.carregarComboGrupo(l.getCodGrupo()));
+            txtHora.setText(l.getHorLancamento());
+            txtAngulo.setText(String.valueOf(l.getAngLancamento()));
+            txtDistanciaAlvo.setText(String.valueOf(l.getDisAlvo()));
+            txtVelocidadeDoVento.setText(String.valueOf(l.getVelVento()));
+            txtPesoFoguete.setText(String.valueOf(l.getPesFoguete()));
+            txtAltitudeMaxima.setText(String.valueOf(l.getAltMax()));
+            txtVelocidadeMaxima.setText(String.valueOf(l.getVelMax()));
+            txtTempoDePropulsao.setText(String.valueOf(l.getTemPrp()));
+            txtPicoDeAceleracao.setText(String.valueOf(l.getPicAcl()));
+            txtAceleracaoMedia.setText(String.valueOf(l.getAlcMax()));
+            txtTempoApogeuDescida.setText(String.valueOf(l.getTemApdc()));
+            txtTempoDeEjecao.setText(String.valueOf(l.getTemEje()));
+            txtAltitudeDeEjecao.setText(String.valueOf(l.getAltEje()));
+            txtTaxaDeDescida.setText(String.valueOf(l.getTaxDes()));
+            txtDuracaoVoo.setText(String.valueOf(l.getDurVoo()));
+            txtQuedaAteAlvo.setText(String.valueOf(l.getDisQueda()));
+//            if (l.getStatus() == 1) {
+//                cmbStatusLancamento.setSelectedIndex(0);
+//            } else {
+//                cmbStatusLancamento.setSelectedIndex(1);
+//            }
+
+        }
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void chkLancamentoFalhouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLancamentoFalhouActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkLancamentoFalhouActionPerformed
+
+    private void voltarParaLista() {//
+        this.dispose();
+        FormListarGrupos fg = new FormListarGrupos();
+        fg.setVisible(true);
+    }
+
+    public int validarDispositivo() {
+        int aux = 1;
+        float altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
+        float velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
+        float tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao.getText());
+        float picoAceleracao = Float.parseFloat(txtPicoDeAceleracao.getText());
+        float aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia.getText());
+        float tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida.getText());
+        float tempoEjecao = Float.parseFloat(txtTempoDeEjecao.getText());
+        float altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao.getText());
+        float taxaDecida = Float.parseFloat(txtTaxaDeDescida.getText());
+        float duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
+        float distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
+
+        if (altitudeMaxima != 0 || velocidadeMaxima != 0 || tempoDePropulsao != 0 || picoAceleracao != 0 || aceleracaoMedia != 0 || tempoApogeuEDescida != 0
+                || tempoEjecao != 0 || altiduteEjecao != 0 || taxaDecida != 0 || duracaoVoo != 0 || distanciaQuedaAlvo != 0) {
+            if (altitudeMaxima != 0 && velocidadeMaxima != 0 && tempoDePropulsao != 0 && picoAceleracao != 0 && aceleracaoMedia != 0 && tempoApogeuEDescida != 0
+                    && tempoEjecao != 0 && altiduteEjecao != 0 && taxaDecida != 0 && duracaoVoo != 0 && distanciaQuedaAlvo != 0) {
+                aux = 2;
+            } else {
+                JOptionPane.showMessageDialog(this, "Todos os campos do pós-lançamento devem ser preenchidos");
+                aux = 0;
+            }
+        }
+
+        return aux;
+    }
 
     /**
      * @param args the command line arguments
@@ -340,53 +690,88 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelarAluno;
-    private javax.swing.JButton btnSalvarAluno2;
+    private javax.swing.JButton btnCancelarLancamento;
+    private javax.swing.JButton btnSalvarLancamento;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chkLancamentoFalhou;
     private javax.swing.JComboBox<String> cmbGrupo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel lblAceleracaoMedia;
+    private javax.swing.JLabel lblAltitudeEjecao;
+    private javax.swing.JLabel lblAltitudeMaxima;
     private javax.swing.JLabel lblDashboard;
+    private javax.swing.JLabel lblDuracaoVoo;
     private javax.swing.JLabel lblLancamento;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtRm;
-    private javax.swing.JTextField txtRm1;
-    private javax.swing.JTextField txtRm10;
-    private javax.swing.JTextField txtRm11;
-    private javax.swing.JTextField txtRm12;
-    private javax.swing.JTextField txtRm13;
-    private javax.swing.JTextField txtRm14;
-    private javax.swing.JTextField txtRm15;
-    private javax.swing.JTextField txtRm2;
-    private javax.swing.JTextField txtRm3;
-    private javax.swing.JTextField txtRm4;
-    private javax.swing.JTextField txtRm5;
-    private javax.swing.JTextField txtRm6;
-    private javax.swing.JTextField txtRm7;
-    private javax.swing.JTextField txtRm8;
-    private javax.swing.JTextField txtRm9;
+    private javax.swing.JLabel lblPicoAceleracao;
+    private javax.swing.JLabel lblQuedaAlvo;
+    private javax.swing.JLabel lblTaxaDescida;
+    private javax.swing.JLabel lblTempoApogeu;
+    private javax.swing.JLabel lblTempoEjecao;
+    private javax.swing.JLabel lblTempoPropulsao;
+    private javax.swing.JLabel lblVelocidadeMaxima;
+    private javax.swing.JTextField txtAceleracaoMedia;
+    private javax.swing.JTextField txtAltitudeDeEjecao;
+    private javax.swing.JTextField txtAltitudeMaxima;
+    private javax.swing.JTextField txtAngulo;
+    private javax.swing.JTextField txtDistanciaAlvo;
+    private javax.swing.JTextField txtDuracaoVoo;
+    private javax.swing.JTextField txtHora;
+    private javax.swing.JTextField txtPesoFoguete;
+    private javax.swing.JTextField txtPicoDeAceleracao;
+    private javax.swing.JTextField txtQuedaAteAlvo;
+    private javax.swing.JTextField txtTaxaDeDescida;
+    private javax.swing.JTextField txtTempoApogeuDescida;
+    private javax.swing.JTextField txtTempoDeEjecao;
+    private javax.swing.JTextField txtTempoDePropulsao;
+    private javax.swing.JTextField txtVelocidadeDoVento;
+    private javax.swing.JTextField txtVelocidadeMaxima;
     // End of variables declaration//GEN-END:variables
 }

@@ -186,31 +186,20 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         String datEventoFormated = txtDataEvento.getText();
 //
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
-//
-//        boolean inserir = controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-//
-//        if (inserir) {
-//            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso\nDeseja cadastrar outro evento?", "Selecione uma opção", YES_NO_OPTION) == 1) {
-//                this.voltarParaLista();
-//            } else {
-//                this.txtEvento.setText("");
-//                this.txtLocalEvento.setText("");
-//                this.txtDataEvento.setText("");
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Houve Algum erro ao inserir o Aluno, tente novamente");
-//        }
-
+        
         if (this.codEvento == -1) {
-
             controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-            
-        } else {
+            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
+                limparCampos();
+            }
+            else
+                this.voltarParaLista();
+        } 
+        else {
             controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
+            limparCampos();
+            voltarParaLista();
         }
-
-//        this.voltarParaLista();
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
     private void btnCancelarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarEventoMouseClicked
@@ -241,6 +230,12 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         this.dispose();
         FormListarEvento lf = new FormListarEvento(); //lf -> Last Form
         lf.setVisible(true);
+    }
+    
+    private void limparCampos() {
+        txtEvento.setText("");
+        txtLocalEvento.setText("");
+        txtDataEvento.setText("");
     }
 
     /**
