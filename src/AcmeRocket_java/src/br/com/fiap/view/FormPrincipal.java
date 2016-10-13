@@ -363,7 +363,7 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void lblTurmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTurmasMouseClicked
         //CHAMANDO FORMULARIO TURMA
-        FormTurmas ft = new FormTurmas();
+        FormListarTurmas ft = new FormListarTurmas();
         this.dispose();
         ft.setVisible(true);
     }//GEN-LAST:event_lblTurmasMouseClicked

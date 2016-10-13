@@ -26,7 +26,12 @@ public class TurmaDAO {
     private PreparedStatement ps;
     private String sql;
     private ResultSet rs;
-
+    
+    /**
+     * Cria uma nova turma
+     * @param turma
+     * @return boolean
+     */
     public boolean inserir(Turma turma) {
         boolean aux = false;
         int novoIndex = buscarIndex();
@@ -38,7 +43,7 @@ public class TurmaDAO {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, novoIndex);
             ps.setString(2, turma.getNomTurma());
-            ps.setString(3, turma.getAnoTurma());
+            ps.setInt(3, turma.getAnoTurma());
             ps.setInt(4, turma.getCodPeriodo());
             ps.execute();
 
@@ -50,6 +55,11 @@ public class TurmaDAO {
         return aux;
     }
 
+    /**
+     * retorma a turma correspondente ao ID
+     * @param codTurma
+     * @return Turma
+     */
     public Turma buscar(int codTurma) {
         Turma Turma = null;
         conn = Conexao.getConnection();
@@ -61,7 +71,7 @@ public class TurmaDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 String nomTurma = rs.getString("NOM_TURMA");
-                String anoTurma = rs.getString("ANO_TURMA");
+                int anoTurma = rs.getInt("ANO_TURMA");
                 int codPeriodo = rs.getInt("PERIODO_COD_PERIODO");
                 Turma = new Turma(codTurma, nomTurma, anoTurma, codPeriodo);
             }
@@ -73,6 +83,11 @@ public class TurmaDAO {
         return Turma;
     }
 
+    /**
+     * Modifica a turma passada por parametro
+     * @param turma
+     * @return boolean
+     */
     public boolean alterar(Turma turma) {
 
         boolean aux = false;
@@ -82,8 +97,9 @@ public class TurmaDAO {
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, turma.getNomTurma());
-            ps.setString(2, turma.getAnoTurma());
+            ps.setInt(2, turma.getAnoTurma());
             ps.setInt(3, turma.getCodPeriodo());
+            ps.setInt(4, turma.getCodTurma());
             ps.execute();
 
             aux = true;
@@ -95,6 +111,11 @@ public class TurmaDAO {
         return aux;
     }
 
+    /**
+     * Remove uma turma
+     * @param codTurma
+     * @return boolean
+     */
     public boolean deletar(int codTurma) {
 
         boolean aux = false;
@@ -114,6 +135,10 @@ public class TurmaDAO {
         return aux;
     }
 
+    /**
+     * Lista todas as turmas cadastradas
+     * @return ArrayList<Turma>
+     */
     public ArrayList<Turma> listar() {
 
         ArrayList<Turma> lista = new ArrayList();
@@ -128,7 +153,7 @@ public class TurmaDAO {
             while (rs.next()) {
                 int codTurma = rs.getInt("COD_TURMA");
                 String nomTurma = rs.getString("NOM_TURMA");
-                String anoTurma = rs.getString("ANO_TURMA");
+                int anoTurma = rs.getInt("ANO_TURMA");
                 int codPeriodo = rs.getInt("PERIODO_COD_PERIODO");
 
                 lista.add(new Turma(codTurma, nomTurma, anoTurma, codPeriodo));
@@ -142,6 +167,10 @@ public class TurmaDAO {
 
     }
 
+    /**
+     * Busca o ultimo id valido para turmas
+     * @return int
+     */
     public int buscarIndex() {
         int proximaColuna = 0;
         try {
@@ -161,6 +190,11 @@ public class TurmaDAO {
         return proximaColuna;
     }
 
+    /**
+     * Busca o nome da turma
+     * @param codigo
+     * @return String
+     */
     public String buscarNomeTurma(int codigo) {
         String nomeTurma = "";
 
@@ -184,6 +218,11 @@ public class TurmaDAO {
         return nomeTurma;
     }
 
+    /**
+     * Retorna o id da turma pelo nome
+     * @param turma
+     * @return int
+     */
     public int buscarIdComboTurma(String turma) {
         int id = 0;
         try {
@@ -204,6 +243,59 @@ public class TurmaDAO {
 
         return id;
 
+    }
+    
+    
+    /**
+     * Verifica se o periodo existe 
+     * @param nomePeriodo
+     * @return 
+     */
+    public boolean existeTurma(String nomePeriodo) {
+        boolean output = false;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM PERIODO WHERE NOM_PERIODO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nomePeriodo);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                output = true;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar maior cod periodo: " + ex);
+        }
+
+        return output;
+
+    }
+    
+     
+    /**
+     * busca a quantiade de turmas vinculadas ao periodo
+     * @param codPeriodo
+     * @return 
+     */
+    public int verificaQauntidadeDependencia(int codTurma){
+        int qtdGrupos = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT COUNT(*) qtd_grupos FROM GRUPO WHERE TURMA_COD_TURMA = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codTurma);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                qtdGrupos = rs.getInt("qtd_grupos");
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de GRUPOS dependentes: \n Erro:" + ex);
+        } 
+        
+        return qtdGrupos;
     }
 
 }

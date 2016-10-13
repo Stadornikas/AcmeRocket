@@ -5,6 +5,7 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarTurma;
 import br.com.fiap.controller.CtrlListarTurma;
 import br.com.fiap.controller.CtrlSalvarTurma;
 import br.com.fiap.dao.PeriodoDAO;
@@ -19,11 +20,11 @@ import javax.swing.table.TableModel;
  *
  * @author Thiago
  */
-public class FormTurmas extends javax.swing.JFrame {
+public class FormListarTurmas extends javax.swing.JFrame {
 
     String[][] matrizTurma;
 
-    public FormTurmas() {
+    public FormListarTurmas() {
         initComponents();
         setLocationRelativeTo(this);
         lblDashboard.setForeground(Color.blue);
@@ -94,11 +95,6 @@ public class FormTurmas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabTurmas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabTurmasMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tabTurmas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 690, 230));
@@ -120,9 +116,19 @@ public class FormTurmas extends javax.swing.JFrame {
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         btnDeletarTurma.setText("Deletar");
+        btnDeletarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarTurmaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDeletarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 100, 40));
 
         btnALterarTurma.setText("Alterar");
+        btnALterarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnALterarTurmaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnALterarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, 40));
 
         pack();
@@ -146,16 +152,28 @@ public class FormTurmas extends javax.swing.JFrame {
         atualizarTabela();
     }//GEN-LAST:event_formWindowOpened
 
-    private void tabTurmasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTurmasMouseClicked
+    private void btnALterarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarTurmaActionPerformed
         int linha = tabTurmas.getSelectedRow();
         if (linha != -1) {
-            FormSalvarTurma fnt = new FormSalvarTurma();
-            int obj = Integer.parseInt(String.valueOf(tabTurmas.getValueAt(linha, 0)));
-            fnt.setCodTurma(obj);
+            FormSalvarTurma fst = new FormSalvarTurma();
+            int obj = Integer.parseInt(String.valueOf(tabTurmas.getValueAt(linha,0)));
+            fst.setCodTurma(obj);
             this.dispose();
-            fnt.setVisible(true);
+            fst.setVisible(true);
         }
-    }//GEN-LAST:event_tabTurmasMouseClicked
+    }//GEN-LAST:event_btnALterarTurmaActionPerformed
+
+    private void btnDeletarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarTurmaActionPerformed
+        int linha = tabTurmas.getSelectedRow();
+        if (linha != -1) {
+            int codTurma = Integer.parseInt(String.valueOf(tabTurmas.getValueAt(linha, 0)));
+            CtrlDeletarTurma ctrlturma = new CtrlDeletarTurma();
+            if (ctrlturma.confirmaExclusao()) {
+                ctrlturma.excluirTurma(codTurma);
+                atualizarTabela();
+            }
+        }
+    }//GEN-LAST:event_btnDeletarTurmaActionPerformed
 
     /**
      * Atualiza a jTable
@@ -174,7 +192,7 @@ public class FormTurmas extends javax.swing.JFrame {
 
             matrizTurma[i][0] = String.valueOf(turma.getCodTurma());
             matrizTurma[i][1] = turma.getNomTurma();
-            matrizTurma[i][2] = turma.getAnoTurma();
+            matrizTurma[i][2] = String.valueOf(turma.getAnoTurma());
             matrizTurma[i][3] = ctrlTurma.obterNomePeriodo(turma);
         }
 
@@ -199,20 +217,21 @@ public class FormTurmas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormListarTurmas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormTurmas().setVisible(true);
+                new FormListarTurmas().setVisible(true);
             }
         });
     }
