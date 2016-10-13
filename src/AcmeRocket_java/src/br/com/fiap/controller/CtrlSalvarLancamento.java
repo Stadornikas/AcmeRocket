@@ -7,7 +7,7 @@ import br.com.fiap.entity.Lancamento;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class CtrlSalvarLacamento {
+public class CtrlSalvarLancamento {
 
     public int validarDispositivo(float altitudeMaxima, float velocidadeMaxima,
             float tempoDePropulsao, float picoAceleracao, float aceleracaoMedia, float tempoApogeuDescida,
