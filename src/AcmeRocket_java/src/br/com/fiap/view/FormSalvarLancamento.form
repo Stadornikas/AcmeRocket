@@ -269,6 +269,9 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="try{&#xd;&#xa;     mascaraHora = new MaskFormatter(&quot;##:##:##&quot;);&#xd;&#xa;     mascaraHora.setPlaceholderCharacter(&apos;_&apos;);&#xd;&#xa;     txtHora =  new JFormattedTextField(mascaraHora);&#xd;&#xa; }catch(ParseException e){&#xd;&#xa;      JOptionPane.showMessageDialog(this, &quot;Erro na mascara de hora! \n &quot;&#xd;&#xa; + &quot;Error&quot; + e);&#xd;&#xa; }"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="370" y="85" width="90" height="-1"/>

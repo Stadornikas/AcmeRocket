@@ -47,7 +47,6 @@ public class LancamentoDAO {
             ps.setFloat(18, lancamento.getDurVoo());
             ps.setFloat(19, lancamento.getDisQueda());
 
-
             ps.execute();
 
             aux = true;
@@ -231,19 +230,18 @@ public class LancamentoDAO {
         return proximaColuna;
     }
 
-    
-    public ArrayList<Ranking> buscarRanking(){
-        
+    public ArrayList<Ranking> buscarRanking() {
+
         ArrayList<Ranking> lista = new ArrayList();
 
         try {
             conn = Conexao.getConnection();
             sql = "SELECT grup.`NOM_GRUPO`, even.`DAT_EVENTO`, lanc.`DIS_QUEDA`, lanc.`VEL_MAX`, lanc.`ALT_MAX`, lanc.`HOR_LANCAMENTO`  "
-                + "FROM `LANCAMENTO` as lanc "
-                + "INNER JOIN `GRUPO` as grup ON lanc.`GRUPO_COD_GRUPO` = grup.`COD_GRUPO` "
-                + "INNER JOIN `EVENTOS` as even ON grup.`EVENTOS_COD_EVENTO` = even.`COD_EVENTO` "
-                + "WHERE lanc.`STATUS_LANC` = 2 "
-                + "ORDER BY lanc.`DIS_QUEDA` DESC";
+                    + "FROM `LANCAMENTO` as lanc "
+                    + "INNER JOIN `GRUPO` as grup ON lanc.`GRUPO_COD_GRUPO` = grup.`COD_GRUPO` "
+                    + "INNER JOIN `EVENTOS` as even ON grup.`EVENTOS_COD_EVENTO` = even.`COD_EVENTO` "
+                    + "WHERE lanc.`STATUS_LANC` = 2 "
+                    + "ORDER BY lanc.`DIS_QUEDA` DESC";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -264,5 +262,29 @@ public class LancamentoDAO {
 
         return lista;
     }
-    
+
+    public String buscarNomeGrupo(int codigo) {
+        String nomeGrupo = "";
+
+        try {
+
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM GRUPO WHERE COD_GRUPO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codigo);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nomeGrupo = rs.getString("NOM_GRUPO");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome do grupo! \n ERROR: " + ex);
+
+        }
+
+        return nomeGrupo;
+    }
+
 }

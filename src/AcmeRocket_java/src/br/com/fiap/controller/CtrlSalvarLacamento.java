@@ -32,12 +32,17 @@ public class CtrlSalvarLacamento {
 
         String msg = "Falha ao inserir lançamento";
         boolean validacao = true;
-
-        LancamentoDAO dao = new LancamentoDAO();
-        if (dao.inserir(lancamento)) {
-            msg = "Laçamento Criado com sucesso";
+        if (validar(lancamento.getCodGrupo())) {
+            validacao = false;
+            msg = "Informe um grupo";
         }
 
+        LancamentoDAO dao = new LancamentoDAO();
+        if (validacao) {
+            if (dao.inserir(lancamento)) {
+                msg = "Laçamento Criado com sucesso";
+            }
+        }
         JOptionPane.showMessageDialog(null, msg);
 
     }
@@ -70,9 +75,15 @@ public class CtrlSalvarLacamento {
         return t;
     }
 
-//    public boolean validar() {
-//
-//    }
+    public boolean validar(int codGrupo) {
+        boolean aux = false;
+
+        if (codGrupo == 0) {
+            aux = true;
+
+        }
+        return aux;
+    }
 //
 //    public int calcularStatus() {
 //

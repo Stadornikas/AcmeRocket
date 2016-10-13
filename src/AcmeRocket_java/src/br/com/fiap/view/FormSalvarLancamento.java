@@ -11,8 +11,11 @@ import br.com.fiap.controller.CtrlSalvarLacamento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
+import java.text.ParseException;
 import java.util.ArrayList;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -21,6 +24,7 @@ import javax.swing.JOptionPane;
 public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private int codigoLancamento = -1;
+    private MaskFormatter mascaraHora;
 
     public void setCodLancamento(int codLancamento) {
         this.codigoLancamento = codLancamento;
@@ -60,6 +64,14 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         txtDistanciaAlvo = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
+        try{
+            mascaraHora = new MaskFormatter("##:##:##");
+            mascaraHora.setPlaceholderCharacter('_');
+            txtHora =  new JFormattedTextField(mascaraHora);
+        }catch(ParseException e){
+            JOptionPane.showMessageDialog(this, "Erro na mascara de hora! \n "
+                + "Error" + e);
+        }
         jLabel22 = new javax.swing.JLabel();
         txtPesoFoguete = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -467,8 +479,12 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     }//GEN-LAST:event_lblLancamentoMouseClicked
 
     private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
-
-        String grupo = String.valueOf(cmbGrupo.getSelectedItem());
+        String grupo = "";
+        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex()== 0) {
+            grupo = String.valueOf(cmbGrupo.getSelectedItem());
+        } else {
+            //grupo = 0;
+        }
         String hora = txtHora.getText();
         float angulo = Float.parseFloat(txtAngulo.getText());
         float distanciaDoALvo = Float.parseFloat(txtDistanciaAlvo.getText());
@@ -531,7 +547,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
                         taxaDecida, duracaoVoo, distanciaQuedaAlvo);
 
                 ctrlLacamentoo.editarLancamento(l);
-
+                this.voltarParaLista();
             }
         }
 

@@ -8,6 +8,7 @@ package br.com.fiap.view;
 import br.com.fiap.controller.CtrlListarRanking;
 import br.com.fiap.entity.Ranking;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,13 +20,14 @@ import javax.swing.table.TableModel;
 public class FormListarRanking extends javax.swing.JFrame {
 
     private String[][] matrizRanking;
+
     /**
      * Creates new form FormRanking
      */
     public FormListarRanking() {
         initComponents();
         setLocationRelativeTo(this);
-         lblDashboard.setForeground(Color.blue);
+        lblDashboard.setForeground(Color.blue);
     }
 
     /**
@@ -112,16 +114,17 @@ public class FormListarRanking extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         CtrlListarRanking ctrlListarRanking = new CtrlListarRanking();
         ArrayList<Ranking> lista = ctrlListarRanking.listarRanking();
-        
+        SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         matrizRanking = new String[lista.size()][6];
         Ranking ranking;
 
         String[] colunas = {"Nome Grupo", "Data Evento", "Hora Lançamento", "Dist Queda", "Alt. max.", "Vel. max."};
         for (int i = 0; i < lista.size(); i++) {
 
+            
             ranking = lista.get(i);
             matrizRanking[i][0] = String.valueOf(ranking.getNomGrupo());
-            matrizRanking[i][1] = String.valueOf(ranking.getDatEvento());
+            matrizRanking[i][1] = String.valueOf(formatoData.format(ranking.getDatEvento()));
             matrizRanking[i][2] = String.valueOf(ranking.getHorLancamento());
             matrizRanking[i][3] = String.valueOf(ranking.getDisQueda());
             matrizRanking[i][4] = String.valueOf(ranking.getAltMax());

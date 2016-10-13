@@ -182,8 +182,8 @@ public class FormListarLancamento extends javax.swing.JFrame {
             fnl.setCodLancamento(obj);
             this.dispose();
             fnl.setVisible(true);
-        }else{
-             JOptionPane.showMessageDialog(this, "Selecione um lançamento da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um lançamento da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
 
     }//GEN-LAST:event_btnALterarLancamentoActionPerformed
@@ -209,10 +209,8 @@ public class FormListarLancamento extends javax.swing.JFrame {
                 status = "Falhou";
             }
 
-          
-            
             matrizLancamento[i][0] = String.valueOf(lancamento.getCodLancamento());
-            matrizLancamento[i][1] = String.valueOf(lancamento.getCodGrupo());
+            matrizLancamento[i][1] = String.valueOf(dao.buscarNomeGrupo(lancamento.getCodGrupo()));
             matrizLancamento[i][2] = lancamento.getHorLancamento();
             matrizLancamento[i][3] = String.valueOf(status);
 

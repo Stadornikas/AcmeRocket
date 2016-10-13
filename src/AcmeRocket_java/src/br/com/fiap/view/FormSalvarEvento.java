@@ -198,7 +198,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 //            }
 //            else
 
-            JOptionPane.showConfirmDialog(this, "Evento criado com sucesso!");
+            JOptionPane.showMessageDialog(this, "Evento criado com sucesso!");
 
             this.voltarParaLista();
         } else {
