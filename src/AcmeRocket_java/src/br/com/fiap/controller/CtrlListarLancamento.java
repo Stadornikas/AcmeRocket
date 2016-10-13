@@ -8,8 +8,8 @@ public class CtrlListarLancamento {
     public CtrlListarLancamento() {
     }
 
-    public ArrayList<Lancamento> carregarRegistro() {
-
-    }
+//    public ArrayList<Lancamento> carregarRegistro() {
+//
+//    }
 
 }
