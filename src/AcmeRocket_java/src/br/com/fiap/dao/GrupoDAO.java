@@ -257,6 +257,26 @@ public class GrupoDAO {
         
         return qtdAluno;
     }
+    
+    public int verificarQuantidadeDependenciaLancamento(int codLancamento){
+        int qtdLancamento = 0;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT COUNT(*) qtd_lancamentos FROM LANCAMENTO WHERE GRUPO_COD_GRUPO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, codLancamento);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                qtdLancamento = rs.getInt("qtd_lancamentos");
+            }           
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar quantidade de lançamentos dependentes: " + ex);
+        }
+        
+        return qtdLancamento;
+    }
 
 }
 

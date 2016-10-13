@@ -55,7 +55,7 @@ public class AlunoDAO {
             p.setInt(1, codAluno);
             rs = p.executeQuery();
             while (rs.next()) {
-                String nomComp = rs.getString("NUM_ALUNO");
+                String nomComp = rs.getString("NOM_ALUNO");
                 int codGrupo = rs.getInt("GRUPO_COD_GRUPO");
                 Aluno = new Aluno(codAluno, nomComp, codGrupo);
             }
@@ -76,6 +76,7 @@ public class AlunoDAO {
             p = connection.prepareStatement(sql);
             p.setString(1, aluno.getNomComp());
             p.setInt(2, aluno.getCodGrupo());
+            p.setInt(3, aluno.getCodAluno());
             p.execute();
             
             aux = true;
@@ -159,7 +160,7 @@ public class AlunoDAO {
         Aluno a = null;
         try {
             connection = Conexao.getConnection();
-            sql = "SELECT * FROM ALUNO WHERE COD_ALUNO = ?";
+            sql = "SELECT * FROM ALUNOS WHERE COD_ALUNO = ?";
             p = connection.prepareStatement(sql);
             p.setInt(1, codAluno);
             rs = p.executeQuery();

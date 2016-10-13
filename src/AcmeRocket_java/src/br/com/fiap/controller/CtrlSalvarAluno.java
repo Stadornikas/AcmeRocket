@@ -46,7 +46,7 @@ public class CtrlSalvarAluno {
             msg = "Informe os campos obrigatorios";
             validacao = false;
         }
-        if (this.validarNomeDuplicidade(codAluno)) {
+        if (!this.validarNomeDuplicidade(codAluno)) {
             msg = "Já existe um aluno com este nome";
             validacao = false;
         }
@@ -73,7 +73,7 @@ public class CtrlSalvarAluno {
         String msg = "Falha ao alterar aluno";
         boolean validacao = true;
 
-        if (this.validarCamposObrigatorios(nomeAluno, codAluno, codGrupo)) {
+        if (!this.validarCamposObrigatorios(nomeAluno, codAluno, codGrupo)) {
             msg = "Preencha os campos Obrigatórios";
             validacao = false;
         }

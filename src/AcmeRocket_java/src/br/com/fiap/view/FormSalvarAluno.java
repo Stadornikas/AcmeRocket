@@ -192,7 +192,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         //CHAMANDO FORMULARIO ALUNOS(LISTA)
         FormListarAluno fa = new FormListarAluno();
         this.dispose();
-        //fa.setVisible(true);
+        fa.setVisible(true);
     }                                      
 
     private void btnCancelarAlunoMouseClicked(java.awt.event.MouseEvent evt) {                                              

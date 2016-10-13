@@ -22,6 +22,11 @@ public class CtrlDeletarGrupo {
             validacao = false;
         }
 
+        if (!this.validarDependenciaLancamento(codGrupo)) {
+            msg = "Antes de deletar o grupo é necessário excluir os lançamentos vinculadas a ele";
+            validacao = false;
+        }
+
         if (validacao) {
             GrupoDAO dao = new GrupoDAO();
             if (dao.deletar(codGrupo)) {
@@ -36,6 +41,12 @@ public class CtrlDeletarGrupo {
         GrupoDAO dao = new GrupoDAO();
         //Caso a quantidade de turmas dependetes do periodo for maior que zero a validacao retorna false
         return dao.verificarQuantidadeDependencia(codEvento) > 0 ? false : true;
+    }
+
+    public boolean validarDependenciaLancamento(int codLancamento) {
+        GrupoDAO dao = new GrupoDAO();
+        //Caso a quantidade de turmas dependetes do periodo for maior que zero a validacao retorna false
+        return dao.verificarQuantidadeDependenciaLancamento(codLancamento) > 0 ? false : true;
     }
 
 }
