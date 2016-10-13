@@ -193,14 +193,12 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
         if (this.codEvento == -1) {
             controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-//            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
-//                limparCampos();
-//            }
-//            else
-
-            JOptionPane.showConfirmDialog(this, "Evento criado com sucesso!");
-
+            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
+                limparCampos();
+            }
+            else
             this.voltarParaLista();
+            
         } else {
             controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
             limparCampos();
