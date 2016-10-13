@@ -19,12 +19,6 @@ public class CtrlDeletarAluno {
      * @param codAluno
      * @return boolean
      */
-    private boolean validarDependecia(int codAluno){
-        AlunoDAO dao = new AlunoDAO();
-        //Caso a quantidade de grupos dependetes do aluno for maior que zero a validacao retorna false
-        return dao.verificaQauntidadeDependencia(codAluno) > 0 ? false : true;
-        
-    }
     
     /**
      * Confirma se o usuário realmente deseja excluir
@@ -46,10 +40,7 @@ public class CtrlDeletarAluno {
         String msg = "Falha ao deletar aluno";
         boolean validacao = true;
         
-        if (!this.validarDependecia(codAluno)) {
-            msg = "Antes de deletar o aluno é necessário excluir os grupos vinculados a ele";
-            validacao = false;
-        }
+        
         
         if (validacao) {
             AlunoDAO dao = new AlunoDAO();

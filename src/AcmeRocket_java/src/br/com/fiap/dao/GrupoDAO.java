@@ -104,7 +104,7 @@ public class GrupoDAO {
                 int codTurma = rs.getInt("TURMA_COD_TURMA");
                 int codEvento = rs.getInt("EVENTOS_COD_EVENTO");
 
-                grupo = new Grupo(codGrupo, nomGrupo, codTurma, codEvento);
+                grupo = new Grupo(codigoGrupo, nomGrupo, codTurma, codEvento);
 
             }
         } catch (SQLException ex) {

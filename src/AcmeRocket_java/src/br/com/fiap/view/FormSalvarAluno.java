@@ -5,13 +5,12 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.dao.AlunoDAO;
-import br.com.fiap.dao.GrupoDAO;
+import br.com.fiap.controller.CtrlListarGrupo;
+import br.com.fiap.controller.CtrlSalvarAluno;
 import br.com.fiap.entity.Aluno;
 import br.com.fiap.entity.Grupo;
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,9 +19,12 @@ import javax.swing.JOptionPane;
  */
 public class FormSalvarAluno extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormNovoAluno
-     */
+    private int codAluno = -1;
+
+    public void setCodAluno(int codigoAluno) {
+        this.codAluno = codigoAluno;
+    }
+
     public FormSalvarAluno() {
         initComponents();
         setLocationRelativeTo(this);
@@ -44,10 +46,11 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtRm = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         cmbGrupo = new javax.swing.JComboBox<String>();
         btnCancelarAluno = new javax.swing.JButton();
+        txtRm = new javax.swing.JTextField();
+        lbRm = new javax.swing.JLabel();
         btnSalvarAluno = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
@@ -85,9 +88,6 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         jLabel8.setText("Grupo:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
-        txtRm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 100, -1));
-
         txtNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 320, -1));
 
@@ -95,6 +95,11 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         cmbGrupo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione um Grupo" }));
         cmbGrupo.setMinimumSize(new java.awt.Dimension(129, 21));
         cmbGrupo.setPreferredSize(new java.awt.Dimension(129, 21));
+        cmbGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbGrupoActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 320, 20));
 
         btnCancelarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -105,6 +110,10 @@ public class FormSalvarAluno extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancelarAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
+
+        txtRm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        getContentPane().add(txtRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 100, -1));
+        getContentPane().add(lbRm, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 100, 20));
 
         btnSalvarAluno.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         btnSalvarAluno.setText("Salvar");
@@ -147,17 +156,26 @@ public class FormSalvarAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarAlunoActionPerformed
-        int rm = Integer.parseInt(txtRm.getText());
-        String nome = txtNome.getText();
-        String grupo = String.valueOf(cmbGrupo.getSelectedItem());
+        int rm = 0;
+        
+        if (txtRm.getText().equals("")) {
 
-        AlunoDAO dao = new AlunoDAO();
-        GrupoDAO daoGrupo = new GrupoDAO();
+             rm = Integer.parseInt(lbRm.getText());
+        }else{
+             rm = Integer.parseInt(txtRm.getText());
+        }
+        String nomeAluno = txtNome.getText();
+        String codGrupo = String.valueOf(cmbGrupo.getSelectedItem());
 
-        Aluno aluno = new Aluno(rm, nome, daoGrupo.buscarIdComboGrupo(grupo));
+        CtrlSalvarAluno controle = new CtrlSalvarAluno();
+        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
 
-        if (dao.inserir(aluno)) {
-            JOptionPane.showMessageDialog(this, "Aluno insirido com sucesso! ");
+        if (codAluno == -1) {
+
+            controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+
+        } else {
+            controle.editarAluno(rm, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
         }
 
     }//GEN-LAST:event_btnSalvarAlunoActionPerformed
@@ -185,16 +203,56 @@ public class FormSalvarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarAlunoMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        /**
-         * COLOCANDO OS DADOS DO GRUPO DO BANCO NO COMBOBOX
-         */
-        List<Grupo> listaEvento = new ArrayList();
-        GrupoDAO daoEvento = new GrupoDAO();
-        listaEvento = daoEvento.listar();
-        for (Grupo g : listaEvento) {
-            cmbGrupo.addItem(g.getNomGrupo());
+
+        if (codAluno == -1) {
+            CtrlSalvarAluno ctrlAluno = new CtrlSalvarAluno();
+            ArrayList<Grupo> listaGrupo = ctrlAluno.carregarRegistrosGrupo();
+
+            for (Grupo g : listaGrupo) {
+                cmbGrupo.addItem(g.getNomGrupo());
+            }
+
+        } else {
+
+//Em caso de edicao os campos vem carregados com os dados da turma
+            CtrlSalvarAluno ctrlAluno = new CtrlSalvarAluno();
+            Aluno a = ctrlAluno.carregarAluno(codAluno);
+            ArrayList<Grupo> lista = ctrlAluno.carregarRegistrosGrupo();
+
+            if (a == null) {
+                this.voltarParaLista();
+            }
+
+            txtRm.setVisible(false);
+            lbRm.setText(String.valueOf(a.getCodAluno()).toString());
+
+            for (Grupo t : lista) {
+                cmbGrupo.addItem(t.getNomGrupo());
+            }
+
+            txtNome.setText(a.getNomComp());
+            cmbGrupo.setSelectedItem(ctrlAluno.carregarComboGrupo(a.getCodGrupo()));
+
         }
+
+        /**
+         * COLOCANDO OS DADOS DO ALUNO DO BANCO NO COMBOBOX
+         *
+         * List<Grupo> listaEvento = new ArrayList(); GrupoDAO daoEvento = new
+         * GrupoDAO(); listaEvento = daoEvento.listar(); for (Grupo g :
+         * listaEvento) { cmbGrupo.addItem(g.getNomGrupo()); }
+         */
     }//GEN-LAST:event_formWindowOpened
+
+    private void cmbGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbGrupoActionPerformed
+
+    private void voltarParaLista() {//
+        this.dispose();
+        FormListarAluno a = new FormListarAluno();
+        a.setVisible(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -244,6 +302,7 @@ public class FormSalvarAluno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbRm;
     private javax.swing.JLabel lblAlunos;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JTextField txtNome;

@@ -5,12 +5,13 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlDeletarAluno;
 import br.com.fiap.dao.AlunoDAO;
 import br.com.fiap.dao.GrupoDAO;
 import br.com.fiap.entity.Aluno;
 import java.awt.Color;
-import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -21,6 +22,7 @@ import javax.swing.table.TableModel;
 public class FormListarAluno extends javax.swing.JFrame {
 
     private String[][] matrizAluno;
+    private int codAluno;
 
     public FormListarAluno() {
         initComponents();
@@ -159,11 +161,35 @@ public class FormListarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDeletarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarAlunoActionPerformed
-        // TODO add your handling code here:
+
+        int linha = tabAlunos.getSelectedRow();
+
+        if (linha != -1) {
+
+            if (this.codAluno != -1) {
+                int codigoAluno = Integer.parseInt(String.valueOf(tabAlunos.getValueAt(linha, 0)));
+                CtrlDeletarAluno ctrlAluno = new CtrlDeletarAluno();
+                if (ctrlAluno.confirmaExclusao()) {    
+                ctrlAluno.excluirAluno(codigoAluno);
+                atualizarTabela();
+                }
+                //JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione um aluno da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            }
+        }
+
     }//GEN-LAST:event_btnDeletarAlunoActionPerformed
 
     private void btnALterarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarAlunoActionPerformed
-        // TODO add your handling code here:
+        int linha = tabAlunos.getSelectedRow();
+        if (linha != -1) {
+            FormSalvarAluno fng = new FormSalvarAluno();
+            int obj = Integer.parseInt(String.valueOf(tabAlunos.getValueAt(linha, 0)));
+            fng.setCodAluno(obj);
+            this.dispose();
+            fng.setVisible(true);
+        }
     }//GEN-LAST:event_btnALterarAlunoActionPerformed
 
     public void atualizarTabela() {

@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class CtrlSalvarAluno {
 
-    public Aluno verificaExistenc(int codAluno) {
+    public Aluno carregarAluno(int codAluno) {
         AlunoDAO dao = new AlunoDAO();
         Aluno a = dao.buscar(codAluno);
         if (a == null) {
@@ -44,14 +44,14 @@ public class CtrlSalvarAluno {
 
     public void inserirAluno(String nomeAluno, int codAluno, int codGrupo) {
         
-        String msg = "Falha ao inserir período";
+        String msg = "Falha ao inserir aluno";
         boolean validacao = true;
 
-        if (this.validarCamposObrigatorios(nomeAluno, codAluno, codGrupo)) {
+        if (this.validarCamposObrigatorios(nomeAluno, codGrupo)) {
             msg = "Informe os campos obrigatorios";
             validacao = false;
         }
-        if (this.validarNomeDuplicidade(codAluno)) {
+        if (this.verificarExistencia(codAluno)) {
             msg = "Já existe um aluno com este nome";
             validacao = false;
         }
@@ -78,7 +78,7 @@ public class CtrlSalvarAluno {
         String msg = "Falha ao alterar aluno";
         boolean validacao = true;
 
-        if (this.validarCamposObrigatorios(nomeAluno, codAluno, codGrupo)) {
+        if (this.validarCamposObrigatorios(nomeAluno, codGrupo)) {
             msg = "Preencha os campos Obrigatórios";
             validacao = false;
         }
@@ -94,7 +94,7 @@ public class CtrlSalvarAluno {
         JOptionPane.showMessageDialog(null, msg);
     }
 
-    public boolean validarNomeDuplicidade(int codAluno) {//alterar para verificaExistencia
+    public boolean verificarExistencia(int codAluno) {
         boolean aux = false;
 
         AlunoDAO dao = new AlunoDAO();
@@ -106,10 +106,10 @@ public class CtrlSalvarAluno {
         return aux;
     }
 
-    public boolean validarCamposObrigatorios(String nomeAluno, int codAluno, int codGrupo) {
+    public boolean validarCamposObrigatorios(String nomeAluno, int codGrupo) {
         boolean aux = false;
 
-        if ((nomeAluno.equalsIgnoreCase("")) || (codAluno == 0) || (codGrupo == 0)) {
+        if ((nomeAluno.equalsIgnoreCase("")) || (codGrupo == 0)) {
             aux = true;
         }
 

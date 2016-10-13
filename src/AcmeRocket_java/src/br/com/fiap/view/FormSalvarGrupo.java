@@ -5,12 +5,8 @@
  */
 package br.com.fiap.view;
 
-import br.com.fiap.controller.CtrlDeletarGrupo;
 import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.controller.CtrlListarTurma;
-import br.com.fiap.dao.EventoDAO;
-import br.com.fiap.dao.GrupoDAO;
-import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Evento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Turma;
@@ -18,7 +14,6 @@ import br.com.fiap.controller.CtrlSalvarGrupo;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *

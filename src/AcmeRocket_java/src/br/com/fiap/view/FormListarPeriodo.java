@@ -192,11 +192,15 @@ public class FormListarPeriodo extends javax.swing.JFrame {
     private void btnALterarPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnALterarPeriodoActionPerformed
         int linha = tabPeriodos.getSelectedRow();
         if (linha != -1) {
+            if (this.codPeriodo != -1) {
             FormSalvarPeriodo fng = new FormSalvarPeriodo();
             int obj = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
             fng.setCodPeriodo(obj);
             this.dispose();
             fng.setVisible(true);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "teste");
         }
     }//GEN-LAST:event_btnALterarPeriodoActionPerformed
 
