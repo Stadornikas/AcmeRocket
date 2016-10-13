@@ -7,9 +7,6 @@ package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlDeletarTurma;
 import br.com.fiap.controller.CtrlListarTurma;
-import br.com.fiap.controller.CtrlSalvarTurma;
-import br.com.fiap.dao.PeriodoDAO;
-import br.com.fiap.dao.TurmaDAO;
 import br.com.fiap.entity.Turma;
 import java.awt.Color;
 import java.util.List;

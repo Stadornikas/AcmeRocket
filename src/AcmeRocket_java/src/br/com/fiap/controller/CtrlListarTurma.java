@@ -43,10 +43,7 @@ public class CtrlListarTurma {
                 JOptionPane.showMessageDialog(null, "Erro ao buscar id da combo turma");
             }
 
-        }/* else {
-            JOptionPane.showMessageDialog(null, "Informe uma turma!");
-        }*/
-
+        }
         return t;
     }
 
