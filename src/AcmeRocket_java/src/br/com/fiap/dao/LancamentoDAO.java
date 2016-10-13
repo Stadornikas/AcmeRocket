@@ -238,19 +238,19 @@ public class LancamentoDAO {
 
         try {
             conn = Conexao.getConnection();
-            sql = "SELECT grup.`NOM_GRUPO`, even.`DAT_EVENTO`, lanc.`DIS_QUEDA`, lanc.`VEL_MAX`, lanc.`ALT_MAX`, lanc.`HORA_LANCAMENTO`  "
+            sql = "SELECT grup.`NOM_GRUPO`, even.`DAT_EVENTO`, lanc.`DIS_QUEDA`, lanc.`VEL_MAX`, lanc.`ALT_MAX`, lanc.`HOR_LANCAMENTO`  "
                 + "FROM `LANCAMENTO` as lanc "
-                + "INNER JOIN `GRUPO` as grup ON lanc.`COD_GRUPO` = grup.`COD_GRUPO` "
-                + "INNER JOIN `EVENTO` as even ON grup.`COD_EVENTO` = even.`COD_EVENTO` "
-                + "WHERE lanc.`STATUS` = 1 "
+                + "INNER JOIN `GRUPO` as grup ON lanc.`GRUPO_COD_GRUPO` = grup.`COD_GRUPO` "
+                + "INNER JOIN `EVENTOS` as even ON grup.`EVENTOS_COD_EVENTO` = even.`COD_EVENTO` "
+                + "WHERE lanc.`STATUS_LANC` = 2 "
                 + "ORDER BY lanc.`DIS_QUEDA` DESC";
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 String nomeGrupo = rs.getString("NOM_GRUPO");
-                Date dataEvento = rs.getDate("DATA_EVENTO");
-                Date horaLancamento = rs.getDate("HOR_LANCAMENTO");
+                Date dataEvento = rs.getDate("DAT_EVENTO");
+                String horaLancamento = rs.getString("HOR_LANCAMENTO");
                 float altMax = rs.getFloat("ALT_MAX");
                 float velMax = rs.getFloat("VEL_MAX");
                 float disQueda = rs.getFloat("DIS_QUEDA");

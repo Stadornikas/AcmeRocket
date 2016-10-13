@@ -20,9 +20,9 @@ public class Ranking {
     private float disQueda;
     private float velMax;
     private float altMax;
-    private Date horLancamento;
+    private String horLancamento;
 
-    public Ranking(String nomGrupo, Date datEvento, float disQueda, float velMax, float altMax, Date horLancamento) {
+    public Ranking(String nomGrupo, Date datEvento, float disQueda, float velMax, float altMax, String horLancamento) {
         this.nomGrupo = nomGrupo;
         this.datEvento = datEvento;
         this.disQueda = disQueda;
@@ -71,11 +71,11 @@ public class Ranking {
         this.altMax = altMax;
     }
 
-    public Date getHorLancamento() {
+    public String getHorLancamento() {
         return horLancamento;
     }
 
-    public void setHorLancamento(Date horLancamento) {
+    public void setHorLancamento(String horLancamento) {
         this.horLancamento = horLancamento;
     }
     
