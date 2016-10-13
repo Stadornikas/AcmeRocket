@@ -9,8 +9,23 @@ import javax.swing.JOptionPane;
 
 public class CtrlSalvarLacamento {
 
-    public boolean validarDispositivo() {
-        return true;
+    public int validarDispositivo(float altitudeMaxima, float velocidadeMaxima,
+            float tempoDePropulsao, float picoAceleracao, float aceleracaoMedia, float tempoApogeuDescida,
+            float tempoEjecao, float altitudeEjecao, float taxaDescida, float duracaoVoo, float distanciaQuedaAlvo) {
+        int aux = 1;
+
+        if (altitudeMaxima != 0 || velocidadeMaxima != 0 || tempoDePropulsao != 0 || picoAceleracao != 0 || aceleracaoMedia != 0 || tempoApogeuDescida != 0
+                || tempoEjecao != 0 || altitudeEjecao != 0 || taxaDescida != 0 || duracaoVoo != 0 || distanciaQuedaAlvo != 0) {
+            if (altitudeMaxima != 0 && velocidadeMaxima != 0 && tempoDePropulsao != 0 && picoAceleracao != 0 && aceleracaoMedia != 0 && tempoApogeuDescida != 0
+                    && tempoEjecao != 0 && altitudeEjecao != 0 && taxaDescida != 0 && duracaoVoo != 0 && distanciaQuedaAlvo != 0) {
+                aux = 2;
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos os campos do pós-lançamento devem ser preenchidos");
+                aux = 0;
+            }
+        }
+
+        return aux;
     }
 
     public void inserirLancamento(Lancamento lancamento) {
@@ -39,7 +54,7 @@ public class CtrlSalvarLacamento {
         JOptionPane.showMessageDialog(null, msg);
 
     }
-    
+
     public ArrayList<Grupo> carregarRegistrosGrupo() {
         GrupoDAO dao = new GrupoDAO();
         return dao.listar();

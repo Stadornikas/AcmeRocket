@@ -134,7 +134,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Grupo:"/>
+        <Property name="text" type="java.lang.String" value="*Grupo"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -202,11 +202,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xc2;NGULO"/>
+        <Property name="text" type="java.lang.String" value="*&#xc2;NGULO"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="470" y="85" width="-1" height="-1"/>
+          <AbsoluteConstraints x="460" y="85" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -230,7 +230,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DISTANCIA ALVO"/>
+        <Property name="text" type="java.lang.String" value="*DISTANCIA ALVO"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -255,7 +255,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="HORA:"/>
+        <Property name="text" type="java.lang.String" value="*HORA"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -280,7 +280,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Peso do foguete"/>
+        <Property name="text" type="java.lang.String" value="*Peso do foguete"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1010,7 +1010,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Velocidade do vento"/>
+        <Property name="text" type="java.lang.String" value="*Velocidade do vento"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1078,6 +1078,19 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="560" y="10" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Candara" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="* Campos obrigat&#xf3;rios"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="580" y="350" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
