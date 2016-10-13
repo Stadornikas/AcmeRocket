@@ -53,10 +53,12 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         lblPeriodo = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acme Rocket");
         setMaximumSize(null);
+        setMinimumSize(new java.awt.Dimension(723, 420));
         setPreferredSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
@@ -68,7 +70,7 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel6.setText("Período:");
+        jLabel6.setText("*Período:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
         txtPeriodo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -129,6 +131,10 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         jLabel8.setText("Período");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 45, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel3.setText("* Campos obrigatórios");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -154,11 +160,13 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
         String nomePeriodo = txtPeriodo.getText();
         CtrlSalvarPeriodo ctrlPeriodo = new CtrlSalvarPeriodo();
         if (this.codPeriodo == -1) {
-            ctrlPeriodo.inserirPeriodo(nomePeriodo);
-            this.voltarParaLista();
+           if(ctrlPeriodo.inserirPeriodo(nomePeriodo)){
+                this.voltarParaLista();
+           }
         } else {
-            ctrlPeriodo.alterarPeriodo(codPeriodo, nomePeriodo);
-            this.voltarParaLista();
+            if(ctrlPeriodo.alterarPeriodo(codPeriodo, nomePeriodo)){
+                this.voltarParaLista();
+            }
         }
         ctrlPeriodo = null;
 
@@ -222,6 +230,7 @@ public class FormSalvarPeriodo extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarPeriodo;
     private javax.swing.JButton btnSalvarPeriodo;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

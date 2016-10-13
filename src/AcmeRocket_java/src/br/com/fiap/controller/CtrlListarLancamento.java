@@ -13,6 +13,7 @@ public class CtrlListarLancamento {
 //    public ArrayList<Lancamento> carregarRegistro() {
 //
 //    }
+<<<<<<< HEAD
     
     public Lancamento carregarLancamento(int codLancamento) {
         LancamentoDAO dao = new LancamentoDAO();
@@ -22,5 +23,7 @@ public class CtrlListarLancamento {
         }
         return l;
     }
+=======
+>>>>>>> 294c3ec19096b889d038eeeec9dccd00b6b3833c
 
 }

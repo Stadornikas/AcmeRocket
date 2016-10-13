@@ -23,7 +23,6 @@ import javax.swing.table.TableModel;
 public class FormListarPeriodo extends javax.swing.JFrame {
 
     private String matrizLista[][];
-    int codPeriodo;
 
     public FormListarPeriodo() {
         initComponents();
@@ -173,16 +172,13 @@ public class FormListarPeriodo extends javax.swing.JFrame {
 
         if (linha != -1) {
 
-            if (this.codPeriodo != -1) {
-                int codigoPeriodo = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
-                CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
-                if (ctrlPeriodo.confirmaExclusao()) {
-                    ctrlPeriodo.excluirPeriodo(codigoPeriodo);
-                    atualizarTabela();
-                }
-            } else {
-                //JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+            int codigoPeriodo = Integer.parseInt(String.valueOf(tabPeriodos.getValueAt(linha, 0)));
+            CtrlDeletarPeriodo ctrlPeriodo = new CtrlDeletarPeriodo();
+            if (ctrlPeriodo.confirmaExclusao()) {
+                ctrlPeriodo.excluirPeriodo(codigoPeriodo);
+                atualizarTabela();
             }
+            
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
@@ -197,6 +193,8 @@ public class FormListarPeriodo extends javax.swing.JFrame {
             fng.setCodPeriodo(obj);
             this.dispose();
             fng.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_btnALterarPeriodoActionPerformed
 
