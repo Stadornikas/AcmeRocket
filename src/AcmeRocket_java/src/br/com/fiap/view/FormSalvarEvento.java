@@ -199,20 +199,19 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         String datEventoFormated = txtDataEvento.getText();
         CtrlListarEvento ctrlLis = new CtrlListarEvento();
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
-        
+
         if (this.codEvento == -1 && this.validaNomeAno(nomeEvento, datEventoFormated)) {
-            controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
+
+            if (controle.inserirEvento(nomeEvento, locEvento, datEventoFormated)) {
+
                 limparCampos();
-            }
-            else
+
                 this.voltarParaLista();
+
             }
-        else{
-            if (this.validaNomeAno(nomeEvento, datEventoFormated)) {
-                controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
-                this.voltarParaLista();
-            }
+
+        } else if (controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated)) {
+            this.voltarParaLista();
         }
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
@@ -254,7 +253,7 @@ public class FormSalvarEvento extends javax.swing.JFrame {
 
     private boolean validaNomeAno(String nomeEvento, String datEventoFormated) {
         CtrlListarEvento ctrlLis = new CtrlListarEvento();
-        ArrayList<Evento> lista =  new ArrayList();
+        ArrayList<Evento> lista = new ArrayList();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         lista = ctrlLis.carregarRegistros();
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
@@ -268,13 +267,12 @@ public class FormSalvarEvento extends javax.swing.JFrame {
                     this.limparCampos();
                 }
             }
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "deu ruim"+e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "deu ruim" + e);
         }
         return aux;
     }
-    
+
     /**
      * @param args the command line arguments
      */
