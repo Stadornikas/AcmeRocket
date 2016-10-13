@@ -67,8 +67,7 @@ public class FormSalvarTurma extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(null);
-        setPreferredSize(new java.awt.Dimension(723, 420));
+        setMinimumSize(new java.awt.Dimension(723, 420));
         setResizable(false);
         setSize(new java.awt.Dimension(723, 420));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -220,25 +219,30 @@ public class FormSalvarTurma extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        String nomeTurma = String.valueOf(txtTurma.getText());
-        String ano = String.valueOf(txtAno.getText());
-        String periodo = String.valueOf(cmbPeriodo.getSelectedItem());
-        
-        CtrlSalvarTurma ctrlTurma = new CtrlSalvarTurma();
-        if (this.codTurma == -1) {
-            if (ctrlTurma.validarCamposObrigatorios(nomeTurma, ano, periodo)) {
-                if(ctrlTurma.inserirTurma(nomeTurma, Integer.parseInt(ano), periodo)){
-                    this.voltarParaLista();
+        try{
+            String nomeTurma = String.valueOf(txtTurma.getText());
+            String ano = String.valueOf(txtAno.getText());
+            String periodo = String.valueOf(cmbPeriodo.getSelectedItem());
+            
+            
+            CtrlSalvarTurma ctrlTurma = new CtrlSalvarTurma();
+            int opt = cmbPeriodo.getSelectedIndex();
+            if (opt != 0 ) {
+                if (this.codTurma == -1) {
+                    if(ctrlTurma.inserirTurma(nomeTurma, ano, periodo)){
+                        this.voltarParaLista();
+                    }
+                } else {
+                    if(ctrlTurma.alterarTurma(this.codTurma, nomeTurma, ano, periodo)){
+                        this.voltarParaLista();
+                    }
                 }
+            }else{
+                JOptionPane.showMessageDialog(this, "Selecione um grupo!");
             }
-        } else {
-            if (ctrlTurma.validarCamposObrigatorios(nomeTurma, ano, periodo)) {
-                if(ctrlTurma.alterarTurma(this.codTurma, nomeTurma, Integer.parseInt(ano), periodo)){
-                    this.voltarParaLista();
-                }
-            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "O campo *ano deve conter um ano válido");
         }
-      
 
 
     }//GEN-LAST:event_btnSalvarActionPerformed

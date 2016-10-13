@@ -42,9 +42,9 @@ public class CtrlSalvarPeriodo {
      * @param nomePeriodo
      * @return boolean
      */
-    public void inserirPeriodo(String nomePeriodo){
+    public boolean inserirPeriodo(String nomePeriodo){
         String msg =  "Falha ao inserir período";
-        boolean validacao = true;
+        boolean validacao = true, sucesso = false;
         
         if (!this.validarCamposObrigatorios(nomePeriodo)) {
             msg =  "Preencha os campos Obrigatórios";
@@ -60,11 +60,11 @@ public class CtrlSalvarPeriodo {
             Periodo p = new Periodo(nomePeriodo);
             PeriodoDAO dao = new PeriodoDAO();
             if(dao.inserir(p)) msg = "Período Criado com sucesso";
-            
+            sucesso = true;
         }
                  
         JOptionPane.showMessageDialog(null, msg);     
-           
+        return sucesso;
     }
     
     /**
@@ -72,9 +72,9 @@ public class CtrlSalvarPeriodo {
      * @param codPeriodo
      * @return 
      */
-    public void alterarPeriodo(int codPeriodo,String nomePeriodo){
+    public boolean alterarPeriodo(int codPeriodo,String nomePeriodo){
         String msg = "Falha ao alterar período";
-        boolean validacao = true;
+        boolean validacao = true, sucesso = false;
         
         if (!this.validarCamposObrigatorios(nomePeriodo)) {
             msg =  "Preencha os campos Obrigatórios";
@@ -85,10 +85,11 @@ public class CtrlSalvarPeriodo {
             Periodo p = new Periodo(codPeriodo, nomePeriodo);
             PeriodoDAO dao = new PeriodoDAO();
             if(dao.alterar(p)) msg = "Período Alteardo com sucesso";
-            
+            sucesso = true;
         }
                   
         JOptionPane.showMessageDialog(null, msg);  
+        return sucesso;
     }
     
     /**

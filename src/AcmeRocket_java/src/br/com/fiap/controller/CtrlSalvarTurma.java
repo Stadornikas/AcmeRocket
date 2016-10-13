@@ -37,8 +37,6 @@ public class CtrlSalvarTurma {
     public boolean validarCamposObrigatorios(String nomeTurma, String ano, String periodo){
        boolean output = true;
         if((nomeTurma.equalsIgnoreCase("")) || (ano.equalsIgnoreCase("")) || (periodo.equalsIgnoreCase(""))){
-         String msg =  "Preencha os campos Obrigatórios";   
-         JOptionPane.showMessageDialog(null, msg); 
          output = false;
        }
         return output;
@@ -84,10 +82,16 @@ public class CtrlSalvarTurma {
      * @param nomeTurma
      * @return boolean
      */
-    public boolean inserirTurma(String nomeTurma, int anoTurma, String periodo){
+    public boolean inserirTurma(String nomeTurma, String anoTurma, String nomePeriodo){
         String msg =  "Falha ao inserir turma";
         boolean validacao = true,sucesso = false;
         
+        
+        if(!this.validarCamposObrigatorios(nomeTurma, anoTurma, nomePeriodo)) {
+            msg =  "Preencha os campos obrigatórios";
+            validacao = false;
+        }
+       
         if(!this.validarNomeDuplicidade(nomeTurma)) {
             msg =  "Já existe uma turma com este nome";
             validacao = false;
@@ -100,8 +104,9 @@ public class CtrlSalvarTurma {
         
         if (validacao) {
             PeriodoDAO periodoDAO = new PeriodoDAO();
-            int codPeriodo = periodoDAO. buscarIdComboPeriodo(periodo);
-            Turma t = new Turma(nomeTurma, anoTurma, codPeriodo);
+            int codPeriodo = periodoDAO. buscarIdComboPeriodo(nomePeriodo);
+            int ano = Integer.parseInt(anoTurma);
+            Turma t = new Turma(nomeTurma, ano, codPeriodo);
             TurmaDAO dao = new TurmaDAO();
             if(dao.inserir(t)) msg = "Turma Criado com sucesso";
             sucesso = true;
@@ -116,10 +121,14 @@ public class CtrlSalvarTurma {
      * @param codPeriodo
      * @return boolean
      */
-    public boolean alterarTurma(int codTurma, String nomeTurma, int ano, String nomePeriodo){
+    public boolean alterarTurma(int codTurma, String nomeTurma, String anoTurma, String nomePeriodo){
         String msg = "Falha ao alterar turma";
         boolean validacao = true, sucesso = false;
         
+         if(!this.validarCamposObrigatorios(nomeTurma, anoTurma, nomePeriodo)) {
+            msg =  "Preencha os campos obrigatórios";
+            validacao = false;
+        }
         
         if(!this.validarNomeDuplicidade(nomeTurma)) {
             msg =  "Já existe uma turma com este nome";
@@ -134,6 +143,7 @@ public class CtrlSalvarTurma {
         if (validacao) {
             PeriodoDAO periodoDAO = new PeriodoDAO();
             int codPeriodo = periodoDAO. buscarIdComboPeriodo(nomePeriodo);
+            int ano = Integer.parseInt(anoTurma);
             Turma t = new Turma(codTurma, nomeTurma, ano, codPeriodo);
             TurmaDAO dao = new TurmaDAO();
             if(dao.alterar(t)) msg = "Turma Alterado com sucesso";
