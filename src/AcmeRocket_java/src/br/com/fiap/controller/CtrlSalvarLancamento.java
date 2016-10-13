@@ -89,8 +89,35 @@ public class CtrlSalvarLancamento {
 
         }
         return aux;
-    }
+    }    
+    public int calcularStatus(String txtAltitudeMaxima, String txtVelocidadeMaxima, String txtTempoDePropulsao, 
+            String txtPicoDeAceleracao, String txtAceleracaoMedia, String txtTempoApogeuDescida,
+            String txtTempoDeEjecao, String txtAltitudeDeEjecao, String txtTaxaDeDescida, String txtDuracaoVoo, String txtQuedaAteAlvo ) {
+        
+        int aux = 1;
+        float altitudeMaxima = Float.parseFloat(txtAltitudeMaxima);
+        float velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima);
+        float tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao);
+        float picoAceleracao = Float.parseFloat(txtPicoDeAceleracao);
+        float aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia);
+        float tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida);
+        float tempoEjecao = Float.parseFloat(txtTempoDeEjecao);
+        float altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao);
+        float taxaDecida = Float.parseFloat(txtTaxaDeDescida);
+        float duracaoVoo = Float.parseFloat(txtDuracaoVoo);
+        float distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo);
 
-    //public int calcularStatus() {
-//    }
+        if (altitudeMaxima != 0 || velocidadeMaxima != 0 || tempoDePropulsao != 0 || picoAceleracao != 0 || aceleracaoMedia != 0 || tempoApogeuEDescida != 0
+                || tempoEjecao != 0 || altiduteEjecao != 0 || taxaDecida != 0 || duracaoVoo != 0 || distanciaQuedaAlvo != 0) {
+            if (altitudeMaxima != 0 && velocidadeMaxima != 0 && tempoDePropulsao != 0 && picoAceleracao != 0 && aceleracaoMedia != 0 && tempoApogeuEDescida != 0
+                    && tempoEjecao != 0 && altiduteEjecao != 0 && taxaDecida != 0 && duracaoVoo != 0 && distanciaQuedaAlvo != 0) {
+                aux = 2;
+            } else {
+                JOptionPane.showMessageDialog(null, "Todos os campos do pós-lançamento devem ser preenchidos");
+                aux = 0;
+            }
+        }
+
+        return aux;
+    }
 }
