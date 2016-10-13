@@ -39,15 +39,15 @@ public class CtrlSalvarAluno {
 
     public void inserirAluno(String nomeAluno, int codAluno, int codGrupo) {
         
-        String msg = "Falha ao inserir período";
+        String msg = "Falha ao inserir aluno";
         boolean validacao = true;
 
         if (this.validarCamposObrigatorios(nomeAluno, codAluno, codGrupo)) {
             msg = "Informe os campos obrigatorios";
             validacao = false;
         }
-        if (!this.validarNomeDuplicidade(codAluno)) {
-            msg = "Já existe um aluno com este nome";
+        if (!this.verificarExistencia(codAluno)) {
+            msg = "Já existe um aluno com este RM";
             validacao = false;
         }
 
@@ -89,13 +89,13 @@ public class CtrlSalvarAluno {
         JOptionPane.showMessageDialog(null, msg);
     }
 
-    public boolean validarNomeDuplicidade(int codAluno) {//alterar para verificaExistencia
-        boolean aux = false;
+    public boolean verificarExistencia(int codAluno) {//alterar para verificaExistencia
+        boolean aux = true;
 
         AlunoDAO dao = new AlunoDAO();
 
         if (dao.existeAluno(codAluno)) {
-            aux = true;
+            aux = false;
         }
 
         return aux;

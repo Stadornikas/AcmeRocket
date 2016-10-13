@@ -158,22 +158,24 @@ public class AlunoDAO {
     
     public boolean existeAluno(int codAluno) {
         Aluno a = null;
+        boolean valida = false;
         try {
             connection = Conexao.getConnection();
             sql = "SELECT * FROM ALUNOS WHERE COD_ALUNO = ?";
             p = connection.prepareStatement(sql);
             p.setInt(1, codAluno);
             rs = p.executeQuery();
-
+            
             while (rs.next()) {
                 a = new Aluno(rs.getInt("COD_ALUNO"),rs.getString("NOM_ALUNO"), rs.getInt("GRUPO_COD_GRUPO"));
+                valida = true;
             }
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar maior cod aluno: " + ex);
         }
 
-        return (p != null);
+        return (valida);
 
     }
     
