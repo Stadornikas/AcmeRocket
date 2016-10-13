@@ -113,7 +113,7 @@ public class FormListarRanking extends javax.swing.JFrame {
         CtrlListarRanking ctrlListarRanking = new CtrlListarRanking();
         ArrayList<Ranking> lista = ctrlListarRanking.listarRanking();
         
-        matrizRanking = new String[lista.size()][3];
+        matrizRanking = new String[lista.size()][6];
         Ranking ranking;
 
         String[] colunas = {"Nome Grupo", "Data Evento", "Hora Lançamento", "Dist Queda", "Alt. max.", "Vel. max."};
