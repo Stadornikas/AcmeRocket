@@ -7,7 +7,7 @@ package br.com.fiap.view;
 
 import br.com.fiap.controller.CtrlListarGrupo;
 import br.com.fiap.controller.CtrlListarLancamento;
-import br.com.fiap.controller.CtrlSalvarLacamento;
+import br.com.fiap.controller.CtrlSalvarLancamento;
 import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
@@ -485,7 +485,15 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
         String grupo = "";
+<<<<<<< HEAD
         if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex() == 0) {
+=======
+        CtrlSalvarLancamento ctrlLacamentoo = new CtrlSalvarLancamento();
+        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
+        Lancamento l = null;
+
+        if (!cmbGrupo.getSelectedItem().equals("") || cmbGrupo.getSelectedIndex()== 0) {
+>>>>>>> e132ed05629c39ed17aaa0db416c2543185e4d62
             grupo = String.valueOf(cmbGrupo.getSelectedItem());
         } else {
             //grupo = 0;
@@ -507,10 +515,6 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         float taxaDecida = 0;
         float duracaoVoo = 0;
         float distanciaQuedaAlvo = 0;
-
-        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
-        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
-        Lancamento l = null;
 
         if (chkLancamentoFalhou.isSelected()) {
             status = 3;
@@ -567,7 +571,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         if (this.codigoLancamento == -1) {
 
-            CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
+            CtrlSalvarLancamento ctrlLancamento = new CtrlSalvarLancamento();
 
             ArrayList<Grupo> listaGrupo = ctrlLancamento.carregarRegistrosGrupo();
 
@@ -577,7 +581,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         } else {
 
-            CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
+            CtrlSalvarLancamento ctrlLancamento = new CtrlSalvarLancamento();
             CtrlListarLancamento ctrlListarLancamento = new CtrlListarLancamento();
             Lancamento l = ctrlListarLancamento.carregarLancamento(codigoLancamento);
             ArrayList<Grupo> lista = ctrlLancamento.carregarRegistrosGrupo();
@@ -623,9 +627,13 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void btnCancelarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarLancamentoActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
+<<<<<<< HEAD
             this.dispose();
             FormListarLancamento fll = new FormListarLancamento();
             fll.setVisible(true);
+=======
+            this.voltarParaLista();
+>>>>>>> e132ed05629c39ed17aaa0db416c2543185e4d62
         }
     }//GEN-LAST:event_btnCancelarLancamentoActionPerformed
 
@@ -662,6 +670,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
         return aux;
     }
+    
 
     /**
      * @param args the command line arguments

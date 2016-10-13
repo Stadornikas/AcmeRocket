@@ -118,6 +118,11 @@ public class FormSalvarTurma extends javax.swing.JFrame {
                 btnCancelarTurmaMouseClicked(evt);
             }
         });
+        btnCancelarTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarTurmaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnCancelarTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
@@ -246,6 +251,12 @@ public class FormSalvarTurma extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarTurmaActionPerformed
+         if (JOptionPane.showConfirmDialog(this, "Tem certeza que deseja cancelar ?", "Selecione uma opção", JOptionPane.YES_NO_OPTION) == 0) {
+            this.voltarParaLista();
+        }
+    }//GEN-LAST:event_btnCancelarTurmaActionPerformed
     
     
     private void voltarParaLista(){
