@@ -265,5 +265,3 @@ public class FormListarAluno extends javax.swing.JFrame {
     private javax.swing.JTable tabAlunos;
     // End of variables declaration                   
 }
-
-
