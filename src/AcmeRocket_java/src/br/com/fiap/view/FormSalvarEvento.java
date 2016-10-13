@@ -5,11 +5,16 @@
  */
 package br.com.fiap.view;
 
+import br.com.fiap.controller.CtrlListarEvento;
 import br.com.fiap.controller.CtrlSalvarEvento;
 import br.com.fiap.entity.Evento;
 import java.awt.Color;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
@@ -184,27 +189,25 @@ public class FormSalvarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_lblEventosMouseClicked
 
     private void btnSalvarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarEventoActionPerformed
-
         String nomeEvento = txtEvento.getText();
         String locEvento = txtLocalEvento.getText();
         String datEventoFormated = txtDataEvento.getText();
-//
+        CtrlListarEvento ctrlLis = new CtrlListarEvento();
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
-
-        if (this.codEvento == -1) {
+        
+        if (this.codEvento == -1 && this.validaNomeAno(nomeEvento, datEventoFormated)) {
             controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-
             if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
                 limparCampos();
             }
             else
-
-            this.voltarParaLista();
-            
-        } else {
-            controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
-            limparCampos();
-            voltarParaLista();
+                this.voltarParaLista();
+            }
+        else{
+            if (this.validaNomeAno(nomeEvento, datEventoFormated)) {
+                controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
+                this.voltarParaLista();
+            }
         }
     }//GEN-LAST:event_btnSalvarEventoActionPerformed
 
@@ -244,6 +247,29 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         txtDataEvento.setText("");
     }
 
+    private boolean validaNomeAno(String nomeEvento, String datEventoFormated) {
+        CtrlListarEvento ctrlLis = new CtrlListarEvento();
+        ArrayList<Evento> lista =  new ArrayList();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        lista = ctrlLis.carregarRegistros();
+        CtrlSalvarEvento controle = new CtrlSalvarEvento();
+        boolean aux = true;
+        try {
+            for (Evento e : lista) {
+                String data = formatter.format(e.getDatEvento());
+                if (e.getNomEvento().equalsIgnoreCase(nomeEvento) && data.equalsIgnoreCase(datEventoFormated)) {
+                    JOptionPane.showMessageDialog(this, "Já existe um evento cadastrado com este nome neste ano!");
+                    aux = false;
+                    this.limparCampos();
+                }
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "deu ruim"+e);
+        }
+        return aux;
+    }
+    
     /**
      * @param args the command line arguments
      */
