@@ -156,27 +156,32 @@ public class FormSalvarAluno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                        
 
-    private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        int rm = 0;
-        
-        if (txtRm.getText().equals("")) {
+    private void btnSalvarAlunoActionPerformed(java.awt.event.ActionEvent evt) {  
+        try{
+           
+            int rm = 0;
 
-             rm = Integer.parseInt(lbRm.getText());
-        }else{
-             rm = Integer.parseInt(txtRm.getText());
-        }
-        String nomeAluno = txtNome.getText();
-        String codGrupo = String.valueOf(cmbGrupo.getSelectedItem());
+            if (txtRm.getText().equals("")) {
 
-        CtrlSalvarAluno controle = new CtrlSalvarAluno();
-        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
+                 rm = Integer.parseInt(lbRm.getText());
+            }else{
+                 rm = Integer.parseInt(txtRm.getText());
+            }
+            String nomeAluno = txtNome.getText();
+            String codGrupo = String.valueOf(cmbGrupo.getSelectedItem());
 
-        if (codAluno == -1) {
+            CtrlSalvarAluno controle = new CtrlSalvarAluno();
+            CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
 
-            controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+            if (codAluno == -1) {
 
-        } else {
-            controle.editarAluno(rm, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+                controle.inserirAluno(nomeAluno, rm, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+
+            } else {
+                controle.editarAluno(rm, nomeAluno, ctrlGrupo.buscarIdComboGrupo(codGrupo));
+            }
+          }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "O campo *RM deve conter um numero interio");
         }
 
     }                                              
