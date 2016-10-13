@@ -10,6 +10,7 @@ import br.com.fiap.controller.CtrlListarTurma;
 import br.com.fiap.entity.Turma;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -103,14 +104,14 @@ public class FormListarTurmas extends javax.swing.JFrame {
                 lblDashboardMouseClicked(evt);
             }
         });
-        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, -1));
+        getContentPane().add(lblDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
         jLabel8.setText("Turmas");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 10, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Seta 16x16.png"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 8, -1, -1));
 
         btnDeletarTurma.setText("Deletar");
         btnDeletarTurma.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +158,8 @@ public class FormListarTurmas extends javax.swing.JFrame {
             fst.setCodTurma(obj);
             this.dispose();
             fst.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(this, "Selecione uma turma da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_btnALterarTurmaActionPerformed
 
@@ -169,6 +172,8 @@ public class FormListarTurmas extends javax.swing.JFrame {
                 ctrlturma.excluirTurma(codTurma);
                 atualizarTabela();
             }
+        }else{
+             JOptionPane.showMessageDialog(this, "Selecione uma turma da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_btnDeletarTurmaActionPerformed
 

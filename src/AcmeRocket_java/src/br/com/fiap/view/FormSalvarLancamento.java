@@ -125,6 +125,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         lblDuracaoVoo = new javax.swing.JLabel();
         lblTempoApogeu = new javax.swing.JLabel();
         chkLancamentoFalhou = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(723, 420));
@@ -171,7 +172,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 9, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel8.setText("Grupo:");
+        jLabel8.setText("*Grupo");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 85, 60, -1));
 
         cmbGrupo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -194,8 +195,8 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(btnSalvarLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 345, 90, -1));
 
         jLabel10.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel10.setText("ÂNGULO");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 85, -1, -1));
+        jLabel10.setText("*ÂNGULO");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 85, -1, -1));
 
         txtAngulo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtAngulo.addActionListener(new java.awt.event.ActionListener() {
@@ -206,21 +207,21 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(txtAngulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 85, 140, -1));
 
         jLabel13.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel13.setText("DISTANCIA ALVO");
+        jLabel13.setText("*DISTANCIA ALVO");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
         txtDistanciaAlvo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtDistanciaAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, -1));
 
         jLabel18.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel18.setText("HORA:");
+        jLabel18.setText("*HORA");
         getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 85, -1, -1));
 
         txtHora.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         getContentPane().add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 85, 90, -1));
 
         jLabel22.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel22.setText("Peso do foguete");
+        jLabel22.setText("*Peso do foguete");
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         txtPesoFoguete.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -419,7 +420,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(txtQuedaAteAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 312, 230, -1));
 
         jLabel62.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel62.setText("Velocidade do vento");
+        jLabel62.setText("*Velocidade do vento");
         getContentPane().add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, -1, -1));
 
         txtVelocidadeDoVento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -443,6 +444,10 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chkLancamentoFalhou, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Candara", 0, 12)); // NOI18N
+        jLabel6.setText("* Campos obrigatórios");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 350, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -482,6 +487,10 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         float duracaoVoo = 0;
         float distanciaQuedaAlvo = 0;
 
+        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
+        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
+        Lancamento l = null;
+
         if (chkLancamentoFalhou.isSelected()) {
             status = 3;
             //PARA SER LANÇAMENTO OK OS DOIS PRECISA SER VADEIRO
@@ -506,10 +515,6 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             status = 0;
         }
 
-        CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
-        CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
-        Lancamento l = null;
-
         if (status != 0) {
             if (this.codigoLancamento == -1) {
 
@@ -518,6 +523,8 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
                         taxaDecida, duracaoVoo, distanciaQuedaAlvo);
 
                 ctrlLacamentoo.inserirLancamento(l);
+
+                this.voltarParaLista();
             } else {
                 l = new Lancamento(codigoLancamento, ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
                         velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
@@ -526,8 +533,8 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
                 ctrlLacamentoo.editarLancamento(l);
 
             }
-        } 
-        
+        }
+
         ctrlLacamentoo = null;
     }//GEN-LAST:event_btnSalvarLancamentoActionPerformed
 
@@ -547,32 +554,6 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
                 cmbGrupo.addItem(g.getNomGrupo());
             }
 
-//            if (cmbStatusLancamento.getSelectedIndex() == 0 || cmbStatusLancamento.getSelectedIndex() == 2) {
-//
-//                txtAltitudeMaxima.setVisible(false);
-//                lblAltitudeMaxima.setVisible(false);
-//                txtVelocidadeMaxima.setVisible(false);
-//                lblVelocidadeMaxima.setVisible(false);
-//                txtTempoDePropulsao.setVisible(false);
-//                lblTempoPropulsao.setVisible(false);
-//                txtPicoDeAceleracao.setVisible(false);
-//                lblPicoAceleracao.setVisible(false);
-//                txtAceleracaoMedia.setVisible(false);
-//                lblAceleracaoMedia.setVisible(false);
-//                txtTempoApogeuDescida.setVisible(false);
-//                lblTempoApogeu.setVisible(false);
-//                txtTempoDeEjecao.setVisible(false);
-//                lblTempoEjecao.setVisible(false);
-//                txtAltitudeDeEjecao.setVisible(false);
-//                lblAltitudeEjecao.setVisible(false);
-//                txtTaxaDeDescida.setVisible(false);
-//                lblTaxaDescida.setVisible(false);
-//                txtDuracaoVoo.setVisible(false);
-//                lblDuracaoVoo.setVisible(false);
-//                txtQuedaAteAlvo.setVisible(false);
-//                lblQuedaAlvo.setVisible(false);
-//
-//            }
         } else {
 
             CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
@@ -621,7 +602,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
 
     private void voltarParaLista() {//
         this.dispose();
-        FormListarGrupos fg = new FormListarGrupos();
+        FormListarLancamento fg = new FormListarLancamento();
         fg.setVisible(true);
     }
 
@@ -740,6 +721,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel8;

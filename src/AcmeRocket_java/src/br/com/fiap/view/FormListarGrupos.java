@@ -176,6 +176,8 @@ public class FormListarGrupos extends javax.swing.JFrame {
             fng.setCodGrupo(obj);
             this.dispose();
             fng.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(this, "Selecione um grupo da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
         }
 
     }//GEN-LAST:event_btnEditarGrupoActionPerformed
@@ -192,7 +194,7 @@ public class FormListarGrupos extends javax.swing.JFrame {
                     atualizarTabela();
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
+                JOptionPane.showMessageDialog(this, "Selecione um grupo da lista para alterar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um período da lista para deletar", "Selecione uma opção", JOptionPane.YES_NO_OPTION);
