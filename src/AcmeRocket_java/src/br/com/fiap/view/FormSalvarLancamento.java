@@ -12,6 +12,7 @@ import br.com.fiap.entity.Grupo;
 import br.com.fiap.entity.Lancamento;
 import java.awt.Color;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -123,8 +124,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         jLabel63 = new javax.swing.JLabel();
         lblDuracaoVoo = new javax.swing.JLabel();
         lblTempoApogeu = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        cmbStatusLancamento = new javax.swing.JComboBox<>();
+        chkLancamentoFalhou = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(723, 420));
@@ -343,6 +343,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblAltitudeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 185, 160, 30));
 
         txtAltitudeMaxima.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAltitudeMaxima.setText("0");
         getContentPane().add(txtAltitudeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 160, -1));
 
         lblVelocidadeMaxima.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -350,6 +351,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblVelocidadeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 185, 160, 30));
 
         txtVelocidadeMaxima.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtVelocidadeMaxima.setText("0");
         getContentPane().add(txtVelocidadeMaxima, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 160, -1));
 
         lblTempoPropulsao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -357,6 +359,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblTempoPropulsao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 185, 160, 30));
 
         txtTempoDePropulsao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTempoDePropulsao.setText("0");
         getContentPane().add(txtTempoDePropulsao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 160, -1));
 
         lblPicoAceleracao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -364,9 +367,11 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblPicoAceleracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 185, 160, 30));
 
         txtPicoDeAceleracao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtPicoDeAceleracao.setText("0");
         getContentPane().add(txtPicoDeAceleracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 170, -1));
 
         txtTempoApogeuDescida.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTempoApogeuDescida.setText("0");
         getContentPane().add(txtTempoApogeuDescida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 312, 270, -1));
 
         lblTempoEjecao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -374,6 +379,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblTempoEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 235, 160, 30));
 
         txtTempoDeEjecao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTempoDeEjecao.setText("0");
         getContentPane().add(txtTempoDeEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 160, -1));
 
         lblAltitudeEjecao.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -381,6 +387,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblAltitudeEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 235, 160, 30));
 
         txtAltitudeDeEjecao.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAltitudeDeEjecao.setText("0");
         getContentPane().add(txtAltitudeDeEjecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 160, -1));
 
         lblTaxaDescida.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -388,6 +395,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblTaxaDescida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 235, 160, 30));
 
         txtTaxaDeDescida.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtTaxaDeDescida.setText("0");
         getContentPane().add(txtTaxaDeDescida, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 170, -1));
 
         lblAceleracaoMedia.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -395,6 +403,7 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblAceleracaoMedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 235, 160, 30));
 
         txtAceleracaoMedia.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAceleracaoMedia.setText("0");
         getContentPane().add(txtAceleracaoMedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 160, -1));
 
         lblQuedaAlvo.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -402,9 +411,11 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         getContentPane().add(lblQuedaAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 230, -1));
 
         txtDuracaoVoo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtDuracaoVoo.setText("0");
         getContentPane().add(txtDuracaoVoo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 312, 150, -1));
 
         txtQuedaAteAlvo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtQuedaAteAlvo.setText("0");
         getContentPane().add(txtQuedaAteAlvo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 312, 230, -1));
 
         jLabel62.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -425,13 +436,13 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
         lblTempoApogeu.setText("Tempo entre o apogeu e a descida");
         getContentPane().add(lblTempoApogeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 270, -1));
 
-        jLabel6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jLabel6.setText("Status");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
-
-        cmbStatusLancamento.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cmbStatusLancamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha o status do lançamento", "Sucesso", "Falhou" }));
-        getContentPane().add(cmbStatusLancamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 240, -1));
+        chkLancamentoFalhou.setText("Lançamento Falhou");
+        chkLancamentoFalhou.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkLancamentoFalhouActionPerformed(evt);
+            }
+        });
+        getContentPane().add(chkLancamentoFalhou, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -451,50 +462,72 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     }//GEN-LAST:event_lblLancamentoMouseClicked
 
     private void btnSalvarLancamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarLancamentoActionPerformed
+
         String grupo = String.valueOf(cmbGrupo.getSelectedItem());
         String hora = txtHora.getText();
         float angulo = Float.parseFloat(txtAngulo.getText());
         float distanciaDoALvo = Float.parseFloat(txtDistanciaAlvo.getText());
         float velocidadeVento = Float.parseFloat(txtVelocidadeDoVento.getText());
         float pesoFoguete = Float.parseFloat(txtPesoFoguete.getText());
-        float altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
-        float velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
-        float tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao.getText());
-        float picoAceleracao = Float.parseFloat(txtPicoDeAceleracao.getText());
-        float aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia.getText());
-        float tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida.getText());
-        float tempoEjecao = Float.parseFloat(txtTempoDeEjecao.getText());
-        float altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao.getText());
-        float taxaDecida = Float.parseFloat(txtTaxaDeDescida.getText());
-        float duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
-        float distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
-        int status;
+        int status = 0;
+        float altitudeMaxima = 0;
+        float velocidadeMaxima = 0;
+        float tempoDePropulsao = 0;
+        float picoAceleracao = 0;
+        float aceleracaoMedia = 0;
+        float tempoApogeuEDescida = 0;
+        float tempoEjecao = 0;
+        float altiduteEjecao = 0;
+        float taxaDecida = 0;
+        float duracaoVoo = 0;
+        float distanciaQuedaAlvo = 0;
 
-        if (cmbStatusLancamento.getSelectedIndex() == 0) {
-            status = 1;
-        } else {
+        if (chkLancamentoFalhou.isSelected()) {
+            status = 3;
+            //PARA SER LANÇAMENTO OK OS DOIS PRECISA SER VADEIRO
+        } else if (validarDispositivo() == 2) {
             status = 2;
+            altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
+            velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
+            tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao.getText());
+            picoAceleracao = Float.parseFloat(txtPicoDeAceleracao.getText());
+            aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia.getText());
+            tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida.getText());
+            tempoEjecao = Float.parseFloat(txtTempoDeEjecao.getText());
+            altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao.getText());
+            taxaDecida = Float.parseFloat(txtTaxaDeDescida.getText());
+            duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
+            distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
+
+        } else if (validarDispositivo() == 1) {
+            //PRE LANCAMENTO
+            status = 1;
+        } else if (validarDispositivo() == 0) {
+            status = 0;
         }
 
         CtrlSalvarLacamento ctrlLacamentoo = new CtrlSalvarLacamento();
         CtrlListarGrupo ctrlGrupo = new CtrlListarGrupo();
         Lancamento l = null;
 
-        if (this.codigoLancamento == -1) {
+        if (status != 0) {
+            if (this.codigoLancamento == -1) {
 
-            l = new Lancamento(ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
-                    velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
-                    taxaDecida, duracaoVoo, distanciaQuedaAlvo);
+                l = new Lancamento(ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
+                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
+                        taxaDecida, duracaoVoo, distanciaQuedaAlvo);
 
-            ctrlLacamentoo.inserirLancamento(l);
-        } else {
-            l = new Lancamento(codigoLancamento, ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
-                    velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
-                    taxaDecida, duracaoVoo, distanciaQuedaAlvo);
+                ctrlLacamentoo.inserirLancamento(l);
+            } else {
+                l = new Lancamento(codigoLancamento, ctrlGrupo.buscarIdComboGrupo(grupo), hora, status, angulo, velocidadeVento, distanciaDoALvo, pesoFoguete, altitudeMaxima,
+                        velocidadeMaxima, tempoDePropulsao, picoAceleracao, aceleracaoMedia, tempoApogeuEDescida, tempoEjecao, altiduteEjecao,
+                        taxaDecida, duracaoVoo, distanciaQuedaAlvo);
 
-            ctrlLacamentoo.editarLancamento(l);
+                ctrlLacamentoo.editarLancamento(l);
 
-        }
+            }
+        } 
+        
         ctrlLacamentoo = null;
     }//GEN-LAST:event_btnSalvarLancamentoActionPerformed
 
@@ -514,33 +547,32 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
                 cmbGrupo.addItem(g.getNomGrupo());
             }
 
-            if (cmbStatusLancamento.getSelectedIndex() == 0 || cmbStatusLancamento.getSelectedIndex() == 2) {
-
-                txtAltitudeMaxima.setVisible(false);
-                lblAltitudeMaxima.setVisible(false);
-                txtVelocidadeMaxima.setVisible(false);
-                lblVelocidadeMaxima.setVisible(false);
-                txtTempoDePropulsao.setVisible(false);
-                lblTempoPropulsao.setVisible(false);
-                txtPicoDeAceleracao.setVisible(false);
-                lblPicoAceleracao.setVisible(false);
-                txtAceleracaoMedia.setVisible(false);
-                lblAceleracaoMedia.setVisible(false);
-                txtTempoApogeuDescida.setVisible(false);
-                lblTempoApogeu.setVisible(false);
-                txtTempoDeEjecao.setVisible(false);
-                lblTempoEjecao.setVisible(false);
-                txtAltitudeDeEjecao.setVisible(false);
-                lblAltitudeEjecao.setVisible(false);
-                txtTaxaDeDescida.setVisible(false);
-                lblTaxaDescida.setVisible(false);
-                txtDuracaoVoo.setVisible(false);
-                lblDuracaoVoo.setVisible(false);
-                txtQuedaAteAlvo.setVisible(false);
-                lblQuedaAlvo.setVisible(false);
-
-            }
-
+//            if (cmbStatusLancamento.getSelectedIndex() == 0 || cmbStatusLancamento.getSelectedIndex() == 2) {
+//
+//                txtAltitudeMaxima.setVisible(false);
+//                lblAltitudeMaxima.setVisible(false);
+//                txtVelocidadeMaxima.setVisible(false);
+//                lblVelocidadeMaxima.setVisible(false);
+//                txtTempoDePropulsao.setVisible(false);
+//                lblTempoPropulsao.setVisible(false);
+//                txtPicoDeAceleracao.setVisible(false);
+//                lblPicoAceleracao.setVisible(false);
+//                txtAceleracaoMedia.setVisible(false);
+//                lblAceleracaoMedia.setVisible(false);
+//                txtTempoApogeuDescida.setVisible(false);
+//                lblTempoApogeu.setVisible(false);
+//                txtTempoDeEjecao.setVisible(false);
+//                lblTempoEjecao.setVisible(false);
+//                txtAltitudeDeEjecao.setVisible(false);
+//                lblAltitudeEjecao.setVisible(false);
+//                txtTaxaDeDescida.setVisible(false);
+//                lblTaxaDescida.setVisible(false);
+//                txtDuracaoVoo.setVisible(false);
+//                lblDuracaoVoo.setVisible(false);
+//                txtQuedaAteAlvo.setVisible(false);
+//                lblQuedaAlvo.setVisible(false);
+//
+//            }
         } else {
 
             CtrlSalvarLacamento ctrlLancamento = new CtrlSalvarLacamento();
@@ -573,20 +605,52 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
             txtTaxaDeDescida.setText(String.valueOf(l.getTaxDes()));
             txtDuracaoVoo.setText(String.valueOf(l.getDurVoo()));
             txtQuedaAteAlvo.setText(String.valueOf(l.getDisQueda()));
-            if (l.getStatus() == 1) {
-                cmbStatusLancamento.setSelectedIndex(0);
-            } else {
-                cmbStatusLancamento.setSelectedIndex(1);
-            }
+//            if (l.getStatus() == 1) {
+//                cmbStatusLancamento.setSelectedIndex(0);
+//            } else {
+//                cmbStatusLancamento.setSelectedIndex(1);
+//            }
 
         }
 
     }//GEN-LAST:event_formWindowOpened
 
+    private void chkLancamentoFalhouActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLancamentoFalhouActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkLancamentoFalhouActionPerformed
+
     private void voltarParaLista() {//
         this.dispose();
         FormListarGrupos fg = new FormListarGrupos();
         fg.setVisible(true);
+    }
+
+    public int validarDispositivo() {
+        int aux = 1;
+        float altitudeMaxima = Float.parseFloat(txtAltitudeMaxima.getText());
+        float velocidadeMaxima = Float.parseFloat(txtVelocidadeMaxima.getText());
+        float tempoDePropulsao = Float.parseFloat(txtTempoDePropulsao.getText());
+        float picoAceleracao = Float.parseFloat(txtPicoDeAceleracao.getText());
+        float aceleracaoMedia = Float.parseFloat(txtAceleracaoMedia.getText());
+        float tempoApogeuEDescida = Float.parseFloat(txtTempoApogeuDescida.getText());
+        float tempoEjecao = Float.parseFloat(txtTempoDeEjecao.getText());
+        float altiduteEjecao = Float.parseFloat(txtAltitudeDeEjecao.getText());
+        float taxaDecida = Float.parseFloat(txtTaxaDeDescida.getText());
+        float duracaoVoo = Float.parseFloat(txtDuracaoVoo.getText());
+        float distanciaQuedaAlvo = Float.parseFloat(txtQuedaAteAlvo.getText());
+
+        if (altitudeMaxima != 0 || velocidadeMaxima != 0 || tempoDePropulsao != 0 || picoAceleracao != 0 || aceleracaoMedia != 0 || tempoApogeuEDescida != 0
+                || tempoEjecao != 0 || altiduteEjecao != 0 || taxaDecida != 0 || duracaoVoo != 0 || distanciaQuedaAlvo != 0) {
+            if (altitudeMaxima != 0 && velocidadeMaxima != 0 && tempoDePropulsao != 0 && picoAceleracao != 0 && aceleracaoMedia != 0 && tempoApogeuEDescida != 0
+                    && tempoEjecao != 0 && altiduteEjecao != 0 && taxaDecida != 0 && duracaoVoo != 0 && distanciaQuedaAlvo != 0) {
+                aux = 2;
+            } else {
+                JOptionPane.showMessageDialog(this, "Todos os campos do pós-lançamento devem ser preenchidos");
+                aux = 0;
+            }
+        }
+
+        return aux;
     }
 
     /**
@@ -629,8 +693,8 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelarLancamento;
     private javax.swing.JButton btnSalvarLancamento;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chkLancamentoFalhou;
     private javax.swing.JComboBox<String> cmbGrupo;
-    private javax.swing.JComboBox<String> cmbStatusLancamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -676,7 +740,6 @@ public class FormSalvarLancamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel8;
