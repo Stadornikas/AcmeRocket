@@ -201,17 +201,28 @@ public class FormSalvarEvento extends javax.swing.JFrame {
         CtrlSalvarEvento controle = new CtrlSalvarEvento();
         
         if (this.codEvento == -1 && this.validaNomeAno(nomeEvento, datEventoFormated)) {
-            controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
-            if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
+            if (controle.verificarExistencia(nomeEvento)){
+                    JOptionPane.showMessageDialog(this, "Já existe um evento com esse nome");
+                }else{
+                    controle.inserirEvento(nomeEvento, locEvento, datEventoFormated);
+                    if (JOptionPane.showConfirmDialog(this, "Evento criado com sucesso, deseja criar outro evento?", "Selecione uma opcao", YES_NO_OPTION) == 0) {
                 limparCampos();
             }
             else
                 this.voltarParaLista();
             }
+                }
+            
+            
         else{
             if (this.validaNomeAno(nomeEvento, datEventoFormated)) {
-                controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
-                this.voltarParaLista();
+                if (controle.verificarExistencia(nomeEvento)){
+                    JOptionPane.showMessageDialog(this, "Já existe um evento com esse nome");
+                }else{
+                    controle.editarEvento(codEvento, nomeEvento, locEvento, datEventoFormated);
+                    this.voltarParaLista();
+                }
+                
             }
         }
     }//GEN-LAST:event_btnSalvarEventoActionPerformed

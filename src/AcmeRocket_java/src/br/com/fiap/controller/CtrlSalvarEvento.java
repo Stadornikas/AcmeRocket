@@ -26,9 +26,17 @@ public class CtrlSalvarEvento {
         return sucesso;
     }
 
-    public boolean verificarExistencia() {
-        boolean sucesso = false;
-        return sucesso;
+    public boolean verificarExistencia(String nomeEvento) {
+        
+        boolean aux = false;
+
+        EventoDAO dao = new EventoDAO();
+
+        if (dao.existeEvento(nomeEvento)) {
+            aux = true;
+        }
+
+        return aux;
     }
 
     public boolean inserirEvento(String nomeEvento, String locEvento, String dataEvento) {

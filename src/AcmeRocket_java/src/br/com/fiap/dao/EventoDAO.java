@@ -215,6 +215,29 @@ public class EventoDAO {
         return id;
 
     }
+    
+    public boolean existeEvento(String nomeEvento) {
+        Evento a = null;
+        boolean valida = false;
+        try {
+            conn = Conexao.getConnection();
+            sql = "SELECT * FROM EVENTOS WHERE NOM_EVENTO = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, nomeEvento);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                a = new Evento(rs.getInt("COD_EVENTO"),rs.getString("NOM_EVENTO"), rs.getString("LOC_EVENTO"), rs.getDate("DAT_EVENTO"));
+                valida = true;
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar maior cod evento: " + ex);
+        }
+
+        return valida;
+
+    }
 
     public int verificarQuantidadeDependencia(int codEvento) {
         int qtdEventos = 0;
