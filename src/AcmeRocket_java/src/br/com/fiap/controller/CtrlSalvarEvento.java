@@ -41,28 +41,50 @@ public class CtrlSalvarEvento {
 
     public boolean inserirEvento(String nomeEvento, String locEvento, String dataEvento) {
         Date datEventoFormated = validarData(dataEvento);
+        String msg = "Falha ao inserir evento!";
         Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
-        boolean sucesso = false;
+        boolean sucesso = true;
 
         EventoDAO eventoDAO = new EventoDAO();
 
-        if (eventoDAO.inserir(novoEvento)) {
-            sucesso = true;
+        if (validarCamposObrigatorio(nomeEvento, locEvento, dataEvento)) {
+            msg = "Informe os campos obrigatorios";
+            sucesso = false;
         }
+
+        if (sucesso) {
+            eventoDAO.inserir(novoEvento);
+            msg = "Evento criado com sucesso!";
+        }
+
+        JOptionPane.showMessageDialog(null, msg);
 
         return sucesso;
     }
 
-    public void editarEvento(int codEvento, String nomeEvento, String locEvento, String dataEvento) {
+    public boolean editarEvento(int codEvento, String nomeEvento, String locEvento, String dataEvento) {
+        boolean aux = false;
+        boolean sucesso = true;
         String msg = "Falha ao alterar evento";
         Date datEventoFormated = validarData(dataEvento);
         Evento novoEvento = new Evento(codEvento, nomeEvento, locEvento, datEventoFormated);
 
         EventoDAO eventoDAO = new EventoDAO();
 
-        if (eventoDAO.alterar(novoEvento)) {
-            JOptionPane.showMessageDialog(null, "Evento alterado com sucesso!");
+        if (validarCamposObrigatorio(nomeEvento, locEvento, dataEvento)) {
+            msg = "Informe os campos obrigatorios";
+            sucesso = true;
         }
+
+        if (!validarCamposObrigatorio(nomeEvento, locEvento, dataEvento)) {
+            if (eventoDAO.alterar(novoEvento)) {
+                msg = "Evento alterado com sucesso!";
+                aux = true;
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, msg);
+        return aux;
     }
 
     private Date validarData(String dataEvento) {
@@ -88,5 +110,15 @@ public class CtrlSalvarEvento {
         }
 
         return e;
+    }
+
+    public boolean validarCamposObrigatorio(String nomeEvento, String localEvento, String dataEvento) {
+        boolean aux = false;
+
+        if (nomeEvento.equalsIgnoreCase("") || localEvento.equalsIgnoreCase("") || dataEvento.equalsIgnoreCase("")) {
+            aux = true;
+        }
+
+        return aux;
     }
 }
