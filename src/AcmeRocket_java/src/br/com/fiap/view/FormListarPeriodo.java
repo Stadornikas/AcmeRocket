@@ -85,7 +85,7 @@ public class FormListarPeriodo extends javax.swing.JFrame {
             tabPeriodos.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 150, 630, 210));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 650, 210));
 
         btnNovoPeriodo.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         btnNovoPeriodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fiap/images/Icones-Mais 20x20.png"))); // NOI18N

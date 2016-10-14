@@ -27,7 +27,7 @@ public class CtrlSalvarEvento {
     }
 
     public boolean verificarExistencia(String nomeEvento) {
-        
+
         boolean aux = false;
 
         EventoDAO dao = new EventoDAO();
@@ -40,8 +40,24 @@ public class CtrlSalvarEvento {
     }
 
     public boolean inserirEvento(String nomeEvento, String locEvento, String dataEvento) {
-        Date datEventoFormated = validarData(dataEvento);
+
         String msg = "Falha ao inserir evento!";
+        Date datEventoFormated = new Date(0);
+
+        if (validarData(dataEvento)) {
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            java.util.Date dataEventoDate = new Date(0);
+
+            try {
+                dataEventoDate = format.parse(dataEvento);
+          
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Data não foi convertida com sucesso.");
+            }
+            datEventoFormated = new Date(dataEventoDate.getTime());
+        }
+
         Evento novoEvento = new Evento(nomeEvento, locEvento, datEventoFormated);
         boolean sucesso = true;
 
@@ -50,9 +66,8 @@ public class CtrlSalvarEvento {
         if (validarCamposObrigatorio(nomeEvento, locEvento, dataEvento)) {
             msg = "Informe os campos obrigatorios";
             sucesso = false;
-        }
+        } else {
 
-        if (sucesso) {
             eventoDAO.inserir(novoEvento);
             msg = "Evento criado com sucesso!";
         }
@@ -66,7 +81,22 @@ public class CtrlSalvarEvento {
         boolean aux = false;
         boolean sucesso = true;
         String msg = "Falha ao alterar evento";
-        Date datEventoFormated = validarData(dataEvento);
+        Date datEventoFormated = new Date(0);
+
+        if (validarData(dataEvento)) {
+            String pattern = "dd/MM/yyyy";
+            SimpleDateFormat format = new SimpleDateFormat(pattern);
+            java.util.Date dataEventoDate = new Date(0);
+
+            try {
+                dataEventoDate = format.parse(dataEvento);
+                aux = true;
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Data não foi convertida com sucesso.");
+            }
+            datEventoFormated = new Date(dataEventoDate.getTime());
+        }
+
         Evento novoEvento = new Evento(codEvento, nomeEvento, locEvento, datEventoFormated);
 
         EventoDAO eventoDAO = new EventoDAO();
@@ -87,19 +117,22 @@ public class CtrlSalvarEvento {
         return aux;
     }
 
-    private Date validarData(String dataEvento) {
+    private boolean validarData(String dataEvento) {
+        boolean aux = false;
+
         String pattern = "dd/MM/yyyy";
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         java.util.Date dataEventoDate = new Date(0);
         Date datEventoFormated = new Date(0);
         try {
             dataEventoDate = format.parse(dataEvento);
+            aux = true;
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Data não foi convertida com sucesso.");
         }
         datEventoFormated = new Date(dataEventoDate.getTime());
 
-        return datEventoFormated;
+        return aux;
     }
 
     public Evento carregarEvento(int codEvento) {
@@ -115,7 +148,7 @@ public class CtrlSalvarEvento {
     public boolean validarCamposObrigatorio(String nomeEvento, String localEvento, String dataEvento) {
         boolean aux = false;
 
-        if (nomeEvento.equalsIgnoreCase("") || localEvento.equalsIgnoreCase("") || dataEvento.equalsIgnoreCase("")) {
+        if (nomeEvento.equalsIgnoreCase("") || localEvento.equalsIgnoreCase("") || dataEvento.equalsIgnoreCase("__/__/____")) {
             aux = true;
         }
 
